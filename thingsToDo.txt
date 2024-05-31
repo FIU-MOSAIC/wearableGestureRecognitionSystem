@@ -1,0 +1,2 @@
+research the sdk for making the app
+make the connection from firebase to the watch
