@@ -23,7 +23,14 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+        theme: ThemeData(
+    cardColor: Colors.black,  // global cursor color for all input fields
+    textSelectionTheme: const TextSelectionThemeData(
+    cursorColor: Colors.black, // specifically setting the cursor color
+    ),
+
+  ),
       debugShowCheckedModeBanner: false,
       home: AuthPage(),
     );
