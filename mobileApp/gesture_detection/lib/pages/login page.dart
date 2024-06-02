@@ -119,19 +119,21 @@ class _LoginPageState extends State<LoginPage> {
                             return const ForgotPasswordPage();
                           },),);
                         },
-                        child: Text('Forgot password?',
-                         style: TextStyle(color: Colors.grey[800], fontSize: 14)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('Forgot password?',
+                           style: TextStyle(color: Colors.grey[800], fontSize: 15)),
+                        ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
                 const SizedBox(height: 20),
                 Button(
                   text: 'Sign In',
                   onTap: signUserIn,
                 ),
-                const SizedBox(height: 60),
+                const SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(
@@ -158,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 60),
+                const SizedBox(height: 40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -171,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                       imagePath: 'lib/images/apple.png'),
                   ],
                 ),
-                const SizedBox(height: 35),
+                const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
