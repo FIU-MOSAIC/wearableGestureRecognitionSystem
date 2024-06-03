@@ -90,7 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
         title: const Text('Profile Setup'),
       ),
       body: isLoading
-        ? Center(child: CircularProgressIndicator())
+        ? const Center(child: CircularProgressIndicator())
         : ListView(
             children: [
               const SizedBox(height: 20),
@@ -107,9 +107,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   fontWeight: FontWeight.bold
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 9.0),
                 child: Text(
                   "My Details",
                   style: TextStyle(
@@ -121,7 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const SizedBox(height: 20),
               ProfileTextField(
-                text: "Full Name",
+                text: "Name",
                 hintText: "Enter your full name",
                 keyboardType: TextInputType.name,
                 controller: nameController,
@@ -155,7 +155,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   });
                 },
               ),
-              const SizedBox(height: 80),
+              const SizedBox(height: 40),
               Button(
                 onTap: saveProfile,
                 text: "Save Changes",

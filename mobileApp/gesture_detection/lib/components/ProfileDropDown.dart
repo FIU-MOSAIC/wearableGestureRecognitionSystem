@@ -38,7 +38,7 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
             Expanded(
               flex: 3,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+                padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0),
                 child: Text(
                   'Gender',
                   style: TextStyle(
@@ -82,7 +82,7 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
             Expanded(
               flex: 3,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 12.0),
+                padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0),
                 child: Text(
                   'Impairment',
                   style: TextStyle(

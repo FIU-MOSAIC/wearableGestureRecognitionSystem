@@ -21,7 +21,7 @@ class ProfileTextField extends StatelessWidget {
         Expanded(
           flex: 3,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0),
             child: Text(
               text,
               style: TextStyle(

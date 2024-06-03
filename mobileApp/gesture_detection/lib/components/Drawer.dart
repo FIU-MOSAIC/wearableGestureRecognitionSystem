@@ -41,7 +41,7 @@ class _MyDrawerState extends State<MyDrawer> {
             icon: Icons.run_circle,
             text: "A C T I V I T Y",
           ),
-          MyListTile(
+          const MyListTile(
             icon: Icons.contacts,
             text: "A B O U T   U S",
           ),
