@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 class ProfileTextField extends StatelessWidget {
   final String text;
   final String hintText;
-  final TextInputType keyboardType;  // Added this line
+  final TextInputType keyboardType;
+  final TextEditingController controller;
 
-  // Updated constructor to include keyboardType with a default value
   const ProfileTextField({
     super.key,
     required this.text,
     required this.hintText,
-    this.keyboardType = TextInputType.text,  // Default to text input
+    this.keyboardType = TextInputType.text,
+    required this.controller,
   });
 
   @override
@@ -36,7 +37,8 @@ class ProfileTextField extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: TextField(
-              keyboardType: keyboardType,  // Apply keyboardType to TextField
+              controller: controller,
+              keyboardType: keyboardType,
               decoration: InputDecoration(
                 hintText: hintText,
                 hintStyle: TextStyle(color: Colors.grey[500]),
