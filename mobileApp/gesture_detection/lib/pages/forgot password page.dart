@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gesture_detection/components/Button.dart';
@@ -23,8 +24,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Future resetPassword() async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text.trim());
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Password reset email sent')));
     } on FirebaseAuthException catch (e) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('An error occurred')));
     }
   }
@@ -35,7 +38,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.grey[100],
-        title: const Text('Forgot Password'),
+        title: const Text('Forgot Password?'),
       ),
       body: Center(
         child: Column(

@@ -147,7 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   text: 'Sign up',
                   onTap: signUserUp,
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 35),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(
@@ -174,7 +174,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 35),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
