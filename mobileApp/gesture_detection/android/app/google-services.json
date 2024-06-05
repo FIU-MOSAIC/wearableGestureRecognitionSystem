@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "916195498564",
+    "project_id": "gesturerecognitionapplication",
+    "storage_bucket": "gesturerecognitionapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916195498564:android:b0f875a6ddc10672a7ba11",
+        "android_client_info": {
+          "package_name": "com.example.gesture_detection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916195498564-4g12kg1oriqprugpgptf4fpbdk6c9l60.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk3aubadch99BzVsIkq8Ij8z69yhWMwho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916195498564-4g12kg1oriqprugpgptf4fpbdk6c9l60.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "916195498564-moug2aq0v4g0me5h0v3hpa0csnm5hqfo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gestureDetection"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
