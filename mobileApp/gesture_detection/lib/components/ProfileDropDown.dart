@@ -88,6 +88,7 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
             ),
           ],
         ),
+        const SizedBox(height: 20),
         Row(
           children: [
             Expanded(
@@ -107,7 +108,7 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
             Expanded(
               flex: 3,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 9.0),
                 child: DropdownButtonFormField<String>(
                   value: selectedFeet,
                   decoration: InputDecoration(
