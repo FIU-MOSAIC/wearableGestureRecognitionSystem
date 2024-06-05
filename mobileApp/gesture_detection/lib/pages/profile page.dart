@@ -15,9 +15,11 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final currentUser = FirebaseAuth.instance.currentUser!;
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController bioController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
+  final TextEditingController weightController = TextEditingController();
   String? selectedGender;
+  String? selectedFeet;
+  String? selectedInches;
   String? selectedImpairment;
   bool isLoading = true;
 
@@ -30,13 +32,15 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> saveProfile() async {
       try {
         final name = nameController.text;
-        final bio = bioController.text;
         final age = ageController.text;
+        final weight = weightController.text;
 
         await FirebaseFirestore.instance.collection('users').doc(currentUser.uid).set({
           'name': name,
-          'bio': bio,
           'age': age,
+          'weight': weight,
+          'ft': selectedFeet,
+          'in': selectedInches,
           'gender': selectedGender,
           'impairment': selectedImpairment,
           'email': currentUser.email,
@@ -59,10 +63,12 @@ class _ProfilePageState extends State<ProfilePage> {
       if (userDoc.exists) {
         Map<String, dynamic> data = userDoc.data() as Map<String, dynamic>;
         nameController.text = data['name'] ?? '';
-        bioController.text = data['bio'] ?? '';
         ageController.text = data['age'] ?? '';
+        weightController.text = data['weight'] ?? '';
         setState(() {
           selectedGender = data['gender'];
+          selectedFeet = data['ft'];
+          selectedInches = data['in'];
           selectedImpairment = data['impairment'];
           isLoading = false;
         });
@@ -128,17 +134,17 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const SizedBox(height: 20),
               ProfileTextField(
-                text: "Bio",
-                hintText: "Enter your bio",
-                keyboardType: TextInputType.text,
-                controller: bioController,
-              ),
-              const SizedBox(height: 20),
-              ProfileTextField(
                 text: "Age",
                 hintText: "Enter your age",
                 keyboardType: TextInputType.number,
                 controller: ageController,
+              ),
+              const SizedBox(height: 20),
+              ProfileTextField(
+                text: "Weight",
+                hintText: "Enter your weight",
+                keyboardType: TextInputType.number,
+                controller: weightController,
               ),
               const SizedBox(height: 20),
               ProfileDropDown(
@@ -147,6 +153,16 @@ class _ProfilePageState extends State<ProfilePage> {
                 onGenderChanged: (String? newGender) {
                   setState(() {
                     selectedGender = newGender;
+                  });
+                },
+                onFeetChanged: (String? newHeight){
+                  setState(() {
+                    selectedFeet = newHeight;
+                  });
+                },
+                onInchesChanged: (String? newInches){
+                  setState(() {
+                    selectedInches = newInches;
                   });
                 },
                 onImpairmentChanged: (String? newImpairment) {
