@@ -5,7 +5,7 @@ import 'package:gesture_detection/pages/profile page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
+// test for the merged branch 
   @override
   State<HomePage> createState() => _HomePageState();
 }
