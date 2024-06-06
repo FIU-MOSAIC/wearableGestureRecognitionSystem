@@ -150,6 +150,8 @@ class _ProfilePageState extends State<ProfilePage> {
               ProfileDropDown(
                 initialGender: selectedGender,
                 initialImpairment: selectedImpairment,
+                initialFeet: selectedFeet,
+                initialInches: selectedInches,
                 onGenderChanged: (String? newGender) {
                   setState(() {
                     selectedGender = newGender;
