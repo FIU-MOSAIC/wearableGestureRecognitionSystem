@@ -36,6 +36,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
     cardColor: Colors.black,  // global cursor color for all input fields
     textSelectionTheme: const TextSelectionThemeData(
+    selectionHandleColor: Colors.black,
     cursorColor: Colors.black, // specifically setting the cursor color
     ),
 
