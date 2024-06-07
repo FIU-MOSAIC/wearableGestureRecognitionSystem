@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
     final user = userProvider.user;
 
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text('Home'),
         backgroundColor: Colors.grey[900],

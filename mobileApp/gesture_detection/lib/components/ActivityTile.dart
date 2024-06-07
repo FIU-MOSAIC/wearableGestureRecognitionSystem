@@ -27,7 +27,7 @@ class ActivityTile extends StatelessWidget {
             child: Container(
               width: width,
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+                color: Colors.grey[400],
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: Padding(
