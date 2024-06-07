@@ -144,7 +144,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 20),
                 Button(
-                  text: 'Sign up',
+                  text: 'Sign Up',
                   onTap: signUserUp,
                 ),
                 const SizedBox(height: 35),
@@ -180,11 +180,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     SquareTile(
                       onTap: () => AuthService().signInWithGoogle(),
-                      imagePath: 'lib/images/google.png'),
+                      imagePath: 'lib/images/google.png',
+                      size: 90,),
                     const SizedBox(width: 60),
                     SquareTile(
                       onTap: () => (){},
-                      imagePath: 'lib/images/apple.png'),
+                      imagePath: 'lib/images/apple.png', 
+                      size: 90,),
                   ],
                 ),
                 const SizedBox(height: 30),
