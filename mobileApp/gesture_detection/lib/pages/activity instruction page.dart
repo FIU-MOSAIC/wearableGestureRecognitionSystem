@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ActivityPage extends StatelessWidget {
+class ActivityInstructionPage extends StatelessWidget {
   final String title;
-  const ActivityPage({super.key, required this.title});
+  const ActivityInstructionPage({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class ActivityPage extends StatelessWidget {
         title: Text(title + ' Instructions'),
       ),
       body: Center(
-        child: Text('Activity Page'),
+        child: Text('Instruction Page'),
       ),
     );
   }
