@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gesture_detection/components/Drawer.dart';
-import 'package:gesture_detection/pages/profile page.dart';
+import 'package:gesture_detection/pages/profile%20page.dart';
+import 'package:gesture_detection/services/user%20provider.dart';
+import 'package:provider/provider.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,15 +14,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Sign out method
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<UserProvider>(context, listen: false).fetchUserData();
+  }
+
   void signUserOut() {
     FirebaseAuth.instance.signOut();
   }
 
   void goToProfilePage() {
-    // Pop the drawer
     Navigator.pop(context);
-    // Go to profile page
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -30,6 +36,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+    final user = userProvider.user;
+
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -41,7 +50,16 @@ class _HomePageState extends State<HomePage> {
         signOut: signUserOut,
         onProfileTap: goToProfilePage,
       ),
-      body: const Center(child: Text('logged in')),
+      body: Center(
+        child: user == null
+            ? CircularProgressIndicator()
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Welcome ${user.name ?? ''}'),
+                ],
+              ),
+      ),
     );
   }
 }
