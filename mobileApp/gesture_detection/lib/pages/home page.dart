@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gesture_detection/components/ActivityTile.dart';
 import 'package:gesture_detection/components/Drawer.dart';
+import 'package:gesture_detection/pages/activity%20page.dart';
 import 'package:gesture_detection/pages/profile%20page.dart';
 import 'package:gesture_detection/services/user%20provider.dart';
 import 'package:provider/provider.dart';
@@ -113,9 +114,17 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 15.0),
-                ActivityTile(title: 'Dexterity Test', imagePath: 'lib/images/Dexterity Test Icon.png', width: 210, onTap: () {},),
-                ActivityTile(title: 'Range of Motion Test', imagePath: 'lib/images/Range of Motion Icon.png', width: 278, onTap: () {},),
-                ActivityTile(title: 'Reflex Test', imagePath: 'lib/images/Reflex Test Icon.png', width: 185, onTap: () {},),
+                ActivityTile(title: 'Dexterity Test', imagePath: 'lib/images/Dexterity Test Icon.png', width: 210, onTap:
+                 () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ActivityPage(title: 'Dexterity Test')));
+                  },),
+
+                ActivityTile(title: 'Range of Motion Test', imagePath: 'lib/images/Range of Motion Icon.png', width: 278, onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ActivityPage(title: 'Range of Motion Test')));
+                  },),
+                ActivityTile(title: 'Reflex Test', imagePath: 'lib/images/Reflex Test Icon.png', width: 185, onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ActivityPage(title: 'Reflex Test')));
+                  },),
               ],
             ),
     );
