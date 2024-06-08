@@ -82,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ? const Center(child: CircularProgressIndicator())
           : ListView(
               children: [
-                const SizedBox(height: 20),
+                const SizedBox(height: 5),
                 const Icon(
                   Icons.person,
                   color: Colors.black,
@@ -96,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 9.0),
                   child: Text(
@@ -115,21 +115,21 @@ class _ProfilePageState extends State<ProfilePage> {
                   keyboardType: TextInputType.name,
                   controller: nameController,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 ProfileTextField(
                   text: "Age",
                   hintText: "Enter your age",
                   keyboardType: TextInputType.number,
                   controller: ageController,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 ProfileTextField(
                   text: "Weight",
                   hintText: "Enter your weight",
                   keyboardType: TextInputType.number,
                   controller: weightController,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 ProfileDropDown(
                   initialGender: selectedGender,
                   initialImpairment: selectedImpairment,

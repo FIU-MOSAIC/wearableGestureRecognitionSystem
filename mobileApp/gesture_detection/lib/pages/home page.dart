@@ -114,15 +114,15 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 15.0),
-                ActivityTile(title: 'Dexterity Test', imagePath: 'lib/images/Dexterity Test Icon.png', width: 210, onTap:
+                ActivityTile(title: 'Dexterity Test', imagePath: 'lib/images/Dexterity Test Icon.png', width: 225, onTap:
                  () {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> ActivityInstructionPage(title: 'Dexterity Test')));
                   },),
 
-                ActivityTile(title: 'Range of Motion Test', imagePath: 'lib/images/Range of Motion Icon.png', width: 278, onTap: () {
+                ActivityTile(title: 'Range of Motion Test', imagePath: 'lib/images/Range of Motion Icon.png', width: 297, onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> ActivityInstructionPage(title: 'Range of Motion Test')));
                   },),
-                ActivityTile(title: 'Reflex Test', imagePath: 'lib/images/Reflex Test Icon.png', width: 185, onTap: () {
+                ActivityTile(title: 'Reflex Test', imagePath: 'lib/images/Reflex Test Icon.png', width: 195, onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> ActivityInstructionPage(title: 'Reflex Test')));
                   },),
               ],
