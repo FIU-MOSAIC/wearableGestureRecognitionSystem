@@ -30,8 +30,8 @@ class ActivityInstructionPage extends StatelessWidget {
             Text('Tips for proper execution. ')
             
           ],
-               ),
-       )
+        ),
+      )
     );
   }
 }

@@ -96,13 +96,12 @@ class _DexterityInstructionPageState extends State<DexterityInstructionPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Button(
                   onTap: (){},
                   text: "Start ${widget.title}",
                 ),
           ],
-          
         ),
       ),
     );
