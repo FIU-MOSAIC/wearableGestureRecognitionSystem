@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gesture_detection/components/Button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -95,6 +96,11 @@ class _ReflexIntructionPage extends State<ReflexIntructionPage> {
                 ),
               ),
             ),
+            const SizedBox(height: 20),
+            Button(
+                  onTap: (){},
+                  text: "Start ${widget.title}",
+                ),
           ],
         ),
       ),
