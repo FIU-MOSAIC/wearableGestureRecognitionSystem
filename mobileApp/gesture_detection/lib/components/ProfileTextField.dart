@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfileTextField extends StatelessWidget {
   final String text;
@@ -24,7 +25,7 @@ class ProfileTextField extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0),
             child: Text(
               text,
-              style: TextStyle(
+              style: GoogleFonts.lato(
                 fontSize: 16,
                 color: Colors.grey[600],
               ),
@@ -41,7 +42,7 @@ class ProfileTextField extends StatelessWidget {
               keyboardType: keyboardType,
               decoration: InputDecoration(
                 hintText: hintText,
-                hintStyle: TextStyle(color: Colors.grey[500]),
+                hintStyle: GoogleFonts.lato(color: Colors.grey[500]),
                 focusedBorder: InputBorder.none,
               ),
             ),

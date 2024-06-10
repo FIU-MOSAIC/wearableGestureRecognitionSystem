@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:gesture_detection/components/FormTextField.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -45,9 +46,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+           Text(
               'Enter your email to reset your password.',
-              style: TextStyle(fontSize: 18),
+              style: GoogleFonts.lato(fontSize: 18),
             ),
             const SizedBox(height: 20),
             Padding(

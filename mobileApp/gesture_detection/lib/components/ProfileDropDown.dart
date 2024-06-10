@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfileDropDown extends StatefulWidget {
   final Function(String?) onGenderChanged;
@@ -53,7 +54,7 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
                 padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0),
                 child: Text(
                   'Gender',
-                  style: TextStyle(
+                  style: GoogleFonts.lato(
                     fontSize: 16,
                     color: Colors.grey[600],
                   ),
@@ -69,12 +70,12 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
                   value: selectedGender,
                   decoration: InputDecoration(
                     hintText: 'Select your gender',
-                    hintStyle: TextStyle(color: Colors.grey[600]),
+                    hintStyle: GoogleFonts.lato(color: Colors.grey[600]),
                   ),
                   items: <String>['Male', 'Female', 'Non-binary', 'Prefer not to say'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value, style: TextStyle(color: Colors.grey[600]),),
+                      child: Text(value, style: GoogleFonts.lato(color: Colors.grey[600]),),
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
@@ -97,7 +98,7 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
                 padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0),
                 child: Text(
                   'Height',
-                  style: TextStyle(
+                  style: GoogleFonts.lato(
                     fontSize: 16,
                     color: Colors.grey[600],
                   ),
@@ -113,12 +114,12 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
                   value: selectedFeet,
                   decoration: InputDecoration(
                     hintText: 'ft',
-                    hintStyle: TextStyle(color: Colors.grey[600]),
+                    hintStyle: GoogleFonts.lato(color: Colors.grey[600]),
                   ),
                   items: <String>['0', '1', '2', '3', '4', '5', '6', '7', '8'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value, style: TextStyle(color: Colors.grey[600]),),
+                      child: Text(value, style: GoogleFonts.lato(color: Colors.grey[600]),),
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
@@ -138,12 +139,12 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
                   value: selectedInches,
                   decoration: InputDecoration(
                     hintText: 'in',
-                    hintStyle: TextStyle(color: Colors.grey[600]),
+                    hintStyle: GoogleFonts.lato(color: Colors.grey[600]),
                   ),
                   items: <String>['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value, style: TextStyle(color: Colors.grey[600]),),
+                      child: Text(value, style: GoogleFonts.lato(color: Colors.grey[600]),),
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
@@ -166,7 +167,7 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
                 padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0),
                 child: Text(
                   'Impairment',
-                  style: TextStyle(
+                  style: GoogleFonts.lato(
                     fontSize: 16,
                     color: Colors.grey[600],
                   ),
@@ -182,12 +183,12 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
                   value: selectedImpairment,
                   decoration: InputDecoration(
                     hintText: 'Select your impairment',
-                    hintStyle: TextStyle(color: Colors.grey[600]),
+                    hintStyle: GoogleFonts.lato(color: Colors.grey[600]),
                   ),
                  items: <String>['Stroke', 'Parkinson\'s Disease', 'Cerebral Palsy', 'Multiple Sclerosis', 'Arthritis', 'Other'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value, style: TextStyle(color: Colors.grey[600]),),
+                      child: Text(value, style: GoogleFonts.lato(color: Colors.grey[600]),),
                     );
                   }).toList(),
                   onChanged: (String? newValue) {

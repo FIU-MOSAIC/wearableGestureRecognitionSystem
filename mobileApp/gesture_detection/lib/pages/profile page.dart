@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gesture_detection/services/user%20provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:gesture_detection/components/ProfileDropDown.dart';
@@ -91,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Text(
                   user.email ?? '',
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
+                  style: GoogleFonts.lato(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -101,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: const EdgeInsets.symmetric(horizontal: 9.0),
                   child: Text(
                     "My Details",
-                    style: TextStyle(
+                    style: GoogleFonts.lato(
                       color: Colors.grey[600],
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
