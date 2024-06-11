@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyListTile extends StatelessWidget {
   final IconData icon;
@@ -24,7 +25,7 @@ class MyListTile extends StatelessWidget {
         ),
         title: Text(
           text,
-          style: const TextStyle(color: Colors.white, fontSize: 15),
+          style: GoogleFonts.lato(color: Colors.white, fontSize: 15),
         ),
         onTap: onTap, // Use the onTap function in ListTile
       ),

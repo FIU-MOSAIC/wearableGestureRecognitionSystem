@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gesture_detection/pages/auth%20page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:gesture_detection/services/user%20provider.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 
@@ -9,7 +11,14 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
-  runApp(const MyApp());
+   runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -20,19 +29,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // This widget is the root of your application.
+  // application root  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
     cardColor: Colors.black,  // global cursor color for all input fields
     textSelectionTheme: const TextSelectionThemeData(
+    selectionHandleColor: Colors.black,
     cursorColor: Colors.black, // specifically setting the cursor color
     ),
 
   ),
       debugShowCheckedModeBanner: false,
-      home: AuthPage(),
+      home: const AuthPage(),
     );
   }
 }

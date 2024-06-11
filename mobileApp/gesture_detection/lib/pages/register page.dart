@@ -4,6 +4,7 @@ import 'package:gesture_detection/components/Button.dart';
 import 'package:gesture_detection/components/FormTextField.dart';
 import 'package:gesture_detection/components/SquareTile.dart';
 import 'package:gesture_detection/services/auth%20service.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -68,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[200],
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -78,9 +79,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 30),
                 const Icon(Icons.account_circle, size: 100),
                 const SizedBox(height: 20),
-                const Text(
+                Text(
                   "Let's create an account.",
-                  style: TextStyle(fontSize: 16),
+                  style: GoogleFonts.lato(fontSize: 16),
                 ),
                 const SizedBox(height: 40),
                 Column(
@@ -96,7 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Text(
                           emailError!,
-                          style: TextStyle(color: Colors.red, fontSize: 14),
+                          style: GoogleFonts.lato(color: Colors.red, fontSize: 14),
                         ),
                       ),
                   ],
@@ -115,7 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Text(
                           passwordError!,
-                          style: const TextStyle(color: Colors.red, fontSize: 14),
+                          style: GoogleFonts.lato(color: Colors.red, fontSize: 14),
                         ),
                       ),
                   ],
@@ -136,7 +137,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             confirmPasswordError!,
-                            style: const TextStyle(color: Colors.red, fontSize: 14),
+                            style: GoogleFonts.lato(color: Colors.red, fontSize: 14),
                           ),
                         ),
                       ),
@@ -144,7 +145,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 20),
                 Button(
-                  text: 'Sign up',
+                  text: 'Sign Up',
                   onTap: signUserUp,
                 ),
                 const SizedBox(height: 35),
@@ -162,7 +163,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
                           'Or continue with',
-                          style: TextStyle(color: Colors.grey[800]),
+                          style: GoogleFonts.lato(color: Colors.grey[800]),
                         ),
                       ),
                       Expanded(
@@ -180,24 +181,26 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     SquareTile(
                       onTap: () => AuthService().signInWithGoogle(),
-                      imagePath: 'lib/images/google.png'),
+                      imagePath: 'lib/images/google.png',
+                      size: 90,),
                     const SizedBox(width: 60),
                     SquareTile(
                       onTap: () => (){},
-                      imagePath: 'lib/images/apple.png'),
+                      imagePath: 'lib/images/apple.png', 
+                      size: 90,),
                   ],
                 ),
                 const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Already have an account?', style: TextStyle(fontSize: 16)),
+                   Text('Already have an account?', style: GoogleFonts.lato(fontSize: 16)),
                     const SizedBox(width: 5),
                     GestureDetector(
                       onTap: widget.onTap,
-                      child: const Text(
+                      child: Text(
                         'Login now.',
-                        style: TextStyle(
+                        style: GoogleFonts.lato(
                           color: Colors.blueAccent,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,

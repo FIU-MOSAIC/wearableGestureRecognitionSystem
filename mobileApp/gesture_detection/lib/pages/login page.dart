@@ -4,6 +4,7 @@ import 'package:gesture_detection/components/Button.dart';
 import 'package:gesture_detection/components/FormTextField.dart';
 import 'package:gesture_detection/components/SquareTile.dart';
 import 'package:gesture_detection/services/auth%20service.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'forgot password page.dart';
 
@@ -56,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[200],
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -66,9 +67,9 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 30),
                 const Icon(Icons.account_circle, size: 100),
                 const SizedBox(height: 20),
-                const Text(
+                Text(
                   "Welcome back, you've been missed.",
-                  style: TextStyle(fontSize: 16),
+                  style: GoogleFonts.lato(fontSize: 16),
                 ),
                 const SizedBox(height: 40),
                 Column(
@@ -84,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Text(
                           emailError!,
-                          style: const TextStyle(color: Colors.red, fontSize: 14),
+                          style: GoogleFonts.lato(color: Colors.red, fontSize: 14),
                         ),
                       ),
                   ],
@@ -103,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Text(
                           passwordError!,
-                          style: const TextStyle(color: Colors.red, fontSize: 14),
+                          style: GoogleFonts.lato(color: Colors.red, fontSize: 14),
                         ),
                       ),
                   ],
@@ -122,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text('Forgot password?',
-                           style: TextStyle(color: Colors.grey[800], fontSize: 15)),
+                           style: GoogleFonts.lato(color: Colors.grey[800], fontSize: 15)),
                         ),
                       ),
                     ],
@@ -148,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
                           'Or continue with',
-                          style: TextStyle(color: Colors.grey[800]),
+                          style: GoogleFonts.lato(color: Colors.grey[800]),
                         ),
                       ),
                       Expanded(
@@ -166,24 +167,26 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     SquareTile(
                       onTap: () => AuthService().signInWithGoogle(),
-                      imagePath: 'lib/images/google.png'),
+                      imagePath: 'lib/images/google.png',
+                       size: 90,),
                     const SizedBox(width: 60),
                     SquareTile(
                       onTap: (){},
-                      imagePath: 'lib/images/apple.png'),
+                      imagePath: 'lib/images/apple.png',
+                      size: 90,),
                   ],
                 ),
                 const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Not a member?', style: TextStyle(fontSize: 16)),
+                    Text('Not a member?', style: GoogleFonts.lato(fontSize: 16)),
                     const SizedBox(width: 5),
                     GestureDetector(
                       onTap: widget.onTap,
-                      child: const Text(
+                      child: Text(
                         'Register now.',
-                        style: TextStyle(
+                        style: GoogleFonts.lato(
                           color: Colors.blueAccent,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
