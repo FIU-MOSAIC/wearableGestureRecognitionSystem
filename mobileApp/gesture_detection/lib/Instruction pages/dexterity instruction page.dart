@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gesture_detection/activity%20pages/dexterity%20test.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -98,7 +99,9 @@ class _DexterityInstructionPageState extends State<DexterityInstructionPage> {
             ),
             const SizedBox(height: 40),
             Button(
-                  onTap: (){},
+                  onTap: (){ 
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const DexterityTestPage()));
+                  },
                   text: "Start ${widget.title}",
                 ),
           ],
