@@ -8,6 +8,18 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "archive",
+      "rootUri": "file:///C:/Users/Tito/AppData/Local/Pub/Cache/hosted/pub.dev/archive-3.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "args",
+      "rootUri": "file:///C:/Users/Tito/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "async",
       "rootUri": "file:///C:/Users/Tito/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.11.0",
       "packageUri": "lib/",
@@ -176,6 +188,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_launcher_icons",
+      "rootUri": "file:///C:/Users/Tito/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_launcher_icons-0.9.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///C:/Users/Tito/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-3.0.2",
       "packageUri": "lib/",
@@ -246,6 +264,12 @@
       "rootUri": "file:///C:/Users/Tito/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "image",
+      "rootUri": "file:///C:/Users/Tito/AppData/Local/Pub/Cache/hosted/pub.dev/image-3.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
     },
     {
       "name": "js",
@@ -344,6 +368,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "petitparser",
+      "rootUri": "file:///C:/Users/Tito/AppData/Local/Pub/Cache/hosted/pub.dev/petitparser-6.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "platform",
       "rootUri": "file:///C:/Users/Tito/AppData/Local/Pub/Cache/hosted/pub.dev/platform-3.1.5",
       "packageUri": "lib/",
@@ -440,6 +470,18 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "xml",
+      "rootUri": "file:///C:/Users/Tito/AppData/Local/Pub/Cache/hosted/pub.dev/xml-6.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "yaml",
+      "rootUri": "file:///C:/Users/Tito/AppData/Local/Pub/Cache/hosted/pub.dev/yaml-3.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "youtube_player_flutter",
       "rootUri": "file:///C:/Users/Tito/AppData/Local/Pub/Cache/hosted/pub.dev/youtube_player_flutter-9.0.1",
       "packageUri": "lib/",
@@ -452,7 +494,7 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-06-10T15:32:02.041326Z",
+  "generated": "2024-06-19T20:48:06.350111Z",
   "generator": "pub",
   "generatorVersion": "3.4.3",
   "flutterRoot": "file:///C:/Users/Tito/Flutter/flutter",
