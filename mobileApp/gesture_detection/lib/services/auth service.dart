@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
 
 class AuthService {
   // Google Sign In
@@ -17,5 +18,18 @@ class AuthService {
 
     //sing in
     return FirebaseAuth.instance.signInWithCredential(credential); 
+  }
+}
+
+Future<void> fetchFitbitData(String accessToken) async {
+  final response = await http.get(
+    Uri.parse('https://api.fitbit.com/1/user/-/activities/steps/date/today/1d.json'),
+    headers: {'Authorization': 'Bearer $accessToken'},
+  );
+
+  if (response.statusCode == 200) {
+    print('Data: ${response.body}');
+  } else {
+    print('Failed to fetch data');
   }
 }

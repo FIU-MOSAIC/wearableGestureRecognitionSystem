@@ -1,1 +1,20 @@
 this will be the directory for the application on the device
+making comment on the action of creating an authentication of the watch
+
+
+Fitbit API requires OAuth 2.0 authentication.
+Set up your Flutter app to handle OAuth 2.0 flow.
+
+Use the oauth2 package to manage the authentication process.
+
+Once authenticated, you can make HTTP requests to the Fitbit API to fetch user data.
+Use the http package to make requests to endpoints such as activity data
+heart rate, sleep data, etc.
+
+Display Data in Flutter UI:
+Use Flutter widgets to create a user
+interface that displays the fetched Fitbit data
+
+
+sounds like it will be the making of the
+connection from the application to the watch emulator

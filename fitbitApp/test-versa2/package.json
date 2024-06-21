@@ -1,0 +1,31 @@
+{
+  "name": "test-versa2",
+  "version": "0.1.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@fitbit/sdk": "~4.0.0-pre.4",
+    "@fitbit/sdk-cli": "^1.7.0-pre.1"
+  },
+  "dependencies": {
+    "@fitbit/sdk": "~4.0.0-pre.4",
+    "@fitbit/sdk-cli": "^1.7.0-pre.1"
+  },
+  "fitbit": {
+    "appUUID": "50fe697e-1358-4cff-86d6-e118c61231c2",
+    "appType": "app",
+    "appDisplayName": "test versa 2",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#ffffff",
+    "requestedPermissions": [],
+    "buildTargets": [
+      "mira"
+    ],
+    "i18n": {},
+    "defaultLanguage": "en-US"
+  },
+  "scripts": {
+    "build": "fitbit-build",
+    "debug": "fitbit"
+  }
+}
