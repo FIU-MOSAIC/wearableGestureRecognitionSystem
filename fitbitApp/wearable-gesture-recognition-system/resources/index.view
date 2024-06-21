@@ -1,3 +1,7 @@
-<svg class="background">
-  <text id="myElem" />
+<svg>
+  <text id="center-text"></text>
+  <use id="start-button" href="#text-button" class="text-button bottom application-fill" />
+  <use id="stop-button" href="#text-button" class="text-button bottom application-fill" />
+  <use id="save" href="#text-button" class="text-button primary application-fill" />
+  <use id="retry" href="#text-button" class="text-button secondary application-fill" />
 </svg>
