@@ -30,3 +30,4 @@ if(Accelerometer){
 } else {
     console.log("this device does not have an accelerometer");
 }
+
