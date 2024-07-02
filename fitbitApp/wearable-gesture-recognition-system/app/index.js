@@ -3,36 +3,6 @@ import { Accelerometer } from "accelerometer";
 import { Gyroscope } from "gyroscope";
 import { OrientationSensor } from "orientation";
 import { display } from "display";
-import fs from 'fs';
-
-// const elem = document.getElementById("myElem");
-// elem.text = `x: y: z:`;
-
-// if(Accelerometer){
-//     console.log("this device has an accelerometer");
-//     const acc = new Accelerometer({ frequency: 1 });
-
-//     acc.addEventListener("reading", () => {
-//         console.log(
-//             `ts: ${acc.timestamp}, \
-//             x: ${acc.x}, \
-//             y: ${acc.y}, \
-//             z: ${acc.z}`
-//         );
-//     });
-
-//     display.addEventListener("change", () => {
-//         if(display.on){
-//             acc.start();
-//         } else {
-//             acc.stop();
-//         }
-//     });
-
-//     acc.start();
-// } else {
-//     console.log("this device does not have an accelerometer");
-// }
 
 const startButton = document.getElementById("start-button");
 const stopButton = document.getElementById("stop-button");
@@ -131,9 +101,6 @@ function resultsScreen(){
         saveButton.style.display = "none";
         retryButton.style.display = "none";
         console.log(JSON.stringify(currentRun));
-        fs.writeFile("run.json", currentRun, (err) => {
-
-        });
         //upload results here
     });
 
