@@ -86,7 +86,8 @@ function recordRun() {
     dataTransferInterval = setInterval(() => {
         sendDataToCompanion(currentRun);
         currentRun = { accelX: [], accelY: [], accelZ: [], gyroX: [], gyroY: [], gyroZ: [], orientationScalar: [], orientationI: [], orientationJ: [], orientationK: [] };
-    }, 1000);
+    }, 4000);//hereeeeeeeeeeeeee
+    //hereeeeeeeeeee
 
     stopButton.addEventListener("click", () => {
         stopButton.style.display = "none";
