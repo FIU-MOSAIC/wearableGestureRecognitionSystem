@@ -13,7 +13,11 @@
     "appDisplayName": "wgrs",
     "iconFile": "resources/icon.png",
     "wipeColor": "#ffffff",
-    "requestedPermissions": [],
+    "requestedPermissions": [
+      "access_activity",
+      "access_internet",
+      "run_background"
+    ],
     "buildTargets": [
       "atlas",
       "vulcan"

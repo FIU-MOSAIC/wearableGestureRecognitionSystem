@@ -2,44 +2,45 @@ import * as document from "document";
 import { Accelerometer } from "accelerometer";
 import { Gyroscope } from "gyroscope";
 import { OrientationSensor } from "orientation";
-import { display } from "display";
+import { outbox } from "file-transfer";
+import { encode } from "cbor";
 
 const startButton = document.getElementById("start-button");
 const stopButton = document.getElementById("stop-button");
 const saveButton = document.getElementById("save");
 const retryButton = document.getElementById("retry");
 const centerText = document.getElementById("center-text");
-let hasHardwareComponents;
 
+let hasHardwareComponents;
 let currentRun;
+let dataTransferInterval;
 
 stopButton.style.display = "none";
 saveButton.style.display = "none";
 retryButton.style.display = "none";
 
-startButton.addEventListener("click", (evt) => {
+startButton.addEventListener("click", () => {
     startButton.style.display = "none";
     hasHardwareComponents = Boolean(Accelerometer && Gyroscope && OrientationSensor);
 
-    if(!(hasHardwareComponents)){
+    if (!hasHardwareComponents) {
         centerText.text = "Device lacks required hardware to record exercises.";
     } else {
         recordRun();
     }
 });
 
-function recordRun(){
+function recordRun() {
     stopButton.style.display = "inline";
 
     const freq = 1;
-    const batchNum = freq * 2;
+    const batchNum = freq;
 
     const accel = new Accelerometer({ frequency: freq, batch: batchNum });
     const gyro = new Gyroscope({ frequency: freq, batch: batchNum });
     const orientation = new OrientationSensor({ frequency: freq, batch: batchNum });
 
     currentRun = {
-        timestamps: [],
         accelX: [],
         accelY: [],
         accelZ: [],
@@ -53,28 +54,27 @@ function recordRun(){
     };
 
     accel.addEventListener("reading", () => {
-        for(let i = 0; i < accel.readings.timestamp.length; i++){
-            currentRun.timestamps[i] = accel.readings.timestamp[i];
-            currentRun.accelX[i] = accel.readings.x[i];
-            currentRun.accelY[i] = accel.readings.y[i];
-            currentRun.accelZ[i] = accel.readings.z[i];
+        for (let i = 0; i < accel.readings.timestamp.length; i++) {
+            currentRun.accelX.push(accel.readings.x[i]);
+            currentRun.accelY.push(accel.readings.y[i]);
+            currentRun.accelZ.push(accel.readings.z[i]);
         }
     });
 
     gyro.addEventListener("reading", () => {
-        for(let i = 0; i < gyro.readings.timestamp.length; i++){
-            currentRun.gyroX[i] = gyro.readings.x[i];
-            currentRun.gyroY[i] = gyro.readings.y[i];
-            currentRun.gyroZ[i] = gyro.readings.z[i];
+        for (let i = 0; i < gyro.readings.timestamp.length; i++) {
+            currentRun.gyroX.push(gyro.readings.x[i]);
+            currentRun.gyroY.push(gyro.readings.y[i]);
+            currentRun.gyroZ.push(gyro.readings.z[i]);
         }
     });
 
     orientation.addEventListener("reading", () => {
-        for(let i = 0; i < orientation.timestamp.length; i++){
-            currentRun.orientationScalar[i] = orientation.readings.scalar[i];
-            currentRun.orientationI[i] = orientation.readings.scalar[i];
-            currentRun.orientationJ[i] = orientation.readings.scalar[i];
-            currentRun.orientationK[i] = orientation.readings.scalar[i];
+        for (let i = 0; i < orientation.readings.timestamp.length; i++) {
+            currentRun.orientationScalar.push(orientation.readings.scalar[i]);
+            currentRun.orientationI.push(orientation.readings.i[i]);
+            currentRun.orientationJ.push(orientation.readings.j[i]);
+            currentRun.orientationK.push(orientation.readings.k[i]);
         }
     });
 
@@ -82,8 +82,15 @@ function recordRun(){
     gyro.start();
     orientation.start();
 
-    stopButton.addEventListener("click", (evt) => {
+    // Set an interval to send data every second
+    dataTransferInterval = setInterval(() => {
+        sendDataToCompanion(currentRun);
+        currentRun = { accelX: [], accelY: [], accelZ: [], gyroX: [], gyroY: [], gyroZ: [], orientationScalar: [], orientationI: [], orientationJ: [], orientationK: [] };
+    }, 1000);
+
+    stopButton.addEventListener("click", () => {
         stopButton.style.display = "none";
+        clearInterval(dataTransferInterval);
 
         accel.stop();
         gyro.stop();
@@ -93,20 +100,30 @@ function recordRun(){
     });
 }
 
-function resultsScreen(){
+function resultsScreen() {
     saveButton.style.display = "inline";
     retryButton.style.display = "inline";
 
-    saveButton.addEventListener("click", (evt) => {
+    saveButton.addEventListener("click", () => {
         saveButton.style.display = "none";
         retryButton.style.display = "none";
-        console.log(JSON.stringify(currentRun));
-        //upload results here
+        sendDataToCompanion(currentRun);
     });
 
-    retryButton.addEventListener("click", (evt) => {
+    retryButton.addEventListener("click", () => {
         saveButton.style.display = "none";
         retryButton.style.display = "none";
         recordRun();
     });
+}
+
+function sendDataToCompanion(data) {
+    const encodedData = encode(data);
+    outbox.enqueue("sensorData.cbor", encodedData)
+        .then(ft => {
+            console.log("Data transfer queued:", ft.name);
+        })
+        .catch(error => {
+            console.error("Error queueing data transfer:", error);
+        });
 }
