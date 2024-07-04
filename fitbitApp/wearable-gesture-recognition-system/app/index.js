@@ -2,8 +2,8 @@ import * as document from "document";
 import { Accelerometer } from "accelerometer";
 import { Gyroscope } from "gyroscope";
 import { OrientationSensor } from "orientation";
-import { outbox } from "file-transfer";
-import { encode } from "cbor";
+import { peerSocket } from "messaging";
+import { Buffer } from "buffer";
 
 const startButton = document.getElementById("start-button");
 const stopButton = document.getElementById("stop-button");
@@ -13,7 +13,6 @@ const centerText = document.getElementById("center-text");
 
 let hasHardwareComponents;
 let currentRun;
-let dataTransferInterval;
 
 stopButton.style.display = "none";
 saveButton.style.display = "none";
@@ -33,12 +32,10 @@ startButton.addEventListener("click", () => {
 function recordRun() {
     stopButton.style.display = "inline";
 
-    const freq = 1;
-    const batchNum = freq;
+    const freq = 5; // Frequency setter
 
-    const accel = new Accelerometer({ frequency: freq, batch: batchNum });
-    const gyro = new Gyroscope({ frequency: freq, batch: batchNum });
-    const orientation = new OrientationSensor({ frequency: freq, batch: batchNum });
+    const accel = new Accelerometer({ frequency: freq });
+    const gyro = new Gyroscope({ frequency: freq });
 
     currentRun = {
         accelX: [],
@@ -46,56 +43,39 @@ function recordRun() {
         accelZ: [],
         gyroX: [],
         gyroY: [],
-        gyroZ: [],
-        orientationScalar: [],
-        orientationI: [],
-        orientationJ: [],
-        orientationK: []
+        gyroZ: []
     };
 
     accel.addEventListener("reading", () => {
-        for (let i = 0; i < accel.readings.timestamp.length; i++) {
-            currentRun.accelX.push(accel.readings.x[i]);
-            currentRun.accelY.push(accel.readings.y[i]);
-            currentRun.accelZ.push(accel.readings.z[i]);
-        }
+        currentRun.accelX.push(accel.x);
+        currentRun.accelY.push(accel.y);
+        currentRun.accelZ.push(accel.z);
     });
 
     gyro.addEventListener("reading", () => {
-        for (let i = 0; i < gyro.readings.timestamp.length; i++) {
-            currentRun.gyroX.push(gyro.readings.x[i]);
-            currentRun.gyroY.push(gyro.readings.y[i]);
-            currentRun.gyroZ.push(gyro.readings.z[i]);
-        }
-    });
+        currentRun.gyroX.push(gyro.x);
+        currentRun.gyroY.push(gyro.y);
+        currentRun.gyroZ.push(gyro.z);
 
-    orientation.addEventListener("reading", () => {
-        for (let i = 0; i < orientation.readings.timestamp.length; i++) {
-            currentRun.orientationScalar.push(orientation.readings.scalar[i]);
-            currentRun.orientationI.push(orientation.readings.i[i]);
-            currentRun.orientationJ.push(orientation.readings.j[i]);
-            currentRun.orientationK.push(orientation.readings.k[i]);
-        }
+        // Combine and send both accelerometer and gyroscope data
+        sendDataToCompanion(currentRun);
+        currentRun = {
+            accelX: [],
+            accelY: [],
+            accelZ: [],
+            gyroX: [],
+            gyroY: [],
+            gyroZ: []
+        };
     });
 
     accel.start();
     gyro.start();
-    orientation.start();
-
-    // Set an interval to send data every second
-    dataTransferInterval = setInterval(() => {
-        sendDataToCompanion(currentRun);
-        currentRun = { accelX: [], accelY: [], accelZ: [], gyroX: [], gyroY: [], gyroZ: [], orientationScalar: [], orientationI: [], orientationJ: [], orientationK: [] };
-    }, 1000);
 
     stopButton.addEventListener("click", () => {
         stopButton.style.display = "none";
-        clearInterval(dataTransferInterval);
-
         accel.stop();
         gyro.stop();
-        orientation.stop();
-
         resultsScreen();
     });
 }
@@ -118,12 +98,11 @@ function resultsScreen() {
 }
 
 function sendDataToCompanion(data) {
-    const encodedData = encode(data);
-    outbox.enqueue("sensorData.cbor", encodedData)
-        .then(ft => {
-            console.log("Data transfer queued:", ft.name);
-        })
-        .catch(error => {
-            console.error("Error queueing data transfer:", error);
-        });
+    const encodedData = Buffer.from(JSON.stringify(data));
+    if (peerSocket.readyState === peerSocket.OPEN) {
+        peerSocket.send(encodedData);
+        console.log("Sent data:", encodedData);
+    } else {
+        console.error("PeerSocket is not open");
+    }
 }
