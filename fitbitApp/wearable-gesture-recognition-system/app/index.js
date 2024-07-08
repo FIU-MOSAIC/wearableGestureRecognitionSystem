@@ -37,6 +37,7 @@ function recordRun() {
     const accel = new Accelerometer({ frequency: freq });
     const gyro = new Gyroscope({ frequency: freq });
 
+    //TODO add orientation sensor
     currentRun = {
         accelX: [],
         accelY: [],
@@ -45,7 +46,7 @@ function recordRun() {
         gyroY: [],
         gyroZ: []
     };
-
+    
     accel.addEventListener("reading", () => {
         currentRun.accelX.push(accel.x);
         currentRun.accelY.push(accel.y);

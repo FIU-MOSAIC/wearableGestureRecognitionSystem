@@ -7,6 +7,7 @@ export "FLUTTER_TARGET=/Users/orlandogonzalez/Desktop/wearableGestureRecognitSys
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"
+export "CONFIGURATION_BUILD_DIR=/Users/orlandogonzalez/Desktop/wearableGestureRecognitSystemion/mobileApp/gesture_detection/build/ios/iphoneos"
 export "DART_DEFINES=RkxVVFRFUl9XRUJfQ0FOVkFTS0lUX1VSTD1odHRwczovL3d3dy5nc3RhdGljLmNvbS9mbHV0dGVyLWNhbnZhc2tpdC9lZGQ4NTQ2MTE2NDU3YmRmMWM1YmRmYjEzZWNiOTQ2M2QyYmI1ZWQ0Lw=="
 export "DART_OBFUSCATION=false"
 export "TRACK_WIDGET_CREATION=true"

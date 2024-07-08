@@ -20,17 +20,19 @@ class _DexterityTestPageState extends State<DexterityTestPage> {
   @override
   void initState() {
     super.initState();
-    channel = IOWebSocketChannel.connect('ws://192.168.0.13:8081');
+    channel = IOWebSocketChannel.connect('ws://192.168.0.47:8081');
     channel.stream.listen((data) {
       setState(() {
         Map<String, dynamic> decodedData = jsonDecode(data);
 
-        if (decodedData.containsKey('accelX') && decodedData['accelX'].isNotEmpty) {
+        if (decodedData.containsKey('accelX') &&
+            decodedData['accelX'].isNotEmpty) {
           double accelX = decodedData['accelX'].last;
           double accelY = decodedData['accelY'].last;
 
           // Scale down the movement to make it slower
-          currentOffset = Offset(currentOffset.dx + accelX / scaleFactor, currentOffset.dy + accelY / scaleFactor);
+          currentOffset = Offset(currentOffset.dx + accelX / scaleFactor,
+              currentOffset.dy + accelY / scaleFactor);
           points.add(currentOffset);
         }
       });

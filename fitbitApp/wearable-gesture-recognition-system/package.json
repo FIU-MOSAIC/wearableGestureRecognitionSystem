@@ -10,7 +10,7 @@
   "fitbit": {
     "appUUID": "637b2415-c767-4a1d-b0cc-557f309a6165",
     "appType": "app",
-    "appDisplayName": "wgrs",
+    "appDisplayName": "WGRS",
     "iconFile": "resources/icon.png",
     "wipeColor": "#ffffff",
     "requestedPermissions": [
