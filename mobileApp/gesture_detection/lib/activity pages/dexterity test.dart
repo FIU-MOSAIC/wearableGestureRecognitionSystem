@@ -20,7 +20,7 @@ class _DexterityTestPageState extends State<DexterityTestPage> {
   @override
   void initState() {
     super.initState();
-    channel = IOWebSocketChannel.connect('ws://192.168.0.47:8081');
+    channel = IOWebSocketChannel.connect('ws://192.168.0.47:8080');
     channel.stream.listen((data) {
       setState(() {
         Map<String, dynamic> decodedData = jsonDecode(data);
