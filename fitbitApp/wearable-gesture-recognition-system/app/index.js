@@ -2,111 +2,108 @@ import * as document from "document";
 import { Accelerometer } from "accelerometer";
 import { Gyroscope } from "gyroscope";
 import { OrientationSensor } from "orientation";
-import { display } from "display";
+import { peerSocket } from "messaging";
+import { Buffer } from "buffer";
 
 const startButton = document.getElementById("start-button");
 const stopButton = document.getElementById("stop-button");
 const saveButton = document.getElementById("save");
 const retryButton = document.getElementById("retry");
 const centerText = document.getElementById("center-text");
-let hasHardwareComponents;
 
+let hasHardwareComponents;
 let currentRun;
 
 stopButton.style.display = "none";
 saveButton.style.display = "none";
 retryButton.style.display = "none";
 
-startButton.addEventListener("click", (evt) => {
+startButton.addEventListener("click", () => {
     startButton.style.display = "none";
     hasHardwareComponents = Boolean(Accelerometer && Gyroscope && OrientationSensor);
 
-    if(!(hasHardwareComponents)){
+    if (!hasHardwareComponents) {
         centerText.text = "Device lacks required hardware to record exercises.";
     } else {
         recordRun();
     }
 });
 
-function recordRun(){
+function recordRun() {
     stopButton.style.display = "inline";
 
-    const freq = 1;
-    const batchNum = freq * 2;
+    const freq = 5; // Frequency setter
 
-    const accel = new Accelerometer({ frequency: freq, batch: batchNum });
-    const gyro = new Gyroscope({ frequency: freq, batch: batchNum });
-    const orientation = new OrientationSensor({ frequency: freq, batch: batchNum });
+    const accel = new Accelerometer({ frequency: freq });
+    const gyro = new Gyroscope({ frequency: freq });
 
+    //TODO add orientation sensor
     currentRun = {
-        timestamps: [],
         accelX: [],
         accelY: [],
         accelZ: [],
         gyroX: [],
         gyroY: [],
-        gyroZ: [],
-        orientationScalar: [],
-        orientationI: [],
-        orientationJ: [],
-        orientationK: []
+        gyroZ: []
     };
-
+    
     accel.addEventListener("reading", () => {
-        for(let i = 0; i < accel.readings.timestamp.length; i++){
-            currentRun.timestamps[i] = accel.readings.timestamp[i];
-            currentRun.accelX[i] = accel.readings.x[i];
-            currentRun.accelY[i] = accel.readings.y[i];
-            currentRun.accelZ[i] = accel.readings.z[i];
-        }
+        currentRun.accelX.push(accel.x);
+        currentRun.accelY.push(accel.y);
+        currentRun.accelZ.push(accel.z);
     });
 
     gyro.addEventListener("reading", () => {
-        for(let i = 0; i < gyro.readings.timestamp.length; i++){
-            currentRun.gyroX[i] = gyro.readings.x[i];
-            currentRun.gyroY[i] = gyro.readings.y[i];
-            currentRun.gyroZ[i] = gyro.readings.z[i];
-        }
-    });
+        currentRun.gyroX.push(gyro.x);
+        currentRun.gyroY.push(gyro.y);
+        currentRun.gyroZ.push(gyro.z);
 
-    orientation.addEventListener("reading", () => {
-        for(let i = 0; i < orientation.timestamp.length; i++){
-            currentRun.orientationScalar[i] = orientation.readings.scalar[i];
-            currentRun.orientationI[i] = orientation.readings.scalar[i];
-            currentRun.orientationJ[i] = orientation.readings.scalar[i];
-            currentRun.orientationK[i] = orientation.readings.scalar[i];
-        }
+        // Combine and send both accelerometer and gyroscope data
+        sendDataToCompanion(currentRun);
+        currentRun = {
+            accelX: [],
+            accelY: [],
+            accelZ: [],
+            gyroX: [],
+            gyroY: [],
+            gyroZ: []
+        };
     });
 
     accel.start();
     gyro.start();
-    orientation.start();
 
-    stopButton.addEventListener("click", (evt) => {
+    stopButton.addEventListener("click", () => {
         stopButton.style.display = "none";
-
         accel.stop();
         gyro.stop();
-        orientation.stop();
-
         resultsScreen();
     });
 }
 
-function resultsScreen(){
+function resultsScreen() {
     saveButton.style.display = "inline";
     retryButton.style.display = "inline";
 
-    saveButton.addEventListener("click", (evt) => {
+    saveButton.addEventListener("click", () => {
         saveButton.style.display = "none";
         retryButton.style.display = "none";
-        console.log(JSON.stringify(currentRun));
-        //upload results here
+        sendDataToCompanion(currentRun);
     });
 
-    retryButton.addEventListener("click", (evt) => {
+    retryButton.addEventListener("click", () => {
         saveButton.style.display = "none";
         retryButton.style.display = "none";
         recordRun();
     });
+}
+
+function sendDataToCompanion(data) {
+    const encodedData = Buffer.from(JSON.stringify(data));
+    if (peerSocket.readyState === peerSocket.OPEN) {
+        peerSocket.send(encodedData);
+        console.log("Sent data:", encodedData);
+    } else {
+        console.error("PeerSocket is not open");
+    }
 }

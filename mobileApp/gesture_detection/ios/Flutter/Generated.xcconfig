@@ -6,6 +6,7 @@ FLUTTER_TARGET=/Users/orlandogonzalez/Desktop/wearableGestureRecognitSystemion/m
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1
+CONFIGURATION_BUILD_DIR=/Users/orlandogonzalez/Desktop/wearableGestureRecognitSystemion/mobileApp/gesture_detection/build/ios/iphoneos
 EXCLUDED_ARCHS[sdk=iphonesimulator*]=i386
 EXCLUDED_ARCHS[sdk=iphoneos*]=armv7
 DART_DEFINES=RkxVVFRFUl9XRUJfQ0FOVkFTS0lUX1VSTD1odHRwczovL3d3dy5nc3RhdGljLmNvbS9mbHV0dGVyLWNhbnZhc2tpdC9lZGQ4NTQ2MTE2NDU3YmRmMWM1YmRmYjEzZWNiOTQ2M2QyYmI1ZWQ0Lw==

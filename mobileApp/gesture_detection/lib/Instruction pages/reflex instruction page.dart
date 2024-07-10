@@ -99,11 +99,14 @@ class _ReflexIntructionPage extends State<ReflexIntructionPage> {
             ),
             const SizedBox(height: 40),
             Button(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const ReflexTestPage()));
-                  },
-                  text: "Start ${widget.title}",
-                ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ReflexTestPage()));
+              },
+              text: "Start ${widget.title}",
+            ),
           ],
         ),
       ),

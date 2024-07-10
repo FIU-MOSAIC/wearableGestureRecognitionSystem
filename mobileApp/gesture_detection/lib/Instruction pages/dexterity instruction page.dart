@@ -9,7 +9,8 @@ class DexterityInstructionPage extends StatefulWidget {
   const DexterityInstructionPage({super.key, required this.title});
 
   @override
-  State<DexterityInstructionPage> createState() => _DexterityInstructionPageState();
+  State<DexterityInstructionPage> createState() =>
+      _DexterityInstructionPageState();
 }
 
 class _DexterityInstructionPageState extends State<DexterityInstructionPage> {
@@ -99,11 +100,14 @@ class _DexterityInstructionPageState extends State<DexterityInstructionPage> {
             ),
             const SizedBox(height: 40),
             Button(
-                  onTap: (){ 
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const DexterityTestPage()));
-                  },
-                  text: "Start ${widget.title}",
-                ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DexterityTestPage()));
+              },
+              text: "Start ${widget.title}",
+            ),
           ],
         ),
       ),
