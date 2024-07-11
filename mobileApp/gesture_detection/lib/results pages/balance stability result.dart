@@ -15,7 +15,7 @@ class BalanceStabilityResult extends StatelessWidget {
       var collection = FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
-          .collection('balance_stability_results');
+          .collection('Balance_and_Stability_Results');
       var querySnapshot = await collection.orderBy('testDate', descending: true).limit(1).get();
       if (querySnapshot.docs.isNotEmpty) {
         return querySnapshot.docs.first.data();

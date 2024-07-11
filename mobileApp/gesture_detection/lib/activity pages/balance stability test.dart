@@ -91,7 +91,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
     final user = FirebaseAuth.instance.currentUser;
     double averageScore = computeAverageScore();
     if (user != null) {
-      FirebaseFirestore.instance.collection('users').doc(user.uid).collection('balance_stability_results').add({
+      FirebaseFirestore.instance.collection('users').doc(user.uid).collection('Balance_and_Stability_Results').add({
         'averageScore': averageScore,
         'duration': durationInSeconds,
         'testDate': DateTime.now(),

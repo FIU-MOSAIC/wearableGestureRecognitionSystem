@@ -123,7 +123,7 @@ void goToAboutUsPage() {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                      "Balance and Stability: ${userProvider.lastBalanceStabilityDate != null ? DateFormat('MMM dd, yyyy').format(userProvider.lastBalanceStabilityDate!) : 'No data available'}",
+                      "Balance and Stability: ${userProvider.lastBalanceStabilityDate != null ? DateFormat('MMM dd, yyyy - h:mm a').format(userProvider.lastBalanceStabilityDate!) : 'No data available'}",
                       style: GoogleFonts.lato(
                         fontSize: 15.0,
                         color: Colors.grey[800],
