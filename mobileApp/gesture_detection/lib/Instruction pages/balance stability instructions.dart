@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:gesture_detection/activity%20pages/dexterity%20test.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class DexterityInstructionPage extends StatefulWidget {
+import '../activity pages/balance stability test.dart';
+
+class BalanceStabilityInstruction extends StatefulWidget {
   final String title;
-  const DexterityInstructionPage({super.key, required this.title});
+  const BalanceStabilityInstruction({super.key, required this.title});
 
   @override
-  State<DexterityInstructionPage> createState() =>
-      _DexterityInstructionPageState();
+  State<BalanceStabilityInstruction> createState() =>
+      _BalanceStabilityInstruction();
 }
 
-class _DexterityInstructionPageState extends State<DexterityInstructionPage> {
+class _BalanceStabilityInstruction extends State<BalanceStabilityInstruction> {
   final videoURL = 'https://www.youtube.com/watch?v=T9H_yu0Me8c';
 
   late YoutubePlayerController _controller;
@@ -104,7 +105,7 @@ class _DexterityInstructionPageState extends State<DexterityInstructionPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const DexterityTestPage()));
+                        builder: (context) => const BalanceStabilityPage()));
               },
               text: "Start ${widget.title}",
             ),

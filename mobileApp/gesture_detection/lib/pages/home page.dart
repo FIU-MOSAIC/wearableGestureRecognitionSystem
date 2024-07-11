@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gesture_detection/Instruction%20pages/dexterity%20instruction%20page.dart';
+import 'package:gesture_detection/Instruction%20pages/balance%20stability%20instructions.dart';
 import 'package:gesture_detection/Instruction%20pages/range%20of%20motion%20instruction%20page.dart';
 import 'package:gesture_detection/Instruction%20pages/reflex%20instruction%20page.dart';
 import 'package:gesture_detection/components/ActivityTile.dart';
@@ -111,16 +111,16 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(height: 15.0),
-                  ActivityTile(title: 'Dexterity Test', imagePath: 'lib/images/Dexterity Test Icon.png', width: 225, onTap:
+                  ActivityTile(title: 'Balance and Stability', imagePath: 'lib/images/Dexterity Test Icon.png', width: 275, onTap:
                    () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> DexterityInstructionPage(title: 'Dexterity Test')));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const BalanceStabilityInstruction(title: 'Balance and Stability')));
                     },),
             
                   ActivityTile(title: 'Range of Motion Test', imagePath: 'lib/images/Range of Motion Icon.png', width: 297, onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> RangeOfMotionInstructionPage(title: 'Range of Motion Test')));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const RangeOfMotionInstructionPage(title: 'Range of Motion Test')));
                     },),
                   ActivityTile(title: 'Reflex Test', imagePath: 'lib/images/Reflex Test Icon.png', width: 195, onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ReflexIntructionPage(title: 'Reflex Test')));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const ReflexIntructionPage(title: 'Reflex Test')));
                     },),
                 ],
               ),
