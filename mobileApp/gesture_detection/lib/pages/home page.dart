@@ -55,9 +55,7 @@ class _HomePageState extends State<HomePage> {
         signOut: signUserOut,
         onProfileTap: goToProfilePage,
       ),
-      body: user == null
-          ? Center(child: const CircularProgressIndicator())
-          : Padding(
+      body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -66,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 20),
                   Center(
                     child: Text(
-                      'Welcome ${user.name ?? ''}',
+                      'Welcome ${user?.name ?? ''}',
                       style: GoogleFonts.lato(
                         fontSize: 27.0,
                         fontWeight: FontWeight.bold,

@@ -18,8 +18,10 @@ class UserProvider with ChangeNotifier {
         DocumentSnapshot userDoc = await _firestore.collection('users').doc(currentUser.uid).get();
         if (userDoc.exists) {
           _user = UserModel.fromMap(userDoc.data() as Map<String, dynamic>);
-          notifyListeners();
+        } else {
+          _user = null; // Set to null if user does not exist
         }
+        notifyListeners();
       }
     } catch (e) {
       print("Error fetching user data: $e");
