@@ -17,7 +17,8 @@ class UserProvider with ChangeNotifier {
     try {
       User? currentUser = _auth.currentUser;
       if (currentUser != null) {
-        DocumentSnapshot userDoc = await _firestore.collection('users').doc(currentUser.uid).get();
+        DocumentSnapshot userDoc =
+            await _firestore.collection('users').doc(currentUser.uid).get();
         if (userDoc.exists) {
           _user = UserModel.fromMap(userDoc.data() as Map<String, dynamic>);
         } else {
@@ -29,23 +30,29 @@ class UserProvider with ChangeNotifier {
       print("Error fetching user data: $e");
     }
   }
+
   Future<List<ExerciseResult>> fetchAllResults() async {
-  List<ExerciseResult> results = [];
-  User? user = FirebaseAuth.instance.currentUser;
-  if (user != null) {
-    List<String> exerciseCollections = ['Balance_and_Stability_Results']; // add more collections here
-    for (var collection in exerciseCollections) {
-      var querySnapshot = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .collection(collection)
-          .orderBy('testDate', descending: true)
-          .get();
-      results.addAll(querySnapshot.docs.map((doc) => ExerciseResult.fromMap(doc.data(), collection.replaceAll('_Results', '').replaceAll('_', ' '))).toList());
+    List<ExerciseResult> results = [];
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      List<String> exerciseCollections = [
+        'Balance_and_Stability_Results'
+      ]; // add more collections here
+      for (var collection in exerciseCollections) {
+        var querySnapshot = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .collection(collection)
+            .orderBy('testDate', descending: true)
+            .get();
+        results.addAll(querySnapshot.docs
+            .map((doc) => ExerciseResult.fromMap(doc.data(),
+                collection.replaceAll('_Results', '').replaceAll('_', ' ')))
+            .toList());
+      }
     }
+    return results;
   }
-  return results;
-}
 
   Future<void> saveUserData(Map<String, dynamic> data) async {
     try {
@@ -61,19 +68,22 @@ class UserProvider with ChangeNotifier {
       rethrow;
     }
   }
+
   Future<void> fetchLastActivityDate() async {
     try {
       User? currentUser = _auth.currentUser;
       if (currentUser != null) {
-        var result = await _firestore.collection('users')
-                    .doc(currentUser.uid)
-                    .collection('Balance_and_Stability_Results')
-                    .orderBy('testDate', descending: true)
-                    .limit(1)
-                    .get();
+        var result = await _firestore
+            .collection('users')
+            .doc(currentUser.uid)
+            .collection('Balance_and_Stability_Results')
+            .orderBy('testDate', descending: true)
+            .limit(1)
+            .get();
 
         if (result.docs.isNotEmpty) {
-          lastBalanceStabilityDate = result.docs.first.data()['testDate'].toDate();
+          lastBalanceStabilityDate =
+              result.docs.first.data()['testDate'].toDate();
         } else {
           lastBalanceStabilityDate = null;
         }
@@ -84,4 +94,3 @@ class UserProvider with ChangeNotifier {
     }
   }
 }
-
