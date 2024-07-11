@@ -6,6 +6,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../results pages/balance stability result.dart';
 
@@ -118,26 +119,43 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Stability Score: $stabilityScoreInt%', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-        SizedBox(height: 20),
-        LinearProgressIndicator(value: stabilityScoreInt / 100, backgroundColor: Colors.red, valueColor: AlwaysStoppedAnimation<Color>(Colors.green)),
-        SizedBox(height: 20),
-        Text('Heart Rate: ${heartRate.round()} BPM', style: TextStyle(fontSize: 24)),
-        SizedBox(height: 20),
-        Text(feedbackMessage, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: feedbackMessage == 'Keep steady' ? Colors.green : Colors.red)),
-        SizedBox(height: 20),
-        Text('Duration: ${durationInSeconds.toStringAsFixed(0)} seconds', style: TextStyle(fontSize: 20)),
-        SizedBox(height: 80),
-        if (!_isSaving) Button(
-          onTap: () {
-            if (timer != null && timer!.isActive) {
-              timer!.cancel();
-              timer = null;
-            }
-            saveResults();
-          },
-          text: "Save and See Results",
+        Text(
+          'Stability Score: $stabilityScoreInt%',
+          style: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold),
         ),
+        SizedBox(height: 20),
+        LinearProgressIndicator(
+          value: stabilityScoreInt / 100,
+          backgroundColor: Colors.red,
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+        ),
+        SizedBox(height: 20),
+        Text(
+          'Heart Rate: ${heartRate.round()} BPM',
+          style: GoogleFonts.lato(fontSize: 24),
+        ),
+        SizedBox(height: 20),
+        Text(
+          feedbackMessage,
+          style: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold, color: feedbackMessage == 'Keep steady' ? Colors.green : Colors.red),
+        ),
+        SizedBox(height: 20),
+        Text(
+          'Duration: ${durationInSeconds.toStringAsFixed(0)} seconds',
+          style: GoogleFonts.lato(fontSize: 20),
+        ),
+        SizedBox(height: 80),
+        if (!_isSaving)
+          Button(
+            onTap: () {
+              if (timer != null && timer!.isActive) {
+                timer!.cancel();
+                timer = null;
+              }
+              saveResults();
+            },
+            text: "Save and See Results",
+          ),
         if (_isSaving) CircularProgressIndicator(),
       ],
     );

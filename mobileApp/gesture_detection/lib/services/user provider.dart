@@ -5,6 +5,7 @@ import 'package:gesture_detection/services/user%20model.dart';
 
 class UserProvider with ChangeNotifier {
   UserModel? _user;
+  DateTime? lastBalanceStabilityDate;
 
   UserModel? get user => _user;
 
@@ -42,4 +43,27 @@ class UserProvider with ChangeNotifier {
       throw e;
     }
   }
+  Future<void> fetchLastActivityDate() async {
+    try {
+      User? currentUser = _auth.currentUser;
+      if (currentUser != null) {
+        var result = await _firestore.collection('users')
+                    .doc(currentUser.uid)
+                    .collection('balance_stability_results')
+                    .orderBy('testDate', descending: true)
+                    .limit(1)
+                    .get();
+
+        if (result.docs.isNotEmpty) {
+          lastBalanceStabilityDate = result.docs.first.data()['testDate'].toDate();
+        } else {
+          lastBalanceStabilityDate = null;
+        }
+        notifyListeners();
+      }
+    } catch (e) {
+      print("Error fetching last activity date: $e");
+    }
+  }
 }
+

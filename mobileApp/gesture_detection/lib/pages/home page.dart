@@ -9,6 +9,7 @@ import 'package:gesture_detection/components/Drawer.dart';
 import 'package:gesture_detection/pages/profile%20page.dart';
 import 'package:gesture_detection/services/user%20provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     Provider.of<UserProvider>(context, listen: false).fetchUserData();
+    Provider.of<UserProvider>(context, listen: false).fetchLastActivityDate();
   }
 
   void signUserOut() {
@@ -81,14 +83,26 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.grey[600],
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
+                  Text(
+                    "Last Performed:",
+                    style: GoogleFonts.lato(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Dexterity Test: Last performed on [Date]", style: GoogleFonts.lato(
+                      Text(
+                      "Balance and Stability: ${userProvider.lastBalanceStabilityDate != null ? DateFormat('MMM dd, yyyy').format(userProvider.lastBalanceStabilityDate!) : 'No data available'}",
+                      style: GoogleFonts.lato(
                         fontSize: 15.0,
                         color: Colors.grey[800],
-                      ),),
+                      ),
+                    ),
                       Text("Range of Motion:Last performed on [Date]", style: GoogleFonts.lato(
                         fontSize: 15.0,
                         color: Colors.grey[800],
@@ -111,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(height: 15.0),
-                  ActivityTile(title: 'Balance and Stability', imagePath: 'lib/images/Dexterity Test Icon.png', width: 275, onTap:
+                  ActivityTile(title: 'Balance and Stability', imagePath: 'lib/images/balance and stability.png', width: 278, onTap:
                    () {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> const BalanceStabilityInstruction(title: 'Balance and Stability')));
                     },),

@@ -3,7 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:gesture_detection/pages/home%20page.dart';
-import 'package:intl/intl.dart';  // Import intl to format dates
+import 'package:intl/intl.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BalanceStabilityResult extends StatelessWidget {
   const BalanceStabilityResult({super.key});
@@ -51,24 +52,24 @@ class BalanceStabilityResult extends StatelessWidget {
                 children: [
                   Text(
                     'Performance Result:\nAverage Score: $averageScore\nTest Date: $testDate',
-                    style: TextStyle(fontSize: 20),
+                    style: GoogleFonts.lato(fontSize: 20),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),
                   Text(
                     message,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: averageScore > 80 ? Colors.green : Colors.orange),
+                    style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold, color: averageScore > 80 ? Colors.green : Colors.orange),
                   ),
                   const SizedBox(height: 60),
                   Button(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const HomePage()));
-              },
-              text: "Back to Home Page",
-            ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()));
+                    },
+                    text: "Back to Home Page",
+                  ),
                 ],
               ),
             );
