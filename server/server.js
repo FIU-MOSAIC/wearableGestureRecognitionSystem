@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const wsPort = 8081; // WebSocket server port
+const wsPort = 8080; // WebSocket server port
 
 // Set up WebSocket server
 const wss = new WebSocket.Server({ port: wsPort });
