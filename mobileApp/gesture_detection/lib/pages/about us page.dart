@@ -8,7 +8,7 @@ class AboutUsPage extends StatelessWidget {
     return Scaffold(
      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('About Us'),
+        title: const Text('About Us'),
         backgroundColor: Colors.grey[900],
         foregroundColor: Colors.white,
       ),

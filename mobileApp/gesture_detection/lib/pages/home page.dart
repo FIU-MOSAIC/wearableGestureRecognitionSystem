@@ -67,7 +67,7 @@ void goToAboutUsPage() {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Home'),
         backgroundColor: Colors.grey[900],
         foregroundColor: Colors.white,
       ),

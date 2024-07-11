@@ -47,7 +47,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
         // Start timer if significant change detected and timer not already started
         if (startTime == null && timer == null && accelX != 0) {
           startTime = DateTime.now();
-          timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
+          timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
             updateDuration();
             updateScore();
           });
@@ -123,28 +123,28 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
           'Stability Score: $stabilityScoreInt%',
           style: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         LinearProgressIndicator(
           value: stabilityScoreInt / 100,
           backgroundColor: Colors.red,
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+          valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text(
           'Heart Rate: ${heartRate.round()} BPM',
           style: GoogleFonts.lato(fontSize: 24),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text(
           feedbackMessage,
           style: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold, color: feedbackMessage == 'Keep steady' ? Colors.green : Colors.red),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text(
           'Duration: ${durationInSeconds.toStringAsFixed(0)} seconds',
           style: GoogleFonts.lato(fontSize: 20),
         ),
-        SizedBox(height: 80),
+        const SizedBox(height: 80),
         if (!_isSaving)
           Button(
             onTap: () {
@@ -156,7 +156,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
             },
             text: "Save and See Results",
           ),
-        if (_isSaving) CircularProgressIndicator(),
+        if (_isSaving) const CircularProgressIndicator(),
       ],
     );
   }

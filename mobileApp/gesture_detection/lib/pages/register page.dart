@@ -8,7 +8,7 @@ import '../services/auth service.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  RegisterPage({super.key, required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
 
   @override
   _RegisterPageState createState() => _RegisterPageState();
