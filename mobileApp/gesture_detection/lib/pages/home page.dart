@@ -11,6 +11,7 @@ import '../Instruction pages/reflex instruction page.dart';
 import '../services/user provider.dart';
 import 'about us page.dart';
 import 'history page.dart';
+import 'login page.dart';
 import 'profile page.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,9 +29,14 @@ class _HomePageState extends State<HomePage> {
     Provider.of<UserProvider>(context, listen: false).fetchLastActivityDate();
   }
 
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
-  }
+void signUserOut() {
+  FirebaseAuth.instance.signOut().then((_) {
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => LoginPage(onTap: () {},)), // Replace `LoginPage` with your login page widget
+      (Route<dynamic> route) => false,
+    );
+  });
+}
 
   void goToProfilePage() {
     Navigator.pop(context);
