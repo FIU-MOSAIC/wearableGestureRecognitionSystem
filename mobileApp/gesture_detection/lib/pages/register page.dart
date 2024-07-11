@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:gesture_detection/components/FormTextField.dart';
 import 'package:gesture_detection/components/SquareTile.dart';
-import 'package:gesture_detection/services/auth%20service.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../services/auth service.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;

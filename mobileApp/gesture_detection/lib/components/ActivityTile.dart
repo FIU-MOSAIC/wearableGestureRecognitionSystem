@@ -30,7 +30,7 @@ class ActivityTile extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(5.0),
+              padding: const EdgeInsets.all(7.0),
               child: Row(
                 children: [
                   Text(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
 import '../activity pages/balance stability test.dart';
 
 class BalanceStabilityInstruction extends StatefulWidget {

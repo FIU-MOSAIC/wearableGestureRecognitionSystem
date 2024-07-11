@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gesture_detection/activity%20pages/range%20of%20motion%20test.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../activity pages/range of motion test.dart';
 
 class RangeOfMotionInstructionPage extends StatefulWidget {
   final String title;

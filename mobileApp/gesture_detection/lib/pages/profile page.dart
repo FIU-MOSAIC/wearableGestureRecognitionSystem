@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gesture_detection/services/user%20provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:gesture_detection/components/ProfileDropDown.dart';
 import 'package:gesture_detection/components/ProfileTextField.dart';
+import '../services/user provider.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

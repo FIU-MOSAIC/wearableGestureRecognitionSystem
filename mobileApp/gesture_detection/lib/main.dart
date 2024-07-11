@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gesture_detection/pages/auth%20page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:gesture_detection/services/user%20provider.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
+import 'pages/auth page.dart';
+import 'services/user provider.dart';
 
 
 void main() async{

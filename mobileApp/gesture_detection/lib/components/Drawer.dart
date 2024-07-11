@@ -3,11 +3,15 @@ import 'package:gesture_detection/components/ListTile.dart';
 
 class MyDrawer extends StatefulWidget {
   final void Function()? onProfileTap;
+  final void Function()? onHistoryTap;
+  final void Function()? onAboutUsTap;
   final void Function()? signOut;
 
   const MyDrawer({
     super.key,
     required this.onProfileTap,
+    required this.onHistoryTap,
+    required this.onAboutUsTap,
     required this.signOut,
   });
 
@@ -37,13 +41,15 @@ class _MyDrawerState extends State<MyDrawer> {
             text: "P R O F I L E",
             onTap: widget.onProfileTap,
           ),
-          const MyListTile(
-            icon: Icons.run_circle,
+          MyListTile(
+            icon: Icons.history,
             text: "H I S T O R Y",
+            onTap: widget.onHistoryTap,
           ),
-          const MyListTile(
-            icon: Icons.contacts,
+          MyListTile(
+            icon: Icons.info,
             text: "A B O U T   U S",
+            onTap: widget.onAboutUsTap,
           ),
             ],
           ),
