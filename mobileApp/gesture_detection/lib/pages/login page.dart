@@ -56,7 +56,20 @@ void signUserIn() async {
     }
   }
 }
-
+ void signInWithGoogle() async {
+    UserCredential? userCredential = await AuthService().signInWithGoogle();
+    if (userCredential != null) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => HomePage()), // Replace `HomePage` with your home page widget
+        (Route<dynamic> route) => false,
+      );
+    } else {
+      // Handle sign in error
+      setState(() {
+        emailError = 'Google sign in failed';
+      });
+    }
+  }
   //login page content
   @override
   Widget build(BuildContext context) {
@@ -171,7 +184,7 @@ void signUserIn() async {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SquareTile(
-                      onTap: () => AuthService().signInWithGoogle(),
+                      onTap: signInWithGoogle,
                       imagePath: 'lib/images/google.png',
                        size: 90,),
                     const SizedBox(width: 60),
