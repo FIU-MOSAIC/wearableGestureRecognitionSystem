@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0d07f0e3-7dfd-492f-9a4a-02487ed705f8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitbitApp/test-versa2/app/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitbitApp/test-versa2/app/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitbitApp/wearable-gesture-recognition-system/build/app.fba" beforeDir="false" afterPath="$PROJECT_DIR$/fitbitApp/wearable-gesture-recognition-system/build/app.fba" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
