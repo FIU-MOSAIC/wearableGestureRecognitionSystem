@@ -11,6 +11,8 @@ import 'package:gesture_detection/services/user%20provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'about us page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 // test for the merged branch 
@@ -39,6 +41,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void goToAboutUsPage() {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const AboutUsPage(), // Use AboutUsPage
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
@@ -47,13 +59,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Home'),
         backgroundColor: Colors.grey[900],
         foregroundColor: Colors.white,
       ),
       drawer: MyDrawer(
         signOut: signUserOut,
         onProfileTap: goToProfilePage,
+        onAboutUsTap: goToAboutUsPage,
       ),
       body: user == null
           ? Center(child: const CircularProgressIndicator())

@@ -37,7 +37,7 @@ class UserProvider with ChangeNotifier {
       notifyListeners();
     } catch (e) {
       print("Error saving user data: $e");
-      throw e;
+      rethrow;
     }
   }
 }
