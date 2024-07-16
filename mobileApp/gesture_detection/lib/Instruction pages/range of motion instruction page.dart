@@ -9,10 +9,12 @@ class RangeOfMotionInstructionPage extends StatefulWidget {
   const RangeOfMotionInstructionPage({super.key, required this.title});
 
   @override
-  State<RangeOfMotionInstructionPage> createState() => _RangeOfMotionInstructionPage();
+  State<RangeOfMotionInstructionPage> createState() =>
+      _RangeOfMotionInstructionPage();
 }
 
-class _RangeOfMotionInstructionPage extends State<RangeOfMotionInstructionPage> {
+class _RangeOfMotionInstructionPage
+    extends State<RangeOfMotionInstructionPage> {
   final videoURL = 'https://www.youtube.com/watch?v=t6hE_ntz4Ho';
 
   late YoutubePlayerController _controller;
@@ -99,11 +101,14 @@ class _RangeOfMotionInstructionPage extends State<RangeOfMotionInstructionPage> 
             ),
             const SizedBox(height: 40),
             Button(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const RangeOfMotionTestPage()));
-                  },
-                  text: "Start ${widget.title}",
-                ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RangeOfMotionTestPage()));
+              },
+              text: "Start ${widget.title}",
+            ),
           ],
         ),
       ),

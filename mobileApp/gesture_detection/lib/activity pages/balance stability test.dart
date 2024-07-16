@@ -46,7 +46,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
         // Start timer if significant change detected and timer not already started
         if (startTime == null && timer == null && accelX != 0) {
           startTime = DateTime.now();
-          timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
+          timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
             updateDuration();
             updateScore();
           });
@@ -118,16 +118,16 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Stability Score: $stabilityScoreInt%', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 20),
-        LinearProgressIndicator(value: stabilityScoreInt / 100, backgroundColor: Colors.red, valueColor: const AlwaysStoppedAnimation<Color>(Colors.green)),
-        const SizedBox(height: 20),
-        Text('Heart Rate: ${heartRate.round()} BPM', style: const TextStyle(fontSize: 24)),
-        const SizedBox(height: 20),
+        Text('Stability Score: $stabilityScoreInt%', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        SizedBox(height: 20),
+        LinearProgressIndicator(value: stabilityScoreInt / 100, backgroundColor: Colors.red, valueColor: AlwaysStoppedAnimation<Color>(Colors.green)),
+        SizedBox(height: 20),
+        Text('Heart Rate: ${heartRate.round()} BPM', style: TextStyle(fontSize: 24)),
+        SizedBox(height: 20),
         Text(feedbackMessage, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: feedbackMessage == 'Keep steady' ? Colors.green : Colors.red)),
-        const SizedBox(height: 20),
-        Text('Duration: ${durationInSeconds.toStringAsFixed(0)} seconds', style: const TextStyle(fontSize: 20)),
-        const SizedBox(height: 80),
+        SizedBox(height: 20),
+        Text('Duration: ${durationInSeconds.toStringAsFixed(0)} seconds', style: TextStyle(fontSize: 20)),
+        SizedBox(height: 80),
         if (!_isSaving) Button(
           onTap: () {
             if (timer != null && timer!.isActive) {
@@ -138,7 +138,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
           },
           text: "Save and See Results",
         ),
-        if (_isSaving) const CircularProgressIndicator(),
+        if (_isSaving) CircularProgressIndicator(),
       ],
     );
   }

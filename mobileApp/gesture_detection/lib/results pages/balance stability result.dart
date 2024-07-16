@@ -51,7 +51,7 @@ class BalanceStabilityResult extends StatelessWidget {
                 children: [
                   Text(
                     'Performance Result:\nAverage Score: $averageScore\nTest Date: $testDate',
-                    style: const TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),
