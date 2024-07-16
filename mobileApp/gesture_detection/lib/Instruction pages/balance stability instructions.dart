@@ -10,13 +10,15 @@ class BalanceStabilityInstruction extends StatefulWidget {
 
   @override
   State<BalanceStabilityInstruction> createState() =>
-      _BalanceStabilityInstruction();
+      _BalanceStabilityInstructionState();
 }
 
-class _BalanceStabilityInstruction extends State<BalanceStabilityInstruction> {
+class _BalanceStabilityInstructionState extends State<BalanceStabilityInstruction> {
   final videoURL = 'https://www.youtube.com/watch?v=T9H_yu0Me8c';
 
   late YoutubePlayerController _controller;
+  int? selectedTimer;
+  TextEditingController customTimerController = TextEditingController();
 
   @override
   void initState() {
@@ -43,7 +45,6 @@ class _BalanceStabilityInstruction extends State<BalanceStabilityInstruction> {
         padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: [
-            const SizedBox(height: 20),
             Text(
               "Description",
               style: GoogleFonts.lato(
@@ -52,18 +53,18 @@ class _BalanceStabilityInstruction extends State<BalanceStabilityInstruction> {
                 color: Colors.grey[600],
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 5),
             Text(
-              'Step by step instructions on how to complete the activity.',
+              'Extend your arm and keep it steady.',
               style: GoogleFonts.lato(fontSize: 16.0, color: Colors.grey[800]),
             ),
             Text(
-              'Tips for proper execution.',
+              'Start the activity on the phone, then in the FitBit app to record your results.',
               style: GoogleFonts.lato(fontSize: 16.0, color: Colors.grey[800]),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 5),
             Divider(color: Colors.grey[400]),
-            const SizedBox(height: 20),
+            const SizedBox(height: 5),
             Text(
               "Video",
               style: GoogleFonts.lato(
@@ -72,7 +73,7 @@ class _BalanceStabilityInstruction extends State<BalanceStabilityInstruction> {
                 color: Colors.grey[600],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 5),
             Card(
               elevation: 5,
               shape: RoundedRectangleBorder(
@@ -98,13 +99,73 @@ class _BalanceStabilityInstruction extends State<BalanceStabilityInstruction> {
                 ),
               ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 5),
+            Divider(color: Colors.grey[400]),
+            const SizedBox(height: 5),
+            Text(
+              "Set Timer",
+                style: GoogleFonts.lato(
+                fontSize: 23.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[600],
+              ),
+            ),
+            const SizedBox(height: 5),
+            Column(
+              children: [
+                RadioListTile<int>(
+                  activeColor: Colors.black,
+                  title: Text("30 Seconds", style: GoogleFonts.lato(
+                  fontWeight: FontWeight.bold,
+                  )),
+                  value: 31,
+                  groupValue: selectedTimer,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedTimer = value;
+                      customTimerController.clear();
+                    });
+                  },
+                ),
+                RadioListTile<int>(
+                  activeColor: Colors.black,
+                  title: Text("1 Minute", style: GoogleFonts.lato(
+                  fontWeight: FontWeight.bold,
+                  )),
+                  value: 61,
+                  groupValue: selectedTimer,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedTimer = value;
+                      customTimerController.clear();
+                    });
+                  },
+                ),
+                RadioListTile<int>(
+                  activeColor: Colors.grey,
+                  title: Text("Manual Save", style: GoogleFonts.lato(
+                  fontWeight: FontWeight.bold,
+                  )),
+                  value: -1,
+                  groupValue: selectedTimer,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedTimer = value;
+                      customTimerController.clear();
+                    });
+                  },
+                ),
+              ], 
+            ),
+            const SizedBox(height: 5),
             Button(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const BalanceStabilityPage()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BalanceStabilityPage(timerDuration: selectedTimer ?? 0),
+                  ),
+                );
               },
               text: "Start ${widget.title}",
             ),

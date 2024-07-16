@@ -5,14 +5,15 @@ import 'package:provider/provider.dart';
 
 import '../services/results model.dart';
 import '../services/user provider.dart';
+import 'result detail page.dart';
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context, listen: false); // Access the provider
-    
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -38,7 +39,15 @@ class HistoryPage extends StatelessWidget {
                 final result = results[index];
                 return ListTile(
                   title: Text(result.exerciseName, style: GoogleFonts.lato(fontSize: 20)),
-                  subtitle: Text('Score: ${result.averageScore.round()} - ${DateFormat('MMM dd, yyyy - h:mm a').format(result.testDate)}', style: GoogleFonts.lato(fontSize: 16)),
+                  subtitle: Text('${DateFormat('MMM dd, yyyy - h:mm a').format(result.testDate)}', style: GoogleFonts.lato(fontSize: 16)),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResultDetailPage(result: result),
+                      ),
+                    );
+                  },
                 );
               },
             );

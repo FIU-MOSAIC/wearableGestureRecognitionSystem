@@ -22,7 +22,7 @@ class UserProvider with ChangeNotifier {
         if (userDoc.exists) {
           _user = UserModel.fromMap(userDoc.data() as Map<String, dynamic>);
         } else {
-          _user = null; // Set to null if user does not exist
+          _user = null;
         }
         notifyListeners();
       }
@@ -37,7 +37,7 @@ class UserProvider with ChangeNotifier {
     if (user != null) {
       List<String> exerciseCollections = [
         'Balance_and_Stability_Results'
-      ]; // add more collections here
+      ];
       for (var collection in exerciseCollections) {
         var querySnapshot = await FirebaseFirestore.instance
             .collection('users')

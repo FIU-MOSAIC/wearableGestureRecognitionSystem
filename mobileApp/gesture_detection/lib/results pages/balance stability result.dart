@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:fl_chart/fl_chart.dart';
 import '../pages/home page.dart';
 
 class BalanceStabilityResult extends StatelessWidget {
@@ -24,6 +25,35 @@ class BalanceStabilityResult extends StatelessWidget {
     return null;
   }
 
+  LineChartData buildChartData(List<FlSpot> dataPoints, double durationInSeconds) {
+    double minY = dataPoints.isNotEmpty ? dataPoints.map((e) => e.y).reduce((a, b) => a < b ? a : b) : -22;
+    double maxY = dataPoints.isNotEmpty ? dataPoints.map((e) => e.y).reduce((a, b) => a > b ? a : b) : 22;
+
+    return LineChartData(
+      minX: 0,
+      maxX: durationInSeconds,
+      minY: minY,
+      maxY: maxY,
+      lineBarsData: [
+        LineChartBarData(
+          spots: dataPoints,
+          isCurved: true,
+          color: Colors.blue,
+          barWidth: 4,
+          isStrokeCapRound: true,
+          dotData: FlDotData(show: false),
+          belowBarData: BarAreaData(show: false),
+        ),
+      ],
+      titlesData: FlTitlesData(
+        leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      ),
+      borderData: FlBorderData(show: false),
+      gridData: FlGridData(show: true),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,25 +72,29 @@ class BalanceStabilityResult extends StatelessWidget {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData && snapshot.data != null) {
             var data = snapshot.data!;
-            var averageScore = (data['averageScore'] as double).round();  // Round the score to whole number
-            var testDate = DateFormat('MMM dd, yyyy h:mm a').format(data['testDate'].toDate());  // Format the date with AM/PM and without seconds
-            var message = averageScore > 80 ? "Great job! Keep it up!" : "Good effort! Let's aim higher next time.";
+            List<FlSpot> dataPoints = (data['dataPoints'] as List)
+                .map((point) => FlSpot((point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
+                .toList();
+            double durationInSeconds = data['duration'] as double;
+            var testDate = DateFormat('MMM dd, yyyy h:mm a').format(data['testDate'].toDate());
 
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5.0),
+                      child: LineChart(buildChartData(dataPoints, durationInSeconds)),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   Text(
-                    'Performance Result:\nAverage Score: $averageScore\nTest Date: $testDate',
+                    'Test Date: $testDate',
                     style: GoogleFonts.lato(fontSize: 20),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),
-                  Text(
-                    message,
-                    style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold, color: averageScore > 80 ? Colors.green : Colors.orange),
-                  ),
-                  const SizedBox(height: 60),
                   Button(
                     onTap: () {
                       Navigator.push(
@@ -70,6 +104,7 @@ class BalanceStabilityResult extends StatelessWidget {
                     },
                     text: "Back to Home Page",
                   ),
+                  const SizedBox(height: 45),
                 ],
               ),
             );

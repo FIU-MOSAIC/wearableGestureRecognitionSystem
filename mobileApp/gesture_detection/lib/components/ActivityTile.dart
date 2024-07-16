@@ -6,7 +6,6 @@ class ActivityTile extends StatelessWidget {
   final String imagePath;
   final double width;
   final void Function() onTap;
-  
 
   const ActivityTile({
     required this.title,
@@ -33,12 +32,14 @@ class ActivityTile extends StatelessWidget {
               padding: const EdgeInsets.all(7.0),
               child: Row(
                 children: [
-                  Text(
-                    title,
-                    style: GoogleFonts.lato(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[600],
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: GoogleFonts.lato(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[600],
+                      ),
                     ),
                   ),
                   const SizedBox(width: 20.0),

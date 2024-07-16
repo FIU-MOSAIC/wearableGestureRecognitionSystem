@@ -151,15 +151,15 @@ void goToAboutUsPage() {
                     ),
                   ),
                   const SizedBox(height: 15.0),
-                  ActivityTile(title: 'Balance and Stability', imagePath: 'lib/images/balance and stability.png', width: 278, onTap:
+                  ActivityTile(title: 'Balance and Stability', imagePath: 'lib/images/balance and stability.png', width: 280, onTap:
                    () {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> const BalanceStabilityInstruction(title: 'Balance and Stability')));
                     },),
             
-                  ActivityTile(title: 'Range of Motion Test', imagePath: 'lib/images/Range of Motion Icon.png', width: 297, onTap: () {
+                  ActivityTile(title: 'Range of Motion Test', imagePath: 'lib/images/Range of Motion Icon.png', width: 280, onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> const RangeOfMotionInstructionPage(title: 'Range of Motion Test')));
                     },),
-                  ActivityTile(title: 'Reflex Test', imagePath: 'lib/images/Reflex Test Icon.png', width: 195, onTap: () {
+                  ActivityTile(title: 'Reflex Test', imagePath: 'lib/images/Reflex Test Icon.png', width: 280, onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> const ReflexIntructionPage(title: 'Reflex Test')));
                     },),
                 ],
