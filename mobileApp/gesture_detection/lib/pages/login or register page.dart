@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gesture_detection/pages/login%20page.dart';
+import 'login page.dart';
 import 'register page.dart';
 
 class LoginOrRegisterPage extends StatefulWidget {
