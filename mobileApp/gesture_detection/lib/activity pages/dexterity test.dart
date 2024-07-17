@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class RangeOfMotionTestPage extends StatelessWidget {
-  const RangeOfMotionTestPage({super.key});
+class DexterityTestPage extends StatelessWidget {
+  const DexterityTestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,10 +10,10 @@ class RangeOfMotionTestPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
         foregroundColor: Colors.white,
-        title: const Text('Range of Motion Test'),
+        title: const Text('Dexterity Test'),
       ),
       body: const Center(
-        child: Text('Range of Motion Test Page'),
+        child: Text('Dexterity Test Page'),
       ),
     );
   }

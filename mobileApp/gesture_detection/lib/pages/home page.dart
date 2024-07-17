@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gesture_detection/Instruction%20pages/balance%20stability%20instructions.dart';
+import 'package:gesture_detection/Instruction%20pages/dexterity%20instruction%20page.dart';
 import 'package:gesture_detection/Instruction%20pages/range%20of%20motion%20instruction%20page.dart';
 import 'package:gesture_detection/Instruction%20pages/reflex%20instruction%20page.dart';
 import 'package:gesture_detection/components/ActivityTile.dart';
@@ -10,8 +10,6 @@ import 'package:gesture_detection/pages/profile%20page.dart';
 import 'package:gesture_detection/services/user%20provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
-import 'about us page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -41,16 +39,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void goToAboutUsPage() {
-    Navigator.pop(context);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const AboutUsPage(), // Use AboutUsPage
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
@@ -59,16 +47,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Text('Home'),
         backgroundColor: Colors.grey[900],
         foregroundColor: Colors.white,
       ),
       drawer: MyDrawer(
         signOut: signUserOut,
         onProfileTap: goToProfilePage,
-        onAboutUsTap: goToAboutUsPage,
       ),
-      body: Padding(
+      body: user == null
+          ? Center(child: const CircularProgressIndicator())
+          : Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -77,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 20),
                   Center(
                     child: Text(
-                      'Welcome ${user?.name ?? ''}',
+                      'Welcome ${user.name ?? ''}',
                       style: GoogleFonts.lato(
                         fontSize: 27.0,
                         fontWeight: FontWeight.bold,
@@ -124,16 +113,16 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(height: 15.0),
-                  ActivityTile(title: 'Balance and Stability', imagePath: 'lib/images/Dexterity Test Icon.png', width: 275, onTap:
+                  ActivityTile(title: 'Dexterity Test', imagePath: 'lib/images/Dexterity Test Icon.png', width: 225, onTap:
                    () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const BalanceStabilityInstruction(title: 'Balance and Stability')));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> DexterityInstructionPage(title: 'Dexterity Test')));
                     },),
             
                   ActivityTile(title: 'Range of Motion Test', imagePath: 'lib/images/Range of Motion Icon.png', width: 297, onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const RangeOfMotionInstructionPage(title: 'Range of Motion Test')));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> RangeOfMotionInstructionPage(title: 'Range of Motion Test')));
                     },),
                   ActivityTile(title: 'Reflex Test', imagePath: 'lib/images/Reflex Test Icon.png', width: 195, onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const ReflexIntructionPage(title: 'Reflex Test')));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ReflexIntructionPage(title: 'Reflex Test')));
                     },),
                 ],
               ),

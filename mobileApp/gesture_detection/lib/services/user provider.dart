@@ -18,10 +18,8 @@ class UserProvider with ChangeNotifier {
         DocumentSnapshot userDoc = await _firestore.collection('users').doc(currentUser.uid).get();
         if (userDoc.exists) {
           _user = UserModel.fromMap(userDoc.data() as Map<String, dynamic>);
-        } else {
-          _user = null; // Set to null if user does not exist
+          notifyListeners();
         }
-        notifyListeners();
       }
     } catch (e) {
       print("Error fetching user data: $e");
@@ -39,7 +37,7 @@ class UserProvider with ChangeNotifier {
       notifyListeners();
     } catch (e) {
       print("Error saving user data: $e");
-      rethrow;
+      throw e;
     }
   }
 }

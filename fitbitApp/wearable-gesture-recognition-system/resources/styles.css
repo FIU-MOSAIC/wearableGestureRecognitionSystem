@@ -1,33 +1,13 @@
-/* .background {
+.background {
   viewport-fill: black;
-} */
+}
 
-#center-text {
-  font-size: 14;
+#myElem {
+  font-size: 20;
   font-family: System-Bold;
-  text-length: 100;
+  text-length: 14;
   text-anchor: middle;
   x: 50%;
   y: 50%;
   fill: white;
-}
-
-.application-fill           { fill: fb-white; }
-.foreground-fill            { fill: fb-white; }
-.background-fill            { fill: fb-black; }
-
-#start-button #text {
-  text-buffer: "START EXERCISE";
-}
-
-#stop-button #text {
-  text-buffer: "STOP";
-}
-
-#save #text {
-  text-buffer: "SAVE ATTEMPT";
-}
-
-#retry #text {
-  text-buffer: "RETRY EXERCISE";
 }

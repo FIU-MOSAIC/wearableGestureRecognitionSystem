@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:gesture_detection/activity%20pages/range%20of%20motion%20test.dart';
+import 'package:gesture_detection/activity%20pages/dexterity%20test.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class RangeOfMotionInstructionPage extends StatefulWidget {
+class DexterityInstructionPage extends StatefulWidget {
   final String title;
-  const RangeOfMotionInstructionPage({super.key, required this.title});
+  const DexterityInstructionPage({super.key, required this.title});
 
   @override
-  State<RangeOfMotionInstructionPage> createState() => _RangeOfMotionInstructionPage();
+  State<DexterityInstructionPage> createState() => _DexterityInstructionPageState();
 }
 
-class _RangeOfMotionInstructionPage extends State<RangeOfMotionInstructionPage> {
-  final videoURL = 'https://www.youtube.com/watch?v=t6hE_ntz4Ho';
+class _DexterityInstructionPageState extends State<DexterityInstructionPage> {
+  final videoURL = 'https://www.youtube.com/watch?v=T9H_yu0Me8c';
 
   late YoutubePlayerController _controller;
 
@@ -99,8 +99,8 @@ class _RangeOfMotionInstructionPage extends State<RangeOfMotionInstructionPage> 
             ),
             const SizedBox(height: 40),
             Button(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const RangeOfMotionTestPage()));
+                  onTap: (){ 
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const DexterityTestPage()));
                   },
                   text: "Start ${widget.title}",
                 ),

@@ -27,30 +27,17 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    userProvider.fetchUserData().then((_) {
-      if (userProvider.user != null) {
-        final user = userProvider.user!;
-        nameController.text = user.name ?? '';
-        ageController.text = user.age ?? '';
-        weightController.text = user.weight ?? '';
-        selectedGender = user.gender;
-        selectedFeet = user.feet;
-        selectedInches = user.inches;
-        selectedImpairment = user.impairment;
-      } else {
-        // Clear fields if user data does not exist
-        nameController.clear();
-        ageController.clear();
-        weightController.clear();
-        selectedGender = null;
-        selectedFeet = null;
-        selectedInches = null;
-        selectedImpairment = null;
-      }
-      setState(() {});
-    });
+    if (userProvider.user != null) {
+      final user = userProvider.user!;
+      nameController.text = user.name ?? '';
+      ageController.text = user.age ?? '';
+      weightController.text = user.weight ?? '';
+      selectedGender = user.gender;
+      selectedFeet = user.feet;
+      selectedInches = user.inches;
+      selectedImpairment = user.impairment;
+    }
   }
-
 
   Future<void> saveProfile() async {
     try {
@@ -92,8 +79,9 @@ class _ProfilePageState extends State<ProfilePage> {
         foregroundColor: Colors.white,
         title: const Text('Profile Setup'),
       ),
-      body: 
-          ListView(
+      body: user == null
+          ? const Center(child: CircularProgressIndicator())
+          : ListView(
               children: [
                 const SizedBox(height: 5),
                 const Icon(
@@ -102,7 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   size: 100.0,
                 ),
                 Text(
-                  user?.email ?? '',
+                  user.email ?? '',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                     fontSize: 16,
