@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gesture_detection/services/user%20model.dart';
+import 'results model.dart';
+import 'user model.dart';
 
 class UserProvider with ChangeNotifier {
   UserModel? _user;
+  DateTime? lastBalanceStabilityDate;
 
   UserModel? get user => _user;
 
@@ -15,15 +17,44 @@ class UserProvider with ChangeNotifier {
     try {
       User? currentUser = _auth.currentUser;
       if (currentUser != null) {
-        DocumentSnapshot userDoc = await _firestore.collection('users').doc(currentUser.uid).get();
+        DocumentSnapshot userDoc =
+            await _firestore.collection('users').doc(currentUser.uid).get();
         if (userDoc.exists) {
           _user = UserModel.fromMap(userDoc.data() as Map<String, dynamic>);
+<<<<<<< HEAD
           notifyListeners();
+=======
+        } else {
+          _user = null;
+>>>>>>> main
         }
       }
     } catch (e) {
       print("Error fetching user data: $e");
     }
+  }
+
+  Future<List<ExerciseResult>> fetchAllResults() async {
+    List<ExerciseResult> results = [];
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      List<String> exerciseCollections = [
+        'Balance_and_Stability_Results'
+      ];
+      for (var collection in exerciseCollections) {
+        var querySnapshot = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .collection(collection)
+            .orderBy('testDate', descending: true)
+            .get();
+        results.addAll(querySnapshot.docs
+            .map((doc) => ExerciseResult.fromMap(doc.data(),
+                collection.replaceAll('_Results', '').replaceAll('_', ' ')))
+            .toList());
+      }
+    }
+    return results;
   }
 
   Future<void> saveUserData(Map<String, dynamic> data) async {
@@ -37,7 +68,32 @@ class UserProvider with ChangeNotifier {
       notifyListeners();
     } catch (e) {
       print("Error saving user data: $e");
-      throw e;
+      rethrow;
+    }
+  }
+
+  Future<void> fetchLastActivityDate() async {
+    try {
+      User? currentUser = _auth.currentUser;
+      if (currentUser != null) {
+        var result = await _firestore
+            .collection('users')
+            .doc(currentUser.uid)
+            .collection('Balance_and_Stability_Results')
+            .orderBy('testDate', descending: true)
+            .limit(1)
+            .get();
+
+        if (result.docs.isNotEmpty) {
+          lastBalanceStabilityDate =
+              result.docs.first.data()['testDate'].toDate();
+        } else {
+          lastBalanceStabilityDate = null;
+        }
+        notifyListeners();
+      }
+    } catch (e) {
+      print("Error fetching last activity date: $e");
     }
   }
 }

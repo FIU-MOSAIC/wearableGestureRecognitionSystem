@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:gesture_detection/components/FormTextField.dart';
 import 'package:gesture_detection/components/SquareTile.dart';
-import 'package:gesture_detection/services/auth%20service.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../services/auth service.dart';
 import 'forgot password page.dart';
+import 'home page.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -24,34 +24,52 @@ class _LoginPageState extends State<LoginPage> {
   String? passwordError;
 
   // sign user in method
-  void signUserIn() async {
-    setState(() {
-      emailError = null;
-      passwordError = null;
-    });
-    // catching exceptions for email and password
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found' || e.code == 'invalid-email') {
-        setState(() {
-          emailError = 'Invalid email';
-        });
-      } else if (e.code == 'wrong-password') {
-        setState(() {
-          passwordError = 'Invalid password';
-        });
-      } else {
-        setState(() {
-          emailError = 'Invalid email or password';
-        });
-      }
+void signUserIn() async {
+  setState(() {
+    emailError = null;
+    passwordError = null;
+  });
+  
+  try {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+    // Navigate to the HomePage after successful login
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => HomePage()), // Replace `HomePage` with your home page widget
+      (Route<dynamic> route) => false,
+    );
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'user-not-found' || e.code == 'invalid-email') {
+      setState(() {
+        emailError = 'Invalid email';
+      });
+    } else if (e.code == 'wrong-password') {
+      setState(() {
+        passwordError = 'Invalid password';
+      });
+    } else {
+      setState(() {
+        emailError = 'Invalid email or password';
+      });
     }
   }
-
+}
+ void signInWithGoogle() async {
+    UserCredential? userCredential = await AuthService().signInWithGoogle();
+    if (userCredential != null) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => HomePage()), // Replace `HomePage` with your home page widget
+        (Route<dynamic> route) => false,
+      );
+    } else {
+      // Handle sign in error
+      setState(() {
+        emailError = 'Google sign in failed';
+      });
+    }
+  }
   //login page content
   @override
   Widget build(BuildContext context) {
@@ -166,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SquareTile(
-                      onTap: () => AuthService().signInWithGoogle(),
+                      onTap: signInWithGoogle,
                       imagePath: 'lib/images/google.png',
                        size: 90,),
                     const SizedBox(width: 60),
