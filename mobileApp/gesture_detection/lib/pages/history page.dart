@@ -43,7 +43,7 @@ class HistoryPage extends StatelessWidget {
               },
             );
           } else {
-            return const Center(child: Text('No results available'));
+            return Center(child: Text('No results available', style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold)));
           }
         },
       ),
