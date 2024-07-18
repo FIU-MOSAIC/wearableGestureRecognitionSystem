@@ -153,7 +153,7 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///C:/Users/wansa/flutter/packages/flutter",
+      "rootUri": "file:///C:/src/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -213,13 +213,13 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///C:/Users/wansa/flutter/packages/flutter_test",
+      "rootUri": "file:///C:/src/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
     {
       "name": "flutter_web_plugins",
-      "rootUri": "file:///C:/Users/wansa/flutter/packages/flutter_web_plugins",
+      "rootUri": "file:///C:/src/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -411,7 +411,7 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///C:/Users/wansa/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///C:/src/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -524,10 +524,10 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-07-17T15:35:16.213098Z",
+  "generated": "2024-07-18T13:43:05.746751Z",
   "generator": "pub",
   "generatorVersion": "3.4.3",
-  "flutterRoot": "file:///C:/Users/wansa/flutter",
+  "flutterRoot": "file:///C:/src/flutter",
   "flutterVersion": "3.22.2",
   "pubCache": "file:///C:/Users/wansa/AppData/Local/Pub/Cache"
 }
