@@ -24,7 +24,9 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
   Timer? autoSaveTimer;
   DateTime? startTime;
   double durationInSeconds = 0;
-  List<FlSpot> dataPoints = [];
+  List<FlSpot> dataPointsX = [];
+  List<FlSpot> dataPointsY = [];
+  List<FlSpot> dataPointsZ = [];
   bool _isSaving = false;
 
   double accelX = 0.0, accelY = 0.0, accelZ = 0.0;
@@ -100,7 +102,9 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
 
   void addDataPoint() {
     setState(() {
-      dataPoints.add(FlSpot(durationInSeconds.roundToDouble(), accelX));
+      dataPointsX.add(FlSpot(durationInSeconds.roundToDouble(), accelX));
+      dataPointsY.add(FlSpot(durationInSeconds.roundToDouble(), accelY));
+      dataPointsZ.add(FlSpot(durationInSeconds.roundToDouble(), accelZ));
     });
   }
 
@@ -108,7 +112,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
   void dispose() {
     timer?.cancel();
     autoSaveTimer?.cancel();
-    dataPoints.clear();
+    dataPointsX.clear();
     channel.sink.close();
     super.dispose();
   }
@@ -120,7 +124,9 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       FirebaseFirestore.instance.collection('users').doc(user.uid).collection('Balance_and_Stability_Results').add({
-        'dataPoints': dataPoints.map((point) => {'x': point.x, 'y': point.y}).toList(),
+        'dataPointsX': dataPointsX.map((point) => {'x': point.x, 'y': point.y}).toList(),
+        'dataPointsY': dataPointsY.map((point) => {'x': point.x, 'y': point.y}).toList(),
+        'dataPointsZ': dataPointsZ.map((point) => {'x': point.x, 'y': point.y}).toList(),
         'duration': durationInSeconds,
         'testDate': DateTime.now(),
       }).then((value) {
@@ -131,7 +137,9 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
       }).whenComplete(() {
         setState(() {
           _isSaving = false;
-          dataPoints.clear();
+          dataPointsX.clear();
+          dataPointsY.clear();
+          dataPointsZ.clear();
         });
       });
     } else {
@@ -140,7 +148,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
   }
 
   Widget buildGraph() {
-    if (dataPoints.isEmpty) {
+    if (dataPointsX.isEmpty) {
       return Center(
         child: Text('No data available', style: GoogleFonts.lato(
                   fontWeight: FontWeight.bold, )
@@ -157,7 +165,25 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
           maxY: 22,
           lineBarsData: [
             LineChartBarData(
-              spots: dataPoints,
+              spots: dataPointsX,
+              isCurved: true,
+              color: Colors.red,
+              barWidth: 4,
+              isStrokeCapRound: true,
+              dotData: const FlDotData(show: false),
+              belowBarData: BarAreaData(show: false),
+            ),
+            LineChartBarData(
+              spots: dataPointsY,
+              isCurved: true,
+              color: Colors.green,
+              barWidth: 4,
+              isStrokeCapRound: true,
+              dotData: const FlDotData(show: false),
+              belowBarData: BarAreaData(show: false),
+            ),
+            LineChartBarData(
+              spots: dataPointsZ,
               isCurved: true,
               color: Colors.blue,
               barWidth: 4,
