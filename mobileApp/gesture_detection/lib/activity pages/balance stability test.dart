@@ -30,7 +30,6 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
   bool _isSaving = false;
 
   double accelX = 0.0, accelY = 0.0, accelZ = 0.0;
-  double gyroX = 0.0, gyroY = 0.0, gyroZ = 0.0;
   double heartRate = 0.0;
 
   @override
@@ -57,15 +56,6 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
     }
     if (decodedData['accelZ'].isNotEmpty) {
       accelZ = (decodedData['accelZ'].last as num).toDouble();
-    }
-    if (decodedData['gyroX'].isNotEmpty) {
-      gyroX = (decodedData['gyroX'].last as num).toDouble();
-    }
-    if (decodedData['gyroY'].isNotEmpty) {
-      gyroY = (decodedData['gyroY'].last as num).toDouble();
-    }
-    if (decodedData['gyroZ'].isNotEmpty) {
-      gyroZ = (decodedData['gyroZ'].last as num).toDouble();
     }
 
     // Start timer if significant change detected and timer not already started
@@ -168,7 +158,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
               spots: dataPointsX,
               isCurved: true,
               color: Colors.red,
-              barWidth: 4,
+              barWidth: 2,
               isStrokeCapRound: true,
               dotData: const FlDotData(show: false),
               belowBarData: BarAreaData(show: false),
@@ -177,7 +167,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
               spots: dataPointsY,
               isCurved: true,
               color: Colors.green,
-              barWidth: 4,
+              barWidth: 2,
               isStrokeCapRound: true,
               dotData: const FlDotData(show: false),
               belowBarData: BarAreaData(show: false),
@@ -186,7 +176,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
               spots: dataPointsZ,
               isCurved: true,
               color: Colors.blue,
-              barWidth: 4,
+              barWidth: 2,
               isStrokeCapRound: true,
               dotData: const FlDotData(show: false),
               belowBarData: BarAreaData(show: false),
@@ -217,6 +207,23 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(child: buildGraph()),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text('Accelerometer X', style: GoogleFonts.lato(fontSize: 14, color: Colors.red)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text('Accelerometer Y', style: GoogleFonts.lato(fontSize: 14, color: Colors.green)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text('Accelerometer Z', style: GoogleFonts.lato(fontSize: 14, color: Colors.blue)),
+                ),
+              ],
+            ),
             const SizedBox(height: 20),
             Text(
               'Heart Rate: ${heartRate.round()} BPM',

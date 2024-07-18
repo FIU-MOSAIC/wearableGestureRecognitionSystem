@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+
 import '../services/results model.dart';
+
 
 class ResultDetailPage extends StatelessWidget {
   final ExerciseResult result;
@@ -12,15 +14,35 @@ class ResultDetailPage extends StatelessWidget {
   LineChartData buildBalanceChartData() {
     return LineChartData(
       minX: 0,
-      maxX: result.dataPoints.isNotEmpty ? result.dataPoints.last.x : 0,
+      maxX: result.dataPointsX != null && result.dataPointsX!.isNotEmpty
+          ? result.dataPointsX!.last.x
+          : 0,
       minY: -22,
       maxY: 22,
       lineBarsData: [
         LineChartBarData(
-          spots: result.dataPoints,
+          spots: result.dataPointsX!,
+          isCurved: true,
+          color: Colors.red,
+          barWidth: 2,
+          isStrokeCapRound: true,
+          dotData: FlDotData(show: false),
+          belowBarData: BarAreaData(show: false),
+        ),
+        LineChartBarData(
+          spots: result.dataPointsY!,
+          isCurved: true,
+          color: Colors.green,
+          barWidth: 2,
+          isStrokeCapRound: true,
+          dotData: FlDotData(show: false),
+          belowBarData: BarAreaData(show: false),
+        ),
+        LineChartBarData(
+          spots: result.dataPointsZ!,
           isCurved: true,
           color: Colors.blue,
-          barWidth: 4,
+          barWidth: 2,
           isStrokeCapRound: true,
           dotData: FlDotData(show: false),
           belowBarData: BarAreaData(show: false),
@@ -105,6 +127,24 @@ class ResultDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
+            if (result.exerciseName == "Balance and Stability")
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text('Accelerometer X', style: GoogleFonts.lato(fontSize: 14, color: Colors.red)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text('Accelerometer Y', style: GoogleFonts.lato(fontSize: 14, color: Colors.green)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text('Accelerometer Z', style: GoogleFonts.lato(fontSize: 14, color: Colors.blue)),
+                  ),
+                ],
+              ),
             if (result.exerciseName == "Arm Mobility")
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

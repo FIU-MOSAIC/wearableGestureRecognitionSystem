@@ -25,9 +25,9 @@ class BalanceStabilityResult extends StatelessWidget {
     return null;
   }
 
-  LineChartData buildChartData(List<FlSpot> dataPoints, double durationInSeconds) {
-    double minY = dataPoints.isNotEmpty ? dataPoints.map((e) => e.y).reduce((a, b) => a < b ? a : b) : -22;
-    double maxY = dataPoints.isNotEmpty ? dataPoints.map((e) => e.y).reduce((a, b) => a > b ? a : b) : 22;
+  LineChartData buildChartData(List<FlSpot> dataPointsX, List<FlSpot> dataPointsY, List<FlSpot> dataPointsZ, double durationInSeconds) {
+    double minY = -22;
+    double maxY = 22;
 
     return LineChartData(
       minX: 0,
@@ -36,10 +36,28 @@ class BalanceStabilityResult extends StatelessWidget {
       maxY: maxY,
       lineBarsData: [
         LineChartBarData(
-          spots: dataPoints,
+          spots: dataPointsX,
+          isCurved: true,
+          color: Colors.red,
+          barWidth: 2,
+          isStrokeCapRound: true,
+          dotData: FlDotData(show: false),
+          belowBarData: BarAreaData(show: false),
+        ),
+        LineChartBarData(
+          spots: dataPointsY,
+          isCurved: true,
+          color: Colors.green,
+          barWidth: 2,
+          isStrokeCapRound: true,
+          dotData: FlDotData(show: false),
+          belowBarData: BarAreaData(show: false),
+        ),
+        LineChartBarData(
+          spots: dataPointsZ,
           isCurved: true,
           color: Colors.blue,
-          barWidth: 4,
+          barWidth: 2,
           isStrokeCapRound: true,
           dotData: FlDotData(show: false),
           belowBarData: BarAreaData(show: false),
@@ -72,7 +90,13 @@ class BalanceStabilityResult extends StatelessWidget {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData && snapshot.data != null) {
             var data = snapshot.data!;
-            List<FlSpot> dataPoints = (data['dataPoints'] as List)
+            List<FlSpot> dataPointsX = (data['dataPointsX'] as List)
+                .map((point) => FlSpot((point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
+                .toList();
+            List<FlSpot> dataPointsY = (data['dataPointsY'] as List)
+                .map((point) => FlSpot((point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
+                .toList();
+            List<FlSpot> dataPointsZ = (data['dataPointsZ'] as List)
                 .map((point) => FlSpot((point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
                 .toList();
             double durationInSeconds = data['duration'] as double;
@@ -85,7 +109,7 @@ class BalanceStabilityResult extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5.0),
-                      child: LineChart(buildChartData(dataPoints, durationInSeconds)),
+                      child: LineChart(buildChartData(dataPointsX, dataPointsY, dataPointsZ, durationInSeconds)),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -95,12 +119,32 @@ class BalanceStabilityResult extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text('Accelerometer X', style: GoogleFonts.lato(fontSize: 14, color: Colors.red)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text('Accelerometer Y', style: GoogleFonts.lato(fontSize: 14, color: Colors.green)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text('Accelerometer Z', style: GoogleFonts.lato(fontSize: 14, color: Colors.blue)),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
                   Button(
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomePage()));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ),
+                      );
                     },
                     text: "Back to Home Page",
                   ),

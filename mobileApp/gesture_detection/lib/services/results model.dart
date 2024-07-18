@@ -5,6 +5,9 @@ class ExerciseResult {
   final String exerciseName;
   final DateTime testDate;
   final List<FlSpot> dataPoints;
+  final List<FlSpot>? dataPointsX;
+  final List<FlSpot>? dataPointsY;
+  final List<FlSpot>? dataPointsZ;
   final List<FlSpot>? dataPointsI;
   final List<FlSpot>? dataPointsJ;
   final List<FlSpot>? dataPointsK;
@@ -13,6 +16,9 @@ class ExerciseResult {
     required this.exerciseName,
     required this.testDate,
     required this.dataPoints,
+    this.dataPointsX,
+    this.dataPointsY,
+    this.dataPointsZ,
     this.dataPointsI,
     this.dataPointsJ,
     this.dataPointsK,
@@ -23,6 +29,21 @@ class ExerciseResult {
         ?.map((point) => FlSpot(
             (point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
         .toList() ?? [];
+
+    List<FlSpot>? dataPointsX = (map['dataPointsX'] as List?)
+        ?.map((point) => FlSpot(
+            (point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
+        .toList();
+
+    List<FlSpot>? dataPointsY = (map['dataPointsY'] as List?)
+        ?.map((point) => FlSpot(
+            (point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
+        .toList();
+
+    List<FlSpot>? dataPointsZ = (map['dataPointsZ'] as List?)
+        ?.map((point) => FlSpot(
+            (point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
+        .toList();
 
     List<FlSpot>? dataPointsI = (map['dataPointsI'] as List?)
         ?.map((point) => FlSpot(
@@ -43,6 +64,9 @@ class ExerciseResult {
       exerciseName: exerciseName,
       testDate: (map['testDate'] as Timestamp).toDate(),
       dataPoints: dataPoints,
+      dataPointsX: dataPointsX,
+      dataPointsY: dataPointsY,
+      dataPointsZ: dataPointsZ,
       dataPointsI: dataPointsI,
       dataPointsJ: dataPointsJ,
       dataPointsK: dataPointsK,
