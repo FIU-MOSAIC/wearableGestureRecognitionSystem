@@ -47,7 +47,6 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
   void processSensorData(String data) {
     Map<String, dynamic> decodedData = jsonDecode(data);
     
-    // Ensure the lists are not empty before accessing the last element
     if (decodedData['accelX'].isNotEmpty) {
       accelX = (decodedData['accelX'].last as num).toDouble();
     }
@@ -58,7 +57,6 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
       accelZ = (decodedData['accelZ'].last as num).toDouble();
     }
 
-    // Start timer if significant change detected and timer not already started
     if (startTime == null && timer == null && accelX != 0) {
       startTime = DateTime.now();
       timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {

@@ -38,7 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
         selectedInches = user.inches;
         selectedImpairment = user.impairment;
       } else {
-        // Clear fields if user data does not exist
+        // clear fields if user data does not exist
         nameController.clear();
         ageController.clear();
         weightController.clear();

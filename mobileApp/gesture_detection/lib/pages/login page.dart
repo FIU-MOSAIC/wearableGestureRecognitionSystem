@@ -35,9 +35,9 @@ void signUserIn() async {
       email: emailController.text,
       password: passwordController.text,
     );
-    // Navigate to the HomePage after successful login
+    // navigate to the HomePage after successful login
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) => const HomePage()), // Replace `HomePage` with your home page widget
+      MaterialPageRoute(builder: (context) => const HomePage()), 
       (Route<dynamic> route) => false,
     );
   } on FirebaseAuthException catch (e) {
@@ -60,7 +60,7 @@ void signUserIn() async {
     UserCredential? userCredential = await AuthService().signInWithGoogle();
     if (userCredential != null) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const HomePage()), // Replace `HomePage` with your home page widget
+        MaterialPageRoute(builder: (context) => const HomePage()),
         (Route<dynamic> route) => false,
       );
     } else {

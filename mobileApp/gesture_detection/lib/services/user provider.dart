@@ -55,7 +55,7 @@ class UserProvider with ChangeNotifier {
             .toList());
       }
 
-      // Sort results by testDate
+      // sort results by testDate
       results.sort((a, b) => b.testDate.compareTo(a.testDate));
     }
     return results;
