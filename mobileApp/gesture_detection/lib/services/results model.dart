@@ -4,7 +4,6 @@ import 'package:fl_chart/fl_chart.dart';
 class ExerciseResult {
   final String exerciseName;
   final DateTime testDate;
-  final List<FlSpot> dataPoints;
   final List<FlSpot>? dataPointsX;
   final List<FlSpot>? dataPointsY;
   final List<FlSpot>? dataPointsZ;
@@ -15,7 +14,6 @@ class ExerciseResult {
   ExerciseResult({
     required this.exerciseName,
     required this.testDate,
-    required this.dataPoints,
     this.dataPointsX,
     this.dataPointsY,
     this.dataPointsZ,
@@ -25,10 +23,6 @@ class ExerciseResult {
   });
 
   factory ExerciseResult.fromMap(Map<String, dynamic> map, String exerciseName) {
-    List<FlSpot> dataPoints = (map['dataPoints'] as List?)
-        ?.map((point) => FlSpot(
-            (point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
-        .toList() ?? [];
 
     List<FlSpot>? dataPointsX = (map['dataPointsX'] as List?)
         ?.map((point) => FlSpot(
@@ -63,7 +57,6 @@ class ExerciseResult {
     return ExerciseResult(
       exerciseName: exerciseName,
       testDate: (map['testDate'] as Timestamp).toDate(),
-      dataPoints: dataPoints,
       dataPointsX: dataPointsX,
       dataPointsY: dataPointsY,
       dataPointsZ: dataPointsZ,

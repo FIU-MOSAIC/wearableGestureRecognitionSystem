@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../Instruction pages/balance stability instructions.dart';
-import '../Instruction pages/range of motion instruction page.dart';
+import '../Instruction pages/arm rotation instruction page.dart';
 import '../Instruction pages/arm mobility instruction page.dart';
 import '../services/user provider.dart';
 import 'about us page.dart';
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: SingleChildScrollView( // Added SingleChildScrollView here
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,12 +133,15 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.grey[800],
                     ),
                   ),
-                  Text("Range of Motion: [Date]", style: GoogleFonts.lato(
-                    fontSize: 15.0,
-                    color: Colors.grey[800],
-                  ),),
                   Text(
-                    "Arm Mobility Test: ${userProvider.lastArmMobilityTestDate != null ? DateFormat('MMM dd, yyyy - h:mm a').format(userProvider.lastArmMobilityTestDate!) : 'No data available'}",
+                    "Arm Rotation: ${userProvider.lastArmRotationTestDate != null ? DateFormat('MMM dd, yyyy - h:mm a').format(userProvider.lastArmRotationTestDate!) : 'No data available'}",
+                    style: GoogleFonts.lato(
+                      fontSize: 15.0,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                  Text(
+                    "Arm Mobility: ${userProvider.lastArmMobilityTestDate != null ? DateFormat('MMM dd, yyyy - h:mm a').format(userProvider.lastArmMobilityTestDate!) : 'No data available'}",
                     style: GoogleFonts.lato(
                       fontSize: 15.0,
                       color: Colors.grey[800],
@@ -167,15 +170,15 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               ActivityTile(
-                title: 'Range of Motion Test',
-                imagePath: 'lib/images/Range of Motion Icon.png',
+                title: 'Arm Rotation',
+                imagePath: 'lib/images/arm rotation.png',
                 width: 280,
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const RangeOfMotionInstructionPage(title: 'Range of Motion Test')));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const ArmRotationInstructionPage(title: 'Arm Rotation')));
                 },
               ),
               ActivityTile(
-                title: 'Arm Mobility Test',
+                title: 'Arm Mobility',
                 imagePath: 'lib/images/arm mobility.png',
                 width: 280,
                 onTap: () {

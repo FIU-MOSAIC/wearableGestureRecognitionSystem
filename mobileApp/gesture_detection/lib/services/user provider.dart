@@ -7,6 +7,7 @@ import 'user model.dart';
 class UserProvider with ChangeNotifier {
   UserModel? _user;
   DateTime? lastBalanceStabilityDate;
+  DateTime? lastArmRotationTestDate;
   DateTime? lastArmMobilityTestDate;
 
   UserModel? get user => _user;
@@ -38,6 +39,7 @@ class UserProvider with ChangeNotifier {
     if (user != null) {
       List<String> exerciseCollections = [
         'Balance_and_Stability_Results',
+        'Arm_Rotation_Results',
         'Arm_Mobility_Results'
       ];
       for (var collection in exerciseCollections) {
@@ -91,6 +93,21 @@ class UserProvider with ChangeNotifier {
               balanceResult.docs.first.data()['testDate'].toDate();
         } else {
           lastBalanceStabilityDate = null;
+        }
+
+        var armRotationResult = await _firestore
+            .collection('users')
+            .doc(currentUser.uid)
+            .collection('Arm_Rotation_Results')
+            .orderBy('testDate', descending: true)
+            .limit(1)
+            .get();
+
+        if (armRotationResult.docs.isNotEmpty) {
+          lastArmRotationTestDate =
+              armRotationResult.docs.first.data()['testDate'].toDate();
+        } else {
+          lastArmRotationTestDate = null;
         }
 
         var armMobilityResult = await _firestore

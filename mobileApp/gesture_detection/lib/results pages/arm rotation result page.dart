@@ -1,14 +1,16 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gesture_detection/components/Button.dart';
-import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:fl_chart/fl_chart.dart';
+import 'package:intl/intl.dart';
+
+import '../components/Button.dart';
 import '../pages/home page.dart';
 
-class ArmMobilityResultPage extends StatelessWidget {
-  const ArmMobilityResultPage({super.key});
+class ArmRotationResultPage extends StatelessWidget {
+  const ArmRotationResultPage({super.key});
 
   Future<Map<String, dynamic>?> fetchLatestResult() async {
     User? user = FirebaseAuth.instance.currentUser;
@@ -16,7 +18,7 @@ class ArmMobilityResultPage extends StatelessWidget {
       var collection = FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
-          .collection('Arm_Mobility_Results');
+          .collection('Arm_Rotation_Results');
       var querySnapshot = await collection.orderBy('testDate', descending: true).limit(1).get();
       if (querySnapshot.docs.isNotEmpty) {
         return querySnapshot.docs.first.data();
@@ -25,9 +27,9 @@ class ArmMobilityResultPage extends StatelessWidget {
     return null;
   }
 
-  LineChartData buildChartData(List<FlSpot> dataPointsI, List<FlSpot> dataPointsJ, List<FlSpot> dataPointsK, double durationInSeconds) {
-    double minY = -1;
-    double maxY = 1;
+  LineChartData buildChartData(List<FlSpot> dataPointsX, List<FlSpot> dataPointsY, List<FlSpot> dataPointsZ, double durationInSeconds) {
+    double minY = -25;
+    double maxY = 25;
 
     return LineChartData(
       minX: 0,
@@ -36,7 +38,7 @@ class ArmMobilityResultPage extends StatelessWidget {
       maxY: maxY,
       lineBarsData: [
         LineChartBarData(
-          spots: dataPointsI,
+          spots: dataPointsX,
           isCurved: true,
           color: Colors.red,
           barWidth: 2,
@@ -45,7 +47,7 @@ class ArmMobilityResultPage extends StatelessWidget {
           belowBarData: BarAreaData(show: false),
         ),
         LineChartBarData(
-          spots: dataPointsJ,
+          spots: dataPointsY,
           isCurved: true,
           color: Colors.green,
           barWidth: 2,
@@ -54,7 +56,7 @@ class ArmMobilityResultPage extends StatelessWidget {
           belowBarData: BarAreaData(show: false),
         ),
         LineChartBarData(
-          spots: dataPointsK,
+          spots: dataPointsZ,
           isCurved: true,
           color: Colors.blue,
           barWidth: 2,
@@ -79,7 +81,7 @@ class ArmMobilityResultPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
         foregroundColor: Colors.white,
-        title: const Text('Arm Mobility Results'),
+        title: const Text('Arm Rotation Results'),
       ),
       body: FutureBuilder<Map<String, dynamic>?>(
         future: fetchLatestResult(),
@@ -90,13 +92,13 @@ class ArmMobilityResultPage extends StatelessWidget {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData && snapshot.data != null) {
             var data = snapshot.data!;
-            List<FlSpot> dataPointsI = (data['dataPointsI'] as List)
+            List<FlSpot> dataPointsX = (data['dataPointsX'] as List)
                 .map((point) => FlSpot((point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
                 .toList();
-            List<FlSpot> dataPointsJ = (data['dataPointsJ'] as List)
+            List<FlSpot> dataPointsY = (data['dataPointsY'] as List)
                 .map((point) => FlSpot((point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
                 .toList();
-            List<FlSpot> dataPointsK = (data['dataPointsK'] as List)
+            List<FlSpot> dataPointsZ = (data['dataPointsZ'] as List)
                 .map((point) => FlSpot((point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
                 .toList();
             double durationInSeconds = data['duration'] as double;
@@ -109,7 +111,7 @@ class ArmMobilityResultPage extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5.0),
-                      child: LineChart(buildChartData(dataPointsI, dataPointsJ, dataPointsK, durationInSeconds)),
+                      child: LineChart(buildChartData(dataPointsX, dataPointsY, dataPointsZ, durationInSeconds)),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -120,21 +122,21 @@ class ArmMobilityResultPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Row(
-                children: [
-                Padding(
-                  padding: const EdgeInsets.all(22.0),
-                  child: Text('Orientation I', style: GoogleFonts.lato(fontSize: 14, color: Colors.red)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(22.0),
-                  child: Text('Orientation J', style: GoogleFonts.lato(fontSize: 14, color: Colors.green)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(22.0),
-                  child: Text('Orientation K', style: GoogleFonts.lato(fontSize: 14, color: Colors.blue)),
-                ),
-              ],
-            ),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(23.0),
+                        child: Text('Gyroscope X', style: GoogleFonts.lato(fontSize: 14, color: Colors.red)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(23.0),
+                        child: Text('Gyroscope Y', style: GoogleFonts.lato(fontSize: 14, color: Colors.green)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(23.0),
+                        child: Text('Gyroscope Z', style: GoogleFonts.lato(fontSize: 14, color: Colors.blue)),
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 20),
                   Button(
                     onTap: () {

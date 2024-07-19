@@ -6,7 +6,7 @@ import '../activity pages/arm mobility test.dart';
 
 class ArmMobilityInstructionPage extends StatefulWidget {
   final String title;
-  const ArmMobilityInstructionPage({Key? key, required this.title}) : super(key: key);
+  const ArmMobilityInstructionPage({super.key, required this.title});
 
   @override
   State<ArmMobilityInstructionPage> createState() => _ArmMobilityInstructionPageState();
@@ -41,7 +41,7 @@ class _ArmMobilityInstructionPageState extends State<ArmMobilityInstructionPage>
         title: Text('${widget.title} Instructions'),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+        padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: [
             Text(
@@ -138,20 +138,29 @@ class _ArmMobilityInstructionPageState extends State<ArmMobilityInstructionPage>
                     });
                   },
                 ),
-                RadioListTile<int>(
-                  activeColor: Colors.grey,
-                  title: Text("Manual Save", style: GoogleFonts.lato(
-                    fontWeight: FontWeight.bold,
-                  )),
-                  value: -1,
-                  groupValue: selectedTimer,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedTimer = value;
-                      customTimerController.clear();
-                    });
-                  },
-                ),
+                Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 1.5,
+                          color: Colors.grey[500],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          'Or manual save.',
+                          style: GoogleFonts.lato(color: Colors.grey[800]),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          thickness: 1.5,
+                          color: Colors.grey[500],
+                        ),
+                      ),
+                    ],
+                  ),
               ],
             ),
             const SizedBox(height: 5),

@@ -26,8 +26,8 @@ class BalanceStabilityResult extends StatelessWidget {
   }
 
   LineChartData buildChartData(List<FlSpot> dataPointsX, List<FlSpot> dataPointsY, List<FlSpot> dataPointsZ, double durationInSeconds) {
-    double minY = -22;
-    double maxY = 22;
+    double minY = -40;
+    double maxY = 40;
 
     return LineChartData(
       minX: 0,
@@ -41,7 +41,7 @@ class BalanceStabilityResult extends StatelessWidget {
           color: Colors.red,
           barWidth: 2,
           isStrokeCapRound: true,
-          dotData: FlDotData(show: false),
+          dotData: const FlDotData(show: false),
           belowBarData: BarAreaData(show: false),
         ),
         LineChartBarData(
@@ -50,7 +50,7 @@ class BalanceStabilityResult extends StatelessWidget {
           color: Colors.green,
           barWidth: 2,
           isStrokeCapRound: true,
-          dotData: FlDotData(show: false),
+          dotData: const FlDotData(show: false),
           belowBarData: BarAreaData(show: false),
         ),
         LineChartBarData(
@@ -59,16 +59,16 @@ class BalanceStabilityResult extends StatelessWidget {
           color: Colors.blue,
           barWidth: 2,
           isStrokeCapRound: true,
-          dotData: FlDotData(show: false),
+          dotData: const FlDotData(show: false),
           belowBarData: BarAreaData(show: false),
         ),
       ],
-      titlesData: FlTitlesData(
+      titlesData: const FlTitlesData(
         leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
         bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
       ),
       borderData: FlBorderData(show: false),
-      gridData: FlGridData(show: true),
+      gridData: const FlGridData(show: true),
     );
   }
 
