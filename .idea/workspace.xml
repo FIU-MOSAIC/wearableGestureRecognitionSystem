@@ -12,6 +12,7 @@
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/android/local.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/activity pages/balance stability test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/activity pages/balance stability test.dart" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +37,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Flutter.main.dart.executor": "Run",
@@ -53,6 +55,7 @@
     "last_opened_file_path": "C:/Users/sirup/dev/flutter/bin/cache/dart-sdk",
     "settings.editor.selected.configurable": "dart.settings",
     "show.migrate.to.gradle.popup": "false"
+
   }
 }]]></component>
   <component name="RunManager">
