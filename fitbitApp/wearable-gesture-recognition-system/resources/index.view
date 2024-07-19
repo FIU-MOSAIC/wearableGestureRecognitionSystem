@@ -1,4 +1,5 @@
 <svg>
+<image href="background.png" />
 <text id="center-text"></text>
 <use id="start-button" href="#text-button" class="text-button bottom application-fill" />
 <use id="stop-button" href="#text-button" class="text-button bottom application-fill" />
