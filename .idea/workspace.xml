@@ -6,13 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0d07f0e3-7dfd-492f-9a4a-02487ed705f8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/package_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/package_config_subset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/android/local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/activity pages/balance stability test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/activity pages/balance stability test.dart" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/images/Poeallabauer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/pages/about us page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/pages/about us page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +34,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Flutter.main.dart.executor": "Run",
@@ -48,14 +44,13 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Orlando",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/sirup/dev/flutter/bin/cache/dart-sdk",
     "settings.editor.selected.configurable": "dart.settings",
     "show.migrate.to.gradle.popup": "false"
-
   }
 }]]></component>
   <component name="RunManager">
