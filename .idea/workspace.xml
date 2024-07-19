@@ -5,11 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d07f0e3-7dfd-492f-9a4a-02487ed705f8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/wearableGestureRecognitSystemion.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/images/robertodibari.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/package_config_subset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/version" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/android/local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/images/Poeallabauer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/ios/Flutter/Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/ios/Flutter/Generated.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/pages/about us page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/pages/about us page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/macos/Flutter/ephemeral/Flutter-Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/macos/Flutter/ephemeral/Flutter-Generated.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/macos/Flutter/ephemeral/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/macos/Flutter/ephemeral/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/macos/Runner/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/macos/Runner/AppDelegate.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,25 +49,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Flutter.main.dart.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "io.flutter.reload.alreadyRun": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/sirup/dev/flutter/bin/cache/dart-sdk",
-    "settings.editor.selected.configurable": "dart.settings",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/robertodibari/Desktop/Capstone2ProjectFinal/wearableGestureRecognitSystemion&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;flutter.settings&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mobileApp/gesture_detection/lib/images" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="filePath" value="$PROJECT_DIR$/mobileApp/gesture_detection/lib/main.dart" />
