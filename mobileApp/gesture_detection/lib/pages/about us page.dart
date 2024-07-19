@@ -137,7 +137,7 @@ class AboutUsPage extends StatelessWidget {
                         const SizedBox(height: 10),
                         buildTeamMember('Juan Salas Paredes', 'Front-End', 'lib/images/juanSalasParedes.jpg'),
                         const SizedBox(height: 10),
-                        buildTeamMember('Piercen Rychlik', 'Back-End', 'lib/images/orlando_gonzalez.png'),
+                        buildTeamMember('Piercen Rychlik', 'Back-End', 'lib/images/piercenRychlik.png'),
                         const SizedBox(height: 10),
                         buildTeamMember('Roberto Di Bari', 'Back-End', 'lib/images/orlando_gonzalez.png'),
                         const SizedBox(height: 10),
