@@ -7,8 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../pages/home page.dart';
 
-class BalanceStabilityResult extends StatelessWidget {
-  const BalanceStabilityResult({super.key});
+class ArmMobilityResultPage extends StatelessWidget {
+  const ArmMobilityResultPage({super.key});
 
   Future<Map<String, dynamic>?> fetchLatestResult() async {
     User? user = FirebaseAuth.instance.currentUser;
@@ -16,7 +16,7 @@ class BalanceStabilityResult extends StatelessWidget {
       var collection = FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
-          .collection('Balance_and_Stability_Results');
+          .collection('Arm_Mobility_Results');
       var querySnapshot = await collection.orderBy('testDate', descending: true).limit(1).get();
       if (querySnapshot.docs.isNotEmpty) {
         return querySnapshot.docs.first.data();
@@ -25,9 +25,9 @@ class BalanceStabilityResult extends StatelessWidget {
     return null;
   }
 
-  LineChartData buildChartData(List<FlSpot> dataPointsX, List<FlSpot> dataPointsY, List<FlSpot> dataPointsZ, double durationInSeconds) {
-    double minY = -40;
-    double maxY = 40;
+  LineChartData buildChartData(List<FlSpot> dataPointsI, List<FlSpot> dataPointsJ, List<FlSpot> dataPointsK, double durationInSeconds) {
+    double minY = -1;
+    double maxY = 1;
 
     return LineChartData(
       minX: 0,
@@ -36,7 +36,7 @@ class BalanceStabilityResult extends StatelessWidget {
       maxY: maxY,
       lineBarsData: [
         LineChartBarData(
-          spots: dataPointsX,
+          spots: dataPointsI,
           isCurved: true,
           color: Colors.red,
           barWidth: 2,
@@ -45,7 +45,7 @@ class BalanceStabilityResult extends StatelessWidget {
           belowBarData: BarAreaData(show: false),
         ),
         LineChartBarData(
-          spots: dataPointsY,
+          spots: dataPointsJ,
           isCurved: true,
           color: Colors.green,
           barWidth: 2,
@@ -54,7 +54,7 @@ class BalanceStabilityResult extends StatelessWidget {
           belowBarData: BarAreaData(show: false),
         ),
         LineChartBarData(
-          spots: dataPointsZ,
+          spots: dataPointsK,
           isCurved: true,
           color: Colors.blue,
           barWidth: 2,
@@ -79,7 +79,7 @@ class BalanceStabilityResult extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
         foregroundColor: Colors.white,
-        title: const Text('Balance and Stability Results'),
+        title: const Text('Arm Mobility Results'),
       ),
       body: FutureBuilder<Map<String, dynamic>?>(
         future: fetchLatestResult(),
@@ -90,13 +90,13 @@ class BalanceStabilityResult extends StatelessWidget {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData && snapshot.data != null) {
             var data = snapshot.data!;
-            List<FlSpot> dataPointsX = (data['dataPointsX'] as List)
+            List<FlSpot> dataPointsI = (data['dataPointsI'] as List)
                 .map((point) => FlSpot((point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
                 .toList();
-            List<FlSpot> dataPointsY = (data['dataPointsY'] as List)
+            List<FlSpot> dataPointsJ = (data['dataPointsJ'] as List)
                 .map((point) => FlSpot((point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
                 .toList();
-            List<FlSpot> dataPointsZ = (data['dataPointsZ'] as List)
+            List<FlSpot> dataPointsK = (data['dataPointsK'] as List)
                 .map((point) => FlSpot((point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
                 .toList();
             double durationInSeconds = data['duration'] as double;
@@ -109,7 +109,7 @@ class BalanceStabilityResult extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5.0),
-                      child: LineChart(buildChartData(dataPointsX, dataPointsY, dataPointsZ, durationInSeconds)),
+                      child: LineChart(buildChartData(dataPointsI, dataPointsJ, dataPointsK, durationInSeconds)),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -120,31 +120,28 @@ class BalanceStabilityResult extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text('Accelerometer X', style: GoogleFonts.lato(fontSize: 14, color: Colors.red)),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text('Accelerometer Y', style: GoogleFonts.lato(fontSize: 14, color: Colors.green)),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text('Accelerometer Z', style: GoogleFonts.lato(fontSize: 14, color: Colors.blue)),
-                      ),
-                    ],
-                  ),
+                children: [
+                Padding(
+                  padding: const EdgeInsets.all(22.0),
+                  child: Text('Orientation I', style: GoogleFonts.lato(fontSize: 14, color: Colors.red)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(22.0),
+                  child: Text('Orientation J', style: GoogleFonts.lato(fontSize: 14, color: Colors.green)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(22.0),
+                  child: Text('Orientation K', style: GoogleFonts.lato(fontSize: 14, color: Colors.blue)),
+                ),
+              ],
+            ),
                   const SizedBox(height: 20),
                   Button(
                     onTap: () {
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomePage(),
-                        ),
-                      );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()));
                     },
                     text: "Back to Home Page",
                   ),

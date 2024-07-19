@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import '../activity pages/balance stability test.dart';
+import '../activity pages/arm mobility test.dart';
 
-class BalanceStabilityInstruction extends StatefulWidget {
+class ArmMobilityInstructionPage extends StatefulWidget {
   final String title;
-  const BalanceStabilityInstruction({super.key, required this.title});
+  const ArmMobilityInstructionPage({super.key, required this.title});
 
   @override
-  State<BalanceStabilityInstruction> createState() =>
-      _BalanceStabilityInstructionState();
+  State<ArmMobilityInstructionPage> createState() => _ArmMobilityInstructionPageState();
 }
 
-class _BalanceStabilityInstructionState extends State<BalanceStabilityInstruction> {
+class _ArmMobilityInstructionPageState extends State<ArmMobilityInstructionPage> {
   final videoURL = 'https://www.youtube.com/watch?v=T9H_yu0Me8c';
-
+  
   late YoutubePlayerController _controller;
   int? selectedTimer;
   TextEditingController customTimerController = TextEditingController();
@@ -55,10 +54,8 @@ class _BalanceStabilityInstructionState extends State<BalanceStabilityInstructio
             ),
             const SizedBox(height: 5),
             Text(
-              'Extend your arm and keep it steady.',
-              style: GoogleFonts.lato(fontSize: 16.0, color: Colors.grey[800]),
-            ),
-            Text(
+              'Move your arm up and down.\n'
+              'Swing your arm left and right.\n'
               'Start the activity on the phone, then in the FitBit app to record your results.',
               style: GoogleFonts.lato(fontSize: 16.0, color: Colors.grey[800]),
             ),
@@ -104,7 +101,7 @@ class _BalanceStabilityInstructionState extends State<BalanceStabilityInstructio
             const SizedBox(height: 5),
             Text(
               "Set Timer",
-                style: GoogleFonts.lato(
+              style: GoogleFonts.lato(
                 fontSize: 23.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.grey[600],
@@ -116,7 +113,7 @@ class _BalanceStabilityInstructionState extends State<BalanceStabilityInstructio
                 RadioListTile<int>(
                   activeColor: Colors.black,
                   title: Text("30 Seconds", style: GoogleFonts.lato(
-                  fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.bold,
                   )),
                   value: 31,
                   groupValue: selectedTimer,
@@ -130,7 +127,7 @@ class _BalanceStabilityInstructionState extends State<BalanceStabilityInstructio
                 RadioListTile<int>(
                   activeColor: Colors.black,
                   title: Text("1 Minute", style: GoogleFonts.lato(
-                  fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.bold,
                   )),
                   value: 61,
                   groupValue: selectedTimer,
@@ -164,7 +161,7 @@ class _BalanceStabilityInstructionState extends State<BalanceStabilityInstructio
                       ),
                     ],
                   ),
-              ], 
+              ],
             ),
             const SizedBox(height: 5),
             Button(
@@ -172,7 +169,7 @@ class _BalanceStabilityInstructionState extends State<BalanceStabilityInstructio
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BalanceStabilityPage(timerDuration: selectedTimer ?? 0),
+                    builder: (context) => ArmMobilityTestPage(timerDuration: selectedTimer ?? 0),
                   ),
                 );
               },

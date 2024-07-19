@@ -7,6 +7,8 @@ import 'user model.dart';
 class UserProvider with ChangeNotifier {
   UserModel? _user;
   DateTime? lastBalanceStabilityDate;
+  DateTime? lastArmRotationTestDate;
+  DateTime? lastArmMobilityTestDate;
 
   UserModel? get user => _user;
 
@@ -36,7 +38,9 @@ class UserProvider with ChangeNotifier {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       List<String> exerciseCollections = [
-        'Balance_and_Stability_Results'
+        'Balance_and_Stability_Results',
+        'Arm_Rotation_Results',
+        'Arm_Mobility_Results'
       ];
       for (var collection in exerciseCollections) {
         var querySnapshot = await FirebaseFirestore.instance
@@ -50,6 +54,9 @@ class UserProvider with ChangeNotifier {
                 collection.replaceAll('_Results', '').replaceAll('_', ' ')))
             .toList());
       }
+
+      // sort results by testDate
+      results.sort((a, b) => b.testDate.compareTo(a.testDate));
     }
     return results;
   }
@@ -73,7 +80,7 @@ class UserProvider with ChangeNotifier {
     try {
       User? currentUser = _auth.currentUser;
       if (currentUser != null) {
-        var result = await _firestore
+        var balanceResult = await _firestore
             .collection('users')
             .doc(currentUser.uid)
             .collection('Balance_and_Stability_Results')
@@ -81,12 +88,43 @@ class UserProvider with ChangeNotifier {
             .limit(1)
             .get();
 
-        if (result.docs.isNotEmpty) {
+        if (balanceResult.docs.isNotEmpty) {
           lastBalanceStabilityDate =
-              result.docs.first.data()['testDate'].toDate();
+              balanceResult.docs.first.data()['testDate'].toDate();
         } else {
           lastBalanceStabilityDate = null;
         }
+
+        var armRotationResult = await _firestore
+            .collection('users')
+            .doc(currentUser.uid)
+            .collection('Arm_Rotation_Results')
+            .orderBy('testDate', descending: true)
+            .limit(1)
+            .get();
+
+        if (armRotationResult.docs.isNotEmpty) {
+          lastArmRotationTestDate =
+              armRotationResult.docs.first.data()['testDate'].toDate();
+        } else {
+          lastArmRotationTestDate = null;
+        }
+
+        var armMobilityResult = await _firestore
+            .collection('users')
+            .doc(currentUser.uid)
+            .collection('Arm_Mobility_Results')
+            .orderBy('testDate', descending: true)
+            .limit(1)
+            .get();
+
+        if (armMobilityResult.docs.isNotEmpty) {
+          lastArmMobilityTestDate =
+              armMobilityResult.docs.first.data()['testDate'].toDate();
+        } else {
+          lastArmMobilityTestDate = null;
+        }
+
         notifyListeners();
       }
     } catch (e) {

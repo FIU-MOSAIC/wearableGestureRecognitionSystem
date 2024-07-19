@@ -1,24 +1,25 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:gesture_detection/components/Button.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:fl_chart/fl_chart.dart';
-import '../results pages/balance stability result.dart';
 
-class BalanceStabilityPage extends StatefulWidget {
+import '../components/Button.dart';
+import '../results pages/arm rotation result page.dart';
+
+class ArmRotationTestPage extends StatefulWidget {
   final int timerDuration;
-  const BalanceStabilityPage({super.key, required this.timerDuration});
+  const ArmRotationTestPage({super.key, required this.timerDuration});
 
   @override
-  _BalanceStabilityPageState createState() => _BalanceStabilityPageState();
+  _ArmRotationTestPageState createState() => _ArmRotationTestPageState();
 }
 
-class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
+class _ArmRotationTestPageState extends State<ArmRotationTestPage> {
   late WebSocketChannel channel;
   Timer? timer;
   Timer? autoSaveTimer;
@@ -29,7 +30,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
   List<FlSpot> dataPointsZ = [];
   bool _isSaving = false;
 
-  double accelX = 0.0, accelY = 0.0, accelZ = 0.0;
+  double gyroX = 0.0, gyroY = 0.0, gyroZ = 0.0;
   double heartRate = 0.0;
 
   @override
@@ -38,26 +39,26 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
     channel = IOWebSocketChannel.connect('ws://192.168.0.47:8080');
     channel.stream.listen((data) {
       setState(() {
-        processSensorData(data);
+        processOrientationData(data);
         processHeartRateData(data);
       });
     });
   }
 
-  void processSensorData(String data) {
+  void processOrientationData(String data) {
     Map<String, dynamic> decodedData = jsonDecode(data);
-    
-    if (decodedData['accelX'].isNotEmpty) {
-      accelX = (decodedData['accelX'].last as num).toDouble();
+
+    if (decodedData.containsKey('gyroX') && decodedData['gyroX'] != null && decodedData['gyroX'].isNotEmpty) {
+      gyroX = (decodedData['gyroX'].last as num).toDouble();
     }
-    if (decodedData['accelY'].isNotEmpty) {
-      accelY = (decodedData['accelY'].last as num).toDouble();
+    if (decodedData.containsKey('gyroY') && decodedData['gyroY'] != null && decodedData['gyroY'].isNotEmpty) {
+      gyroY = (decodedData['gyroY'].last as num).toDouble();
     }
-    if (decodedData['accelZ'].isNotEmpty) {
-      accelZ = (decodedData['accelZ'].last as num).toDouble();
+    if (decodedData.containsKey('gyroZ') && decodedData['gyroZ'] != null && decodedData['gyroZ'].isNotEmpty) {
+      gyroZ = (decodedData['gyroZ'].last as num).toDouble();
     }
 
-    if (startTime == null && timer == null && accelX != 0) {
+    if (startTime == null && timer == null) {
       startTime = DateTime.now();
       timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
         updateDuration();
@@ -74,7 +75,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
 
   void processHeartRateData(String data) {
     Map<String, dynamic> decodedData = jsonDecode(data);
-    if (decodedData.containsKey('heartRate') && decodedData['heartRate'].isNotEmpty) {
+    if (decodedData.containsKey('heartRate') && decodedData['heartRate'] != null && decodedData['heartRate'].isNotEmpty) {
       heartRate = (decodedData['heartRate'].last as num).toDouble();
     }
   }
@@ -90,9 +91,9 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
 
   void addDataPoint() {
     setState(() {
-      dataPointsX.add(FlSpot(durationInSeconds.roundToDouble(), accelX));
-      dataPointsY.add(FlSpot(durationInSeconds.roundToDouble(), accelY));
-      dataPointsZ.add(FlSpot(durationInSeconds.roundToDouble(), accelZ));
+      dataPointsX.add(FlSpot(durationInSeconds, gyroX));
+      dataPointsY.add(FlSpot(durationInSeconds, gyroY));
+      dataPointsZ.add(FlSpot(durationInSeconds, gyroZ));
     });
   }
 
@@ -101,6 +102,8 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
     timer?.cancel();
     autoSaveTimer?.cancel();
     dataPointsX.clear();
+    dataPointsY.clear();
+    dataPointsZ.clear();
     channel.sink.close();
     super.dispose();
   }
@@ -111,15 +114,15 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
     });
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      FirebaseFirestore.instance.collection('users').doc(user.uid).collection('Balance_and_Stability_Results').add({
+      FirebaseFirestore.instance.collection('users').doc(user.uid).collection('Arm_Rotation_Results').add({
         'dataPointsX': dataPointsX.map((point) => {'x': point.x, 'y': point.y}).toList(),
         'dataPointsY': dataPointsY.map((point) => {'x': point.x, 'y': point.y}).toList(),
         'dataPointsZ': dataPointsZ.map((point) => {'x': point.x, 'y': point.y}).toList(),
+        'heartRate': heartRate,
         'duration': durationInSeconds,
         'testDate': DateTime.now(),
       }).then((value) {
-        print("Result Added");
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const BalanceStabilityResult()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const ArmRotationResultPage()));
       }).catchError((error) {
         print("Failed to add result: $error");
       }).whenComplete(() {
@@ -136,11 +139,15 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
   }
 
   Widget buildGraph() {
-    if (dataPointsX.isEmpty) {
+    if (dataPointsX.isEmpty && dataPointsY.isEmpty && dataPointsZ.isEmpty) {
       return Center(
-        child: Text('No data available', style: GoogleFonts.lato(
-                  fontWeight: FontWeight.bold, )
-      ),);
+        child: Text(
+          'No data available',
+          style: GoogleFonts.lato(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
     }
 
     return Padding(
@@ -149,8 +156,8 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
         LineChartData(
           minX: 0,
           maxX: durationInSeconds,
-          minY: -40,
-          maxY: 40,
+          minY: -25,
+          maxY: 25,
           lineBarsData: [
             LineChartBarData(
               spots: dataPointsX,
@@ -198,31 +205,31 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
         foregroundColor: Colors.white,
-        title: const Text('Balance and Stability Exercise'),
+        title: const Text('Arm Rotation Test'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(child: buildGraph()),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text('Accelerometer X', style: GoogleFonts.lato(fontSize: 14, color: Colors.red)),
+                  padding: const EdgeInsets.all(22.0),
+                  child: Text('Gyroscope X', style: GoogleFonts.lato(fontSize: 14, color: Colors.red)),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text('Accelerometer Y', style: GoogleFonts.lato(fontSize: 14, color: Colors.green)),
+                  padding: const EdgeInsets.all(22.0),
+                  child: Text('Gyroscope Y', style: GoogleFonts.lato(fontSize: 14, color: Colors.green)),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text('Accelerometer Z', style: GoogleFonts.lato(fontSize: 14, color: Colors.blue)),
+                  padding: const EdgeInsets.all(22.0),
+                  child: Text('Gyroscope Z', style: GoogleFonts.lato(fontSize: 14, color: Colors.blue)),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
             Text(
               'Heart Rate: ${heartRate.round()} BPM',
               style: GoogleFonts.lato(fontSize: 22),

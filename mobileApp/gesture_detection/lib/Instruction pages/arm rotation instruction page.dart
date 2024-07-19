@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:gesture_detection/components/Button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import '../activity pages/balance stability test.dart';
+import '../activity pages/arm rotation test.dart';
 
-class BalanceStabilityInstruction extends StatefulWidget {
+class ArmRotationInstructionPage extends StatefulWidget {
   final String title;
-  const BalanceStabilityInstruction({super.key, required this.title});
+  const ArmRotationInstructionPage({super.key, required this.title});
 
   @override
-  State<BalanceStabilityInstruction> createState() =>
-      _BalanceStabilityInstructionState();
+  State<ArmRotationInstructionPage> createState() =>
+      _ArmRotationInstructionPageState();
 }
 
-class _BalanceStabilityInstructionState extends State<BalanceStabilityInstruction> {
+class _ArmRotationInstructionPageState extends State<ArmRotationInstructionPage> {
   final videoURL = 'https://www.youtube.com/watch?v=T9H_yu0Me8c';
 
   late YoutubePlayerController _controller;
@@ -55,7 +55,7 @@ class _BalanceStabilityInstructionState extends State<BalanceStabilityInstructio
             ),
             const SizedBox(height: 5),
             Text(
-              'Extend your arm and keep it steady.',
+              'Extend your arm and perform rotational movements.',
               style: GoogleFonts.lato(fontSize: 16.0, color: Colors.grey[800]),
             ),
             Text(
@@ -172,7 +172,7 @@ class _BalanceStabilityInstructionState extends State<BalanceStabilityInstructio
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BalanceStabilityPage(timerDuration: selectedTimer ?? 0),
+                    builder: (context) => ArmRotationTestPage(timerDuration: selectedTimer ?? 0),
                   ),
                 );
               },

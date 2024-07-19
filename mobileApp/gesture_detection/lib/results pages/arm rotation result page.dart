@@ -1,14 +1,16 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gesture_detection/components/Button.dart';
-import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:fl_chart/fl_chart.dart';
+import 'package:intl/intl.dart';
+
+import '../components/Button.dart';
 import '../pages/home page.dart';
 
-class BalanceStabilityResult extends StatelessWidget {
-  const BalanceStabilityResult({super.key});
+class ArmRotationResultPage extends StatelessWidget {
+  const ArmRotationResultPage({super.key});
 
   Future<Map<String, dynamic>?> fetchLatestResult() async {
     User? user = FirebaseAuth.instance.currentUser;
@@ -16,7 +18,7 @@ class BalanceStabilityResult extends StatelessWidget {
       var collection = FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
-          .collection('Balance_and_Stability_Results');
+          .collection('Arm_Rotation_Results');
       var querySnapshot = await collection.orderBy('testDate', descending: true).limit(1).get();
       if (querySnapshot.docs.isNotEmpty) {
         return querySnapshot.docs.first.data();
@@ -26,8 +28,8 @@ class BalanceStabilityResult extends StatelessWidget {
   }
 
   LineChartData buildChartData(List<FlSpot> dataPointsX, List<FlSpot> dataPointsY, List<FlSpot> dataPointsZ, double durationInSeconds) {
-    double minY = -40;
-    double maxY = 40;
+    double minY = -25;
+    double maxY = 25;
 
     return LineChartData(
       minX: 0,
@@ -79,7 +81,7 @@ class BalanceStabilityResult extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
         foregroundColor: Colors.white,
-        title: const Text('Balance and Stability Results'),
+        title: const Text('Arm Rotation Results'),
       ),
       body: FutureBuilder<Map<String, dynamic>?>(
         future: fetchLatestResult(),
@@ -120,19 +122,18 @@ class BalanceStabilityResult extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text('Accelerometer X', style: GoogleFonts.lato(fontSize: 14, color: Colors.red)),
+                        padding: const EdgeInsets.all(23.0),
+                        child: Text('Gyroscope X', style: GoogleFonts.lato(fontSize: 14, color: Colors.red)),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text('Accelerometer Y', style: GoogleFonts.lato(fontSize: 14, color: Colors.green)),
+                        padding: const EdgeInsets.all(23.0),
+                        child: Text('Gyroscope Y', style: GoogleFonts.lato(fontSize: 14, color: Colors.green)),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text('Accelerometer Z', style: GoogleFonts.lato(fontSize: 14, color: Colors.blue)),
+                        padding: const EdgeInsets.all(23.0),
+                        child: Text('Gyroscope Z', style: GoogleFonts.lato(fontSize: 14, color: Colors.blue)),
                       ),
                     ],
                   ),
@@ -140,11 +141,9 @@ class BalanceStabilityResult extends StatelessWidget {
                   Button(
                     onTap: () {
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomePage(),
-                        ),
-                      );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()));
                     },
                     text: "Back to Home Page",
                   ),

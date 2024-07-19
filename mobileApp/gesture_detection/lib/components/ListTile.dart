@@ -4,13 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 class MyListTile extends StatelessWidget {
   final IconData icon;
   final String text;
-  final void Function()? onTap; // Added onTap as a class variable
+  final void Function()? onTap; 
 
   const MyListTile({
     super.key,
     required this.icon,
     required this.text,
-    this.onTap, // Assign onTap to the class variable
+    this.onTap, 
   });
 
   @override
@@ -27,7 +27,7 @@ class MyListTile extends StatelessWidget {
           text,
           style: GoogleFonts.lato(color: Colors.white, fontSize: 15),
         ),
-        onTap: onTap, // Use the onTap function in ListTile
+        onTap: onTap, 
       ),
     );
   }
