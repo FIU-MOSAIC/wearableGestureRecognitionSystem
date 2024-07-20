@@ -129,7 +129,7 @@ class AboutUsPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  buildProductOwner('Christian Poellabauer', 'Product Owner', 'lib/images/Poellabauer.png'),
+                  buildProductOwner('Christian Poellabauer', 'Product Owner', 'lib/images/Poeallabauer.png'),
                   const SizedBox(height: 20),
                   Text(
                     'Meet the Team',
