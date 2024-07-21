@@ -117,52 +117,38 @@ class AboutUsPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Row(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Meet the Team',
-                          style: GoogleFonts.lato(
-                            fontSize: 23.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey[900],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        buildTeamMember('Orlando Gonzalez', 'Full Stack', 'lib/images/orlando_gonzalez.png'),
-                        const SizedBox(height: 10),
-                        buildTeamMember('Juan Salas Paredes', 'Front-End', 'lib/images/juanSalasParedes.jpg'),
-                        const SizedBox(height: 10),
-                        buildTeamMember('Piercen Rychlik', 'Back-End', 'lib/images/piercenRychlik.png'),
-                        const SizedBox(height: 10),
-                        buildTeamMember('Roberto Di Bari', 'Back-End', 'lib/images/orlando_gonzalez.png'),
-                        const SizedBox(height: 10),
-                        buildTeamMember('Percy Gomez Torres', 'Front-End', 'lib/images/percy.png'),
-                      ],
+                  Text(
+                    'Product Owner',
+                    style: GoogleFonts.lato(
+                      fontSize: 23.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue[900],
                     ),
                   ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Product Owner',
-                          style: GoogleFonts.lato(
-                            fontSize: 23.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue[900],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        buildProductOwner('Christian Poellabauer', 'Product Owner', 'lib/images/Poellabauer.png'),
-                      ],
+                  const SizedBox(height: 10),
+                  buildProductOwner('Christian Poellabauer', 'Product Owner', 'lib/images/Poeallabauer.png'),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Meet the Team',
+                    style: GoogleFonts.lato(
+                      fontSize: 23.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[900],
                     ),
                   ),
+                  const SizedBox(height: 10),
+                  buildTeamMember('Orlando Gonzalez', 'Full Stack', 'lib/images/orlando_gonzalez.png'),
+                  const SizedBox(height: 10),
+                  buildTeamMember('Juan Salas Paredes', 'Front-End', 'lib/images/juanSalasParedes.jpg'),
+                  const SizedBox(height: 10),
+                  buildTeamMember('Piercen Rychlik', 'Back-End', 'lib/images/orlando_gonzalez.png'),
+                  const SizedBox(height: 10),
+                  buildTeamMember('Roberto Di Bari', 'Back-End', 'lib/images/robertodibari.jpg'),
+                  const SizedBox(height: 10),
+                  buildTeamMember('Percy Gomez Torres', 'Front-End', 'lib/images/orlando_gonzalez.png'),
                 ],
               ),
             ),
