@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProfileDropDown extends StatefulWidget {
+class ProfileDropDown extends StatelessWidget {
   final Function(String?) onGenderChanged;
   final Function(String?) onFeetChanged;
   final Function(String?) onInchesChanged;
   final Function(String?) onImpairmentChanged;
-  final String? initialGender;
-  final String? initialFeet;
-  final String? initialInches;
-  final String? initialImpairment;
+  final String? genderHint;
+  final String? feetHint;
+  final String? inchesHint;
+  final String? impairmentHint;
 
   const ProfileDropDown({
     super.key,
@@ -17,30 +17,11 @@ class ProfileDropDown extends StatefulWidget {
     required this.onFeetChanged,
     required this.onInchesChanged,
     required this.onImpairmentChanged,
-    this.initialGender,
-    this.initialFeet,
-    this.initialInches,
-    this.initialImpairment,
+    this.genderHint,
+    this.feetHint,
+    this.inchesHint,
+    this.impairmentHint,
   });
-
-  @override
-  State<ProfileDropDown> createState() => _ProfileDropDownState();
-}
-
-class _ProfileDropDownState extends State<ProfileDropDown> {
-  String? selectedGender;
-  String? selectedFeet;
-  String? selectedInches;
-  String? selectedImpairment;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedGender = widget.initialGender;
-    selectedFeet = widget.initialFeet;
-    selectedInches = widget.initialInches;
-    selectedImpairment = widget.initialImpairment;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,22 +48,21 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: DropdownButtonFormField<String>(
-                  value: selectedGender,
                   decoration: InputDecoration(
-                    hintText: 'Select your gender',
-                    hintStyle: GoogleFonts.lato(color: Colors.grey[600]),
+                    hintText: genderHint ?? 'Select your gender',
+                    hintStyle: GoogleFonts.lato(color: Colors.black),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
                   ),
                   items: <String>['Male', 'Female', 'Non-binary', 'Prefer not to say'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value, style: GoogleFonts.lato(color: Colors.grey[600]),),
+                      child: Text(value, style: GoogleFonts.lato(color: Colors.black),),
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
-                    setState(() {
-                      selectedGender = newValue;
-                    });
-                    widget.onGenderChanged(newValue);
+                    onGenderChanged(newValue);
                   },
                 ),
               ),
@@ -111,22 +91,21 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 9.0),
                 child: DropdownButtonFormField<String>(
-                  value: selectedFeet,
                   decoration: InputDecoration(
-                    hintText: 'ft',
-                    hintStyle: GoogleFonts.lato(color: Colors.grey[600]),
+                    hintText: feetHint ?? 'ft',
+                    hintStyle: GoogleFonts.lato(color: Colors.black),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
                   ),
                   items: <String>['0', '1', '2', '3', '4', '5', '6', '7', '8'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value, style: GoogleFonts.lato(color: Colors.grey[600]),),
+                      child: Text(value, style: GoogleFonts.lato(color: Colors.black),),
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
-                    setState(() {
-                      selectedFeet = newValue;
-                    });
-                    widget.onFeetChanged(newValue);
+                    onFeetChanged(newValue);
                   },
                 ),
               ),
@@ -136,22 +115,21 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: DropdownButtonFormField<String>(
-                  value: selectedInches,
                   decoration: InputDecoration(
-                    hintText: 'in',
-                    hintStyle: GoogleFonts.lato(color: Colors.grey[600]),
+                    hintText: inchesHint ?? 'in',
+                    hintStyle: GoogleFonts.lato(color: Colors.black),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
                   ),
                   items: <String>['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value, style: GoogleFonts.lato(color: Colors.grey[600]),),
+                      child: Text(value, style: GoogleFonts.lato(),),
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
-                    setState(() {
-                      selectedInches = newValue;
-                    });
-                    widget.onInchesChanged(newValue);
+                    onInchesChanged(newValue);
                   },
                 ),
               ),
@@ -169,8 +147,7 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
                   'Impairment',
                   style: GoogleFonts.lato(
                     fontSize: 16,
-                    color: Colors.grey[600],
-                  ),
+                    color: Colors.grey[600]),
                 ),
               ),
             ),
@@ -180,22 +157,21 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: DropdownButtonFormField<String>(
-                  value: selectedImpairment,
                   decoration: InputDecoration(
-                    hintText: 'Select your impairment',
-                    hintStyle: GoogleFonts.lato(color: Colors.grey[600]),
+                    hintText: impairmentHint ?? 'Select your impairment',
+                    hintStyle: GoogleFonts.lato(color: Colors.black),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
                   ),
-                 items: <String>['Stroke', 'Parkinson\'s Disease', 'Cerebral Palsy', 'Multiple Sclerosis', 'Arthritis', 'Other'].map((String value) {
+                  items: <String>['Stroke', 'Parkinson\'s Disease', 'Cerebral Palsy', 'Multiple Sclerosis', 'Arthritis', 'Other'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value, style: GoogleFonts.lato(color: Colors.grey[600]),),
+                      child: Text(value, style: GoogleFonts.lato(),),
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
-                    setState(() {
-                      selectedImpairment = newValue;
-                    });
-                    widget.onImpairmentChanged(newValue);
+                    onImpairmentChanged(newValue);
                   },
                 ),
               ),

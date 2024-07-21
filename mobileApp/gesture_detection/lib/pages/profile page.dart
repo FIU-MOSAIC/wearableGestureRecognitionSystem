@@ -51,7 +51,6 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
-
   Future<void> saveProfile() async {
     try {
       final userProvider = Provider.of<UserProvider>(context, listen: false);
@@ -92,90 +91,89 @@ class _ProfilePageState extends State<ProfilePage> {
         foregroundColor: Colors.white,
         title: const Text('Profile Setup'),
       ),
-      body: 
-          ListView(
-              children: [
-                const SizedBox(height: 5),
-                const Icon(
-                  Icons.person,
-                  color: Colors.black,
-                  size: 100.0,
-                ),
-                Text(
-                  user?.email ?? '',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.lato(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 9.0),
-                  child: Text(
-                    "My Details",
-                    style: GoogleFonts.lato(
-                      color: Colors.grey[600],
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                ProfileTextField(
-                  text: "Name",
-                  hintText: "Enter your full name",
-                  keyboardType: TextInputType.name,
-                  controller: nameController,
-                ),
-                const SizedBox(height: 10),
-                ProfileTextField(
-                  text: "Age",
-                  hintText: "Enter your age",
-                  keyboardType: TextInputType.number,
-                  controller: ageController,
-                ),
-                const SizedBox(height: 10),
-                ProfileTextField(
-                  text: "Weight",
-                  hintText: "Enter your weight",
-                  keyboardType: TextInputType.number,
-                  controller: weightController,
-                ),
-                const SizedBox(height: 10),
-                ProfileDropDown(
-                  initialGender: selectedGender,
-                  initialImpairment: selectedImpairment,
-                  initialFeet: selectedFeet,
-                  initialInches: selectedInches,
-                  onGenderChanged: (String? newGender) {
-                    setState(() {
-                      selectedGender = newGender;
-                    });
-                  },
-                  onFeetChanged: (String? newHeight) {
-                    setState(() {
-                      selectedFeet = newHeight;
-                    });
-                  },
-                  onInchesChanged: (String? newInches) {
-                    setState(() {
-                      selectedInches = newInches;
-                    });
-                  },
-                  onImpairmentChanged: (String? newImpairment) {
-                    setState(() {
-                      selectedImpairment = newImpairment;
-                    });
-                  },
-                ),
-                const SizedBox(height: 40),
-                Button(
-                  onTap: saveProfile,
-                  text: "Save Changes",
-                ),
-              ],
+      body: ListView(
+        children: [
+          const SizedBox(height: 5),
+          const Icon(
+            Icons.person,
+            color: Colors.black,
+            size: 100.0,
+          ),
+          Text(
+            user?.email ?? '',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.lato(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
+          ),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 9.0),
+            child: Text(
+              "My Details",
+              style: GoogleFonts.lato(
+                color: Colors.grey[600],
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          ProfileTextField(
+            text: "Name",
+            hintText: "Enter your full name",
+            keyboardType: TextInputType.name,
+            controller: nameController,
+          ),
+          const SizedBox(height: 10),
+          ProfileTextField(
+            text: "Age",
+            hintText: "Enter your age",
+            keyboardType: TextInputType.number,
+            controller: ageController,
+          ),
+          const SizedBox(height: 10),
+          ProfileTextField(
+            text: "Weight",
+            hintText: "Enter your weight",
+            keyboardType: TextInputType.number,
+            controller: weightController,
+          ),
+          const SizedBox(height: 10),
+          ProfileDropDown(
+            genderHint: selectedGender,
+            feetHint: selectedFeet,
+            inchesHint: selectedInches,
+            impairmentHint: selectedImpairment,
+            onGenderChanged: (String? newGender) {
+              setState(() {
+                selectedGender = newGender;
+              });
+            },
+            onFeetChanged: (String? newFeet) {
+              setState(() {
+                selectedFeet = newFeet;
+              });
+            },
+            onInchesChanged: (String? newInches) {
+              setState(() {
+                selectedInches = newInches;
+              });
+            },
+            onImpairmentChanged: (String? newImpairment) {
+              setState(() {
+                selectedImpairment = newImpairment;
+              });
+            },
+          ),
+          const SizedBox(height: 40),
+          Button(
+            onTap: saveProfile,
+            text: "Save Changes",
+          ),
+        ],
+      ),
     );
   }
 }
