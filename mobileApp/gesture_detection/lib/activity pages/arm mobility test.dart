@@ -36,7 +36,7 @@ class _ArmMobilityTestPageState extends State<ArmMobilityTestPage> {
   @override
   void initState() {
     super.initState();
-    channel = IOWebSocketChannel.connect('ws://192.168.0.47:8080');
+    channel = IOWebSocketChannel.connect('ws://192.168.0.47:8080'); //modify with your IP address
     channel.stream.listen((data) {
       setState(() {
         processOrientationData(data);

@@ -1,7 +1,7 @@
 import { peerSocket } from "messaging";
 import { Buffer } from "buffer";
 
-const websocket = new WebSocket("ws://192.168.0.47:8080");
+const websocket = new WebSocket("ws://192.168.0.47:8080"); //modify with you ip address
 
 websocket.onopen = () => {
     console.log("WebSocket connection opened");
