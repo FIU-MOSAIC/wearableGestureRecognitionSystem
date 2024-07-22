@@ -16,7 +16,7 @@ class MyListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0), // padding around the list tile
       child: ListTile(
         leading: Icon(
           icon,
@@ -27,7 +27,7 @@ class MyListTile extends StatelessWidget {
           text,
           style: GoogleFonts.lato(color: Colors.white, fontSize: 15),
         ),
-        onTap: onTap, 
+        onTap: onTap, // handle tap events
       ),
     );
   }

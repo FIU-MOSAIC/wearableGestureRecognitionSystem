@@ -6,15 +6,15 @@ import 'pages/auth page.dart';
 import 'services/user provider.dart';
 
 
-void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // ensure all bindings are initialized
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
+    options: DefaultFirebaseOptions.currentPlatform, // initialize firebase with default options
   );
-   runApp(
+  runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()), // provide userprovider to the widget tree
       ],
       child: const MyApp(),
     ),
@@ -29,20 +29,19 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // application root  
+  // application root
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(
-    cardColor: Colors.black,  // global cursor color for all input fields
-    textSelectionTheme: const TextSelectionThemeData(
-    selectionHandleColor: Colors.black,
-    cursorColor: Colors.black, // specifically setting the cursor color
-    ),
-
-  ),
-      debugShowCheckedModeBanner: false,
-      home: const AuthPage(),
+      theme: ThemeData(
+        cardColor: Colors.black, // global cursor color for all input fields
+        textSelectionTheme: const TextSelectionThemeData(
+          selectionHandleColor: Colors.black, // specifically setting the selection handle color
+          cursorColor: Colors.black, // specifically setting the cursor color
+        ),
+      ),
+      debugShowCheckedModeBanner: false, // disable the debug banner
+      home: const AuthPage(), // set the initial route to authpage
     );
   }
 }

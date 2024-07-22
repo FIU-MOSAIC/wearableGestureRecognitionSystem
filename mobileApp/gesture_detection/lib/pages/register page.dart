@@ -5,6 +5,7 @@ import 'package:gesture_detection/components/FormTextField.dart';
 import 'package:gesture_detection/components/SquareTile.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../services/auth service.dart';
+import 'home page.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -43,6 +44,11 @@ class _RegisterPageState extends State<RegisterPage> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
+      );
+      // navigate to the HomePage after successful sign up
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const HomePage()), 
+        (Route<dynamic> route) => false,
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -182,12 +188,14 @@ class _RegisterPageState extends State<RegisterPage> {
                     SquareTile(
                       onTap: () => AuthService().signInWithGoogle(),
                       imagePath: 'lib/images/google.png',
-                      size: 90,),
+                      size: 90,
+                    ),
                     const SizedBox(width: 60),
                     SquareTile(
                       onTap: () => (){},
                       imagePath: 'lib/images/apple.png', 
-                      size: 90,),
+                      size: 90,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 30),

@@ -35,7 +35,11 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
   @override
   void initState() {
     super.initState();
+
+    // establish websocket connection
     channel = IOWebSocketChannel.connect('ws://192.168.0.47:8080'); //modify with your IP address
+    // listen for data from websocket
+
     channel.stream.listen((data) {
       setState(() {
         processSensorData(data);
@@ -45,8 +49,10 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
   }
 
   void processSensorData(String data) {
+    // decode data received from websocket
     Map<String, dynamic> decodedData = jsonDecode(data);
     
+    // check and update accelerometer data
     if (decodedData['accelX'].isNotEmpty) {
       accelX = (decodedData['accelX'].last as num).toDouble();
     }
@@ -57,6 +63,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
       accelZ = (decodedData['accelZ'].last as num).toDouble();
     }
 
+    // start timer if it hasn't been started
     if (startTime == null && timer == null && accelX != 0) {
       startTime = DateTime.now();
       timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
@@ -64,6 +71,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
         addDataPoint();
       });
 
+      // auto-save results after a specific duration
       if (widget.timerDuration > 0) {
         autoSaveTimer = Timer(Duration(seconds: widget.timerDuration), () {
           saveResults();
@@ -73,6 +81,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
   }
 
   void processHeartRateData(String data) {
+    // decode heart rate data
     Map<String, dynamic> decodedData = jsonDecode(data);
     if (decodedData.containsKey('heartRate') && decodedData['heartRate'].isNotEmpty) {
       heartRate = (decodedData['heartRate'].last as num).toDouble();
@@ -98,6 +107,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
 
   @override
   void dispose() {
+    // clean up resources
     timer?.cancel();
     autoSaveTimer?.cancel();
     dataPointsX.clear();
@@ -111,6 +121,7 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
     });
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
+      // save results to Firestore
       FirebaseFirestore.instance.collection('users').doc(user.uid).collection('Balance_and_Stability_Results').add({
         'dataPointsX': dataPointsX.map((point) => {'x': point.x, 'y': point.y}).toList(),
         'dataPointsY': dataPointsY.map((point) => {'x': point.x, 'y': point.y}).toList(),
@@ -138,9 +149,11 @@ class _BalanceStabilityPageState extends State<BalanceStabilityPage> {
   Widget buildGraph() {
     if (dataPointsX.isEmpty) {
       return Center(
-        child: Text('No data available', style: GoogleFonts.lato(
-                  fontWeight: FontWeight.bold, )
-      ),);
+        child: Text(
+          'No data available',
+          style: GoogleFonts.lato(fontWeight: FontWeight.bold),
+        ),
+      );
     }
 
     return Padding(

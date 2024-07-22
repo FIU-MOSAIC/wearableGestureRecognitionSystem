@@ -23,40 +23,46 @@ class ExerciseResult {
   });
 
   factory ExerciseResult.fromMap(Map<String, dynamic> map, String exerciseName) {
-
+    // convert map data to list of flspot objects for data points x
     List<FlSpot>? dataPointsX = (map['dataPointsX'] as List?)
         ?.map((point) => FlSpot(
             (point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
         .toList();
 
+    // convert map data to list of flspot objects for data points y
     List<FlSpot>? dataPointsY = (map['dataPointsY'] as List?)
         ?.map((point) => FlSpot(
             (point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
         .toList();
 
+    // convert map data to list of flspot objects for data points z
     List<FlSpot>? dataPointsZ = (map['dataPointsZ'] as List?)
         ?.map((point) => FlSpot(
             (point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
         .toList();
 
+    // convert map data to list of flspot objects for data points i
     List<FlSpot>? dataPointsI = (map['dataPointsI'] as List?)
         ?.map((point) => FlSpot(
             (point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
         .toList();
 
+    // convert map data to list of flspot objects for data points j
     List<FlSpot>? dataPointsJ = (map['dataPointsJ'] as List?)
         ?.map((point) => FlSpot(
             (point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
         .toList();
 
+    // convert map data to list of flspot objects for data points k
     List<FlSpot>? dataPointsK = (map['dataPointsK'] as List?)
         ?.map((point) => FlSpot(
             (point['x'] as num).toDouble(), (point['y'] as num).toDouble()))
         .toList();
 
+    // create exerciseresult instance from map data
     return ExerciseResult(
       exerciseName: exerciseName,
-      testDate: (map['testDate'] as Timestamp).toDate(),
+      testDate: (map['testDate'] as Timestamp).toDate(), // convert timestamp to datetime
       dataPointsX: dataPointsX,
       dataPointsY: dataPointsY,
       dataPointsZ: dataPointsZ,

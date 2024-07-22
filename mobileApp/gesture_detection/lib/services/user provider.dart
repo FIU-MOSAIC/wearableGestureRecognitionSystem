@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'results model.dart';
 import 'user model.dart';
 
+
 class UserProvider with ChangeNotifier {
   UserModel? _user;
   DateTime? lastBalanceStabilityDate;
@@ -15,6 +16,7 @@ class UserProvider with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  // fetch user data from firestore
   Future<void> fetchUserData() async {
     try {
       User? currentUser = _auth.currentUser;
@@ -33,6 +35,7 @@ class UserProvider with ChangeNotifier {
     }
   }
 
+  // fetch all exercise results from firestore
   Future<List<ExerciseResult>> fetchAllResults() async {
     List<ExerciseResult> results = [];
     User? user = FirebaseAuth.instance.currentUser;
@@ -61,6 +64,7 @@ class UserProvider with ChangeNotifier {
     return results;
   }
 
+  // save user data to firestore
   Future<void> saveUserData(Map<String, dynamic> data) async {
     try {
       User? currentUser = _auth.currentUser;
@@ -76,6 +80,7 @@ class UserProvider with ChangeNotifier {
     }
   }
 
+  // fetch the last activity dates for different exercises from firestore
   Future<void> fetchLastActivityDate() async {
     try {
       User? currentUser = _auth.currentUser;

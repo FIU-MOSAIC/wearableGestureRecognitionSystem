@@ -3,19 +3,19 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const wsPort = 8080; // WebSocket server port
+const wsPort = 8080; // websocket server port
 
-// Set up WebSocket server
+// set up websocket server
 const wss = new WebSocket.Server({ port: wsPort });
 
 wss.on('connection', (ws) => {
-    console.log('Client connected');
+    console.log('client connected');
 
     ws.on('message', (message) => {
         const data = JSON.parse(message.toString());
-        console.log('Received data:', data);
+        console.log('received data:', data);
         
-        // Broadcast data to all connected clients
+        // broadcast data to all connected clients
         wss.clients.forEach(client => {
             if (client.readyState === WebSocket.OPEN) {
                 client.send(JSON.stringify(data));
@@ -24,12 +24,12 @@ wss.on('connection', (ws) => {
     });
 
     ws.on('close', () => {
-        console.log('Client disconnected');
+        console.log('client disconnected');
     });
 
     ws.on('error', (error) => {
-        console.error('WebSocket error:', error);
+        console.error('websocket error:', error);
     });
 });
 
-console.log(`WebSocket server is running on ws://localhost:${wsPort}`);
+console.log(`websocket server is running on ws://localhost:${wsPort}`);

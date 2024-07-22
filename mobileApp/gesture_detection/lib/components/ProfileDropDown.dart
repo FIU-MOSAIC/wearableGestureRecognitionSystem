@@ -32,7 +32,7 @@ class ProfileDropDown extends StatelessWidget {
             Expanded(
               flex: 3,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0),
+                padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0), // padding for the gender label
                 child: Text(
                   'Gender',
                   style: GoogleFonts.lato(
@@ -42,14 +42,14 @@ class ProfileDropDown extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 40),
+            const SizedBox(width: 40), // space between the label and the dropdown
             Expanded(
               flex: 7,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0), // padding for the gender dropdown
                 child: DropdownButtonFormField<String>(
                   decoration: InputDecoration(
-                    hintText: genderHint ?? 'Select your gender',
+                    hintText: genderHint ?? 'Select your gender', // hint text for the gender dropdown
                     hintStyle: GoogleFonts.lato(color: Colors.black),
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
@@ -62,20 +62,20 @@ class ProfileDropDown extends StatelessWidget {
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
-                    onGenderChanged(newValue);
+                    onGenderChanged(newValue); // handle gender change
                   },
                 ),
               ),
             ),
           ],
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 10), // space between rows
         Row(
           children: [
             Expanded(
               flex: 3,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0),
+                padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0), // padding for the height label
                 child: Text(
                   'Height',
                   style: GoogleFonts.lato(
@@ -85,14 +85,14 @@ class ProfileDropDown extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 40),
+            const SizedBox(width: 40), // space between the label and the dropdowns
             Expanded(
               flex: 3,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                padding: const EdgeInsets.symmetric(horizontal: 9.0), // padding for the feet dropdown
                 child: DropdownButtonFormField<String>(
                   decoration: InputDecoration(
-                    hintText: feetHint ?? 'ft',
+                    hintText: feetHint ?? 'ft', // hint text for the feet dropdown
                     hintStyle: GoogleFonts.lato(color: Colors.black),
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
@@ -105,7 +105,7 @@ class ProfileDropDown extends StatelessWidget {
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
-                    onFeetChanged(newValue);
+                    onFeetChanged(newValue); // handle feet change
                   },
                 ),
               ),
@@ -113,10 +113,10 @@ class ProfileDropDown extends StatelessWidget {
             Expanded(
               flex: 3,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0), // padding for the inches dropdown
                 child: DropdownButtonFormField<String>(
                   decoration: InputDecoration(
-                    hintText: inchesHint ?? 'in',
+                    hintText: inchesHint ?? 'in', // hint text for the inches dropdown
                     hintStyle: GoogleFonts.lato(color: Colors.black),
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
@@ -129,20 +129,20 @@ class ProfileDropDown extends StatelessWidget {
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
-                    onInchesChanged(newValue);
+                    onInchesChanged(newValue); // handle inches change
                   },
                 ),
               ),
             ),
           ],
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 10), // space between rows
         Row(
           children: [
             Expanded(
               flex: 3,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0),
+                padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0), // padding for the impairment label
                 child: Text(
                   'Impairment',
                   style: GoogleFonts.lato(
@@ -151,14 +151,14 @@ class ProfileDropDown extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 40),
+            const SizedBox(width: 40), // space between the label and the dropdown
             Expanded(
               flex: 7,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0), // padding for the impairment dropdown
                 child: DropdownButtonFormField<String>(
                   decoration: InputDecoration(
-                    hintText: impairmentHint ?? 'Select your impairment',
+                    hintText: impairmentHint ?? 'Select your impairment', // hint text for the impairment dropdown
                     hintStyle: GoogleFonts.lato(color: Colors.black),
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
@@ -171,7 +171,7 @@ class ProfileDropDown extends StatelessWidget {
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
-                    onImpairmentChanged(newValue);
+                    onImpairmentChanged(newValue); // handle impairment change
                   },
                 ),
               ),
