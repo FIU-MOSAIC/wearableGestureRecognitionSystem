@@ -8,7 +8,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
-
 import '../results pages/arm mobility result page.dart';
 
 class ArmMobilityTestPage extends StatefulWidget {
@@ -36,7 +35,9 @@ class _ArmMobilityTestPageState extends State<ArmMobilityTestPage> {
   @override
   void initState() {
     super.initState();
+    // establish websocket connection
     channel = IOWebSocketChannel.connect('ws://192.168.0.47:8080');
+    // listen for data from websocket
     channel.stream.listen((data) {
       setState(() {
         processOrientationData(data);
@@ -46,8 +47,10 @@ class _ArmMobilityTestPageState extends State<ArmMobilityTestPage> {
   }
 
   void processOrientationData(String data) {
+    // decode data received from websocket
     Map<String, dynamic> decodedData = jsonDecode(data);
     
+    // check and update orientation data
     if (decodedData.containsKey('orientationI') && decodedData['orientationI'] != null && decodedData['orientationI'].isNotEmpty) {
       orientationI = (decodedData['orientationI'].last as num).toDouble();
     }
@@ -58,6 +61,7 @@ class _ArmMobilityTestPageState extends State<ArmMobilityTestPage> {
       orientationK = (decodedData['orientationK'].last as num).toDouble();
     }
 
+    // start timer if it hasn't been started
     if (startTime == null && timer == null) {
       startTime = DateTime.now();
       timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
@@ -65,6 +69,7 @@ class _ArmMobilityTestPageState extends State<ArmMobilityTestPage> {
         addDataPoint();
       });
 
+      // auto-save results after a specific duration
       if (widget.timerDuration > 0) {
         autoSaveTimer = Timer(Duration(seconds: widget.timerDuration), () {
           saveResults();
@@ -74,6 +79,7 @@ class _ArmMobilityTestPageState extends State<ArmMobilityTestPage> {
   }
 
   void processHeartRateData(String data) {
+    // decode heart rate data
     Map<String, dynamic> decodedData = jsonDecode(data);
     if (decodedData.containsKey('heartRate') && decodedData['heartRate'] != null && decodedData['heartRate'].isNotEmpty) {
       heartRate = (decodedData['heartRate'].last as num).toDouble();
@@ -99,6 +105,7 @@ class _ArmMobilityTestPageState extends State<ArmMobilityTestPage> {
 
   @override
   void dispose() {
+    // clean up resources
     timer?.cancel();
     autoSaveTimer?.cancel();
     dataPointsI.clear();
@@ -114,6 +121,7 @@ class _ArmMobilityTestPageState extends State<ArmMobilityTestPage> {
     });
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
+      // save results to Firestore
       FirebaseFirestore.instance.collection('users').doc(user.uid).collection('Arm_Mobility_Results').add({
         'dataPointsI': dataPointsI.map((point) => {'x': point.x, 'y': point.y}).toList(),
         'dataPointsJ': dataPointsJ.map((point) => {'x': point.x, 'y': point.y}).toList(),

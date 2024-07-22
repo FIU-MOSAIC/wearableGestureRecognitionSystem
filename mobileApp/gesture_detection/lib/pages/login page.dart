@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../services/auth service.dart';
 import 'forgot password page.dart';
 import 'home page.dart';
+import 'register page.dart';
+
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -24,39 +26,40 @@ class _LoginPageState extends State<LoginPage> {
   String? passwordError;
 
   // sign user in method
-void signUserIn() async {
-  setState(() {
-    emailError = null;
-    passwordError = null;
-  });
-  
-  try {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text,
-      password: passwordController.text,
-    );
-    // navigate to the HomePage after successful login
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) => const HomePage()), 
-      (Route<dynamic> route) => false,
-    );
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'user-not-found' || e.code == 'invalid-email') {
-      setState(() {
-        emailError = 'Invalid email';
-      });
-    } else if (e.code == 'wrong-password') {
-      setState(() {
-        passwordError = 'Invalid password';
-      });
-    } else {
-      setState(() {
-        emailError = 'Invalid email or password';
-      });
+  void signUserIn() async {
+    setState(() {
+      emailError = null;
+      passwordError = null;
+    });
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      // navigate to the HomePage after successful login
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const HomePage()), 
+        (Route<dynamic> route) => false,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found' || e.code == 'invalid-email') {
+        setState(() {
+          emailError = 'Invalid email';
+        });
+      } else if (e.code == 'wrong-password') {
+        setState(() {
+          passwordError = 'Invalid password';
+        });
+      } else {
+        setState(() {
+          emailError = 'Invalid email or password';
+        });
+      }
     }
   }
-}
- void signInWithGoogle() async {
+
+  void signInWithGoogle() async {
     UserCredential? userCredential = await AuthService().signInWithGoogle();
     if (userCredential != null) {
       Navigator.of(context).pushAndRemoveUntil(
@@ -64,13 +67,25 @@ void signUserIn() async {
         (Route<dynamic> route) => false,
       );
     } else {
-      // Handle sign in error
+      // handle sign in error
       setState(() {
         emailError = 'Google sign in failed';
       });
     }
   }
-  //login page content
+
+  // Function to navigate to RegisterPage
+  void goToRegisterPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => RegisterPage(
+          onTap: () => Navigator.pop(context), // Return to login on tap
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,7 +156,7 @@ void signUserIn() async {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text('Forgot password?',
-                           style: GoogleFonts.lato(color: Colors.grey[800], fontSize: 15)),
+                            style: GoogleFonts.lato(color: Colors.grey[800], fontSize: 15)),
                         ),
                       ),
                     ],
@@ -186,12 +201,14 @@ void signUserIn() async {
                     SquareTile(
                       onTap: signInWithGoogle,
                       imagePath: 'lib/images/google.png',
-                       size: 90,),
+                      size: 90,
+                    ),
                     const SizedBox(width: 60),
                     SquareTile(
                       onTap: (){},
                       imagePath: 'lib/images/apple.png',
-                      size: 90,),
+                      size: 90,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 30),
@@ -201,7 +218,7 @@ void signUserIn() async {
                     Text('Not a member?', style: GoogleFonts.lato(fontSize: 16)),
                     const SizedBox(width: 5),
                     GestureDetector(
-                      onTap: widget.onTap,
+                      onTap: goToRegisterPage,
                       child: Text(
                         'Register now.',
                         style: GoogleFonts.lato(

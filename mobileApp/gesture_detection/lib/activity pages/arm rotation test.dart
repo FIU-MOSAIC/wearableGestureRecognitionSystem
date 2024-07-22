@@ -7,7 +7,6 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../components/Button.dart';
 import '../results pages/arm rotation result page.dart';
 
@@ -36,18 +35,22 @@ class _ArmRotationTestPageState extends State<ArmRotationTestPage> {
   @override
   void initState() {
     super.initState();
+    // establish websocket connection
     channel = IOWebSocketChannel.connect('ws://192.168.0.47:8080');
+    // listen for data from websocket
     channel.stream.listen((data) {
       setState(() {
-        processOrientationData(data);
+        processGyroscopeData(data);
         processHeartRateData(data);
       });
     });
   }
 
-  void processOrientationData(String data) {
+  void processGyroscopeData(String data) {
+    // decode data received from websocket
     Map<String, dynamic> decodedData = jsonDecode(data);
 
+    // check and update gyroscope data
     if (decodedData.containsKey('gyroX') && decodedData['gyroX'] != null && decodedData['gyroX'].isNotEmpty) {
       gyroX = (decodedData['gyroX'].last as num).toDouble();
     }
@@ -58,6 +61,7 @@ class _ArmRotationTestPageState extends State<ArmRotationTestPage> {
       gyroZ = (decodedData['gyroZ'].last as num).toDouble();
     }
 
+    // start timer if it hasn't been started
     if (startTime == null && timer == null) {
       startTime = DateTime.now();
       timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
@@ -65,6 +69,7 @@ class _ArmRotationTestPageState extends State<ArmRotationTestPage> {
         addDataPoint();
       });
 
+      // auto-save results after a specific duration
       if (widget.timerDuration > 0) {
         autoSaveTimer = Timer(Duration(seconds: widget.timerDuration), () {
           saveResults();
@@ -74,6 +79,7 @@ class _ArmRotationTestPageState extends State<ArmRotationTestPage> {
   }
 
   void processHeartRateData(String data) {
+    // decode heart rate data
     Map<String, dynamic> decodedData = jsonDecode(data);
     if (decodedData.containsKey('heartRate') && decodedData['heartRate'] != null && decodedData['heartRate'].isNotEmpty) {
       heartRate = (decodedData['heartRate'].last as num).toDouble();
@@ -99,6 +105,7 @@ class _ArmRotationTestPageState extends State<ArmRotationTestPage> {
 
   @override
   void dispose() {
+    // clean up resources
     timer?.cancel();
     autoSaveTimer?.cancel();
     dataPointsX.clear();
@@ -114,6 +121,7 @@ class _ArmRotationTestPageState extends State<ArmRotationTestPage> {
     });
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
+      // save results to Firestore
       FirebaseFirestore.instance.collection('users').doc(user.uid).collection('Arm_Rotation_Results').add({
         'dataPointsX': dataPointsX.map((point) => {'x': point.x, 'y': point.y}).toList(),
         'dataPointsY': dataPointsY.map((point) => {'x': point.x, 'y': point.y}).toList(),

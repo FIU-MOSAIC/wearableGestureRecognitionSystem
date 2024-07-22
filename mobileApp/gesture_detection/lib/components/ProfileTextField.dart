@@ -22,7 +22,7 @@ class ProfileTextField extends StatelessWidget {
         Expanded(
           flex: 3,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 9.0, vertical: 12.0), // padding for the text label
             child: Text(
               text,
               style: GoogleFonts.lato(
@@ -32,18 +32,18 @@ class ProfileTextField extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 40),
+        const SizedBox(width: 40), // space between the label and the text field
         Expanded(
           flex: 7,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0), // padding for the text field
             child: TextField(
               controller: controller,
               keyboardType: keyboardType,
               decoration: InputDecoration(
-                hintText: hintText,
-                hintStyle: GoogleFonts.lato(color: Colors.grey[500]),
-                focusedBorder: InputBorder.none,
+                hintText: hintText, // hint text for the text field
+                hintStyle: GoogleFonts.lato(color: Colors.black),
+                focusedBorder: InputBorder.none, // no border when focused
               ),
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gesture_detection/components/ListTile.dart';
+import 'ListTile.dart';
+
 
 class MyDrawer extends StatefulWidget {
   final void Function()? onProfileTap;
@@ -23,38 +24,38 @@ class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.grey[900], // background color of the drawer
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, // space between top and bottom columns
         children: [
           Column(
             children: [
-              const SizedBox(height: 100.0),
-          const Icon(
-            Icons.home,
-            color: Colors.white,
-            size: 64,
-          ),
-          const SizedBox(height: 50.0),
-          MyListTile(
-            icon: Icons.person,
-            text: "P R O F I L E",
-            onTap: widget.onProfileTap,
-          ),
-          MyListTile(
-            icon: Icons.history,
-            text: "H I S T O R Y",
-            onTap: widget.onHistoryTap,
-          ),
-          MyListTile(
-            icon: Icons.info,
-            text: "A B O U T   U S",
-            onTap: widget.onAboutUsTap,
-          ),
+              const SizedBox(height: 100.0), // space from the top
+              const Icon(
+                Icons.home,
+                color: Colors.white,
+                size: 64,
+              ),
+              const SizedBox(height: 50.0), // space below the icon
+              MyListTile(
+                icon: Icons.person,
+                text: "P R O F I L E",
+                onTap: widget.onProfileTap,
+              ),
+              MyListTile(
+                icon: Icons.history,
+                text: "H I S T O R Y",
+                onTap: widget.onHistoryTap,
+              ),
+              MyListTile(
+                icon: Icons.info,
+                text: "A B O U T   U S",
+                onTap: widget.onAboutUsTap,
+              ),
             ],
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0), // padding for the logout button
             child: MyListTile(
               icon: Icons.logout,
               text: "L O G   O U T",

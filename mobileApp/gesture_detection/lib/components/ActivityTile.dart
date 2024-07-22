@@ -18,33 +18,33 @@ class ActivityTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start, // align children to the start of the column
       children: [
         GestureDetector(
-          onTap: onTap,
+          onTap: onTap, // handle tap events
           child: Container(
             width: width,
             decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(20.0),
+              color: Colors.grey[300], // background color of the container
+              borderRadius: BorderRadius.circular(20.0), // rounded corners
             ),
             child: Padding(
-              padding: const EdgeInsets.all(7.0),
+              padding: const EdgeInsets.all(7.0), // padding inside the container
               child: Row(
                 children: [
                   Expanded(
                     child: Text(
-                      title,
+                      title, // display the title text
                       style: GoogleFonts.lato(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[600],
+                        fontSize: 20.0, // font size of the title
+                        fontWeight: FontWeight.bold, // bold font weight
+                        color: Colors.grey[600], // text color
                       ),
                     ),
                   ),
-                  const SizedBox(width: 20.0),
+                  const SizedBox(width: 20.0), // spacing between text and image
                   Image.asset(
-                    imagePath,
+                    imagePath, // display the image from assets
                     width: 50,
                     height: 50,
                   ),
@@ -53,7 +53,7 @@ class ActivityTile extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 10.0),
+        const SizedBox(height: 10.0), // space below the tile
       ],
     );
   }

@@ -8,11 +8,11 @@ class AboutUsPage extends StatelessWidget {
     return Card(
       elevation: 5,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(10.0), // rounded corners for the card
       ),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: AssetImage(imagePath),
+          backgroundImage: AssetImage(imagePath), // team member image
         ),
         title: Text(
           name,
@@ -34,14 +34,14 @@ class AboutUsPage extends StatelessWidget {
 
   Widget buildProductOwner(String name, String role, String imagePath) {
     return Card(
-      color: Colors.blue[50],
+      color: Colors.blue[50], // background color for product owner card
       elevation: 5,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(10.0), // rounded corners for the card
       ),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: AssetImage(imagePath),
+          backgroundImage: AssetImage(imagePath), // product owner image
         ),
         title: Text(
           name,
@@ -66,14 +66,14 @@ class AboutUsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('About Us', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.grey[900], // app bar background color
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              color: Colors.grey[900],
+              color: Colors.grey[900], // background color for the header
               height: MediaQuery.of(context).size.height / 4,
               width: double.infinity,
               child: Center(
@@ -90,14 +90,14 @@ class AboutUsPage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.circular(10.0),
+                  color: Colors.grey[100], // background color for the text container
+                  borderRadius: BorderRadius.circular(10.0), // rounded corners
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
+                      color: Colors.grey.withOpacity(0.5), // shadow color
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: const Offset(0, 3),
+                      offset: const Offset(0, 3), // shadow offset
                     ),
                   ],
                 ),

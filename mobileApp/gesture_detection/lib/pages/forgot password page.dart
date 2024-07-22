@@ -1,5 +1,4 @@
 // ignore_for_file: file_names
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gesture_detection/components/Button.dart';
@@ -39,29 +38,29 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.grey[100], // app bar background color
         title: const Text('Forgot Password?'),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center, // center the content vertically
           children: [
            Text(
               'Enter your email to reset your password.',
               style: GoogleFonts.lato(fontSize: 18),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 20), // space between text and text field
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20), // horizontal padding for text field
               child: FormTextField(
                 hintText: 'Email',
                 obscureText: false,
-                 controller: emailController,
+                controller: emailController,
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 20), // space between text field and button
             Padding(
-              padding: const EdgeInsets.all(18.0),
+              padding: const EdgeInsets.all(18.0), // padding around the button
               child: Button(onTap: resetPassword, text: "Reset Password"),
             )
           ],
