@@ -35,9 +35,11 @@ class _ArmRotationTestPageState extends State<ArmRotationTestPage> {
   @override
   void initState() {
     super.initState();
+
     // establish websocket connection
-    channel = IOWebSocketChannel.connect('ws://192.168.0.47:8080');
+    channel = IOWebSocketChannel.connect('ws://192.168.0.47:8080'); //modify with your IP address
     // listen for data from websocket
+
     channel.stream.listen((data) {
       setState(() {
         processGyroscopeData(data);
