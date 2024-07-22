@@ -5,7 +5,7 @@ import 'package:gesture_detection/components/FormTextField.dart';
 import 'package:gesture_detection/components/SquareTile.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../services/auth service.dart';
-import 'home page.dart';  // Import the HomePage
+import 'home page.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -45,7 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
         email: emailController.text,
         password: passwordController.text,
       );
-      // Navigate to the HomePage after successful sign up
+      // navigate to the HomePage after successful sign up
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => const HomePage()), 
         (Route<dynamic> route) => false,
