@@ -1,4 +1,4 @@
-# Gesture Recognition System
+![Header](./header.png)
 ### Overview
 This application is designed to interact with a Fitbit device, collecting sensor readings and displaying them graphically on a mobile device. The mobile application is developed using Flutter and Dart, while the Fitbit interactions and WebSocket communication are handled using JavaScript. Collected data is stored in a Firestore Database, as well as user authentication is managed through Firebase Authentication.
 ### Features
