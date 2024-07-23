@@ -5,26 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d07f0e3-7dfd-492f-9a4a-02487ed705f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/wearableGestureRecognitSystemion.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/images/robertodibari.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/package_config_subset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.dart_tool/version" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/android/local.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/ios/Flutter/Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/ios/Flutter/Generated.xcconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/pages/about us page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/pages/about us page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/Instruction pages/arm mobility instruction page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/Instruction pages/arm mobility instruction page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/Instruction pages/arm rotation instruction page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/Instruction pages/arm rotation instruction page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/Instruction pages/balance stability instructions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/lib/Instruction pages/balance stability instructions.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/macos/Flutter/ephemeral/Flutter-Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/macos/Flutter/ephemeral/Flutter-Generated.xcconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/macos/Flutter/ephemeral/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/macos/Flutter/ephemeral/flutter_export_environment.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/macos/Runner/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/macos/Runner/AppDelegate.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileApp/gesture_detection/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/mobileApp/gesture_detection/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

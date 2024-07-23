@@ -14,7 +14,7 @@ class BalanceStabilityInstruction extends StatefulWidget {
 }
 
 class _BalanceStabilityInstructionState extends State<BalanceStabilityInstruction> {
-  final videoURL = 'https://www.youtube.com/watch?v=T9H_yu0Me8c';
+  final videoURL = 'https://youtu.be/b5Bfd9nOAxY?si=R8-wBwav1KWgmrg1';
 
   late YoutubePlayerController _controller;
   int? selectedTimer;

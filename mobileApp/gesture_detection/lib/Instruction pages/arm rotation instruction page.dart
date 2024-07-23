@@ -14,7 +14,7 @@ class ArmRotationInstructionPage extends StatefulWidget {
 }
 
 class _ArmRotationInstructionPageState extends State<ArmRotationInstructionPage> {
-  final videoURL = 'https://www.youtube.com/watch?v=T9H_yu0Me8c';
+  final videoURL = 'https://youtu.be/dlbwxWcP60Y?si=XWAmvyS_qM6mlgXF';
 
   late YoutubePlayerController _controller;
   int? selectedTimer;

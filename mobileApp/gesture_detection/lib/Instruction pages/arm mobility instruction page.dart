@@ -13,7 +13,7 @@ class ArmMobilityInstructionPage extends StatefulWidget {
 }
 
 class _ArmMobilityInstructionPageState extends State<ArmMobilityInstructionPage> {
-  final videoURL = 'https://www.youtube.com/watch?v=T9H_yu0Me8c';
+  final videoURL = 'https://youtu.be/u6ELc5Rg0_k?si=-i_7NG7lkfWt1Vse';
   
   late YoutubePlayerController _controller;
   int? selectedTimer;
