@@ -9,8 +9,8 @@ This application is designed to interact with a Fitbit device, collecting sensor
 - User Authentication: Authenticate users via Google sign-in or email and password.
 
 ### Technologies Used
-- Flutter and Dart: For developing the mobile application.
-- JavaScript: For interfacing with the Fitbit device and managing WebSocket communication.
+- Flutter and Dart: For developing the mobile application. [How to install Flutter and Dart?](https://docs.flutter.dev/get-started/install)
+- JavaScript: For interfacing with the Fitbit device and managing WebSocket communication.[How to install JavaScript?](https://nodejs.org/en)
 - Firebase: For data storage and user authentication.
 
 ### Installation and Setup
