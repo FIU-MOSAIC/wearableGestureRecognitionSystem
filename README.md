@@ -9,8 +9,8 @@ This application is designed to interact with a Fitbit device, collecting sensor
 - User Authentication: Authenticate users via Google sign-in or email and password.
 
 ### Technologies Used
-- Flutter and Dart: For developing the mobile application.
-- JavaScript: For interfacing with the Fitbit device and managing WebSocket communication.
+- Flutter and Dart: For developing the mobile application. [How to install Flutter and Dart?](https://docs.flutter.dev/get-started/install)
+- JavaScript: For interfacing with the Fitbit device and managing WebSocket communication.[How to install JavaScript?](https://nodejs.org/en)
 - Firebase: For data storage and user authentication.
 
 ### Installation and Setup
@@ -38,10 +38,10 @@ Type ip addr show and press Enter.
 Look for the IP address associated with your network adapter (e.g., eth0 or wlan0).
 
 After getting the IP address modify these files with your IP address:
-wearableGestureRecognitSystemion\fitbitApp\wearable-gesture-recognition-system\companion\index.js -> line 4
-wearableGestureRecognitSystemion\mobileApp\gesture_detection\lib\activity pages\arm mobility test.dart -> line 39 
-wearableGestureRecognitSystemion\mobileApp\gesture_detection\lib\activity pages\arm rotation test.dart -> line 39
-wearableGestureRecognitSystemion\mobileApp\gesture_detection\lib\activity pages\balance stability test.dart -> line 38
+wearableGestureRecognitSystemion\fitbitApp\wearable-gesture-recognition-system\companion\index.js -> line 5
+wearableGestureRecognitSystemion\mobileApp\gesture_detection\lib\activity pages\arm mobility test.dart, arm rotation test.dart and balance stability test.dart -> line 40 
+
+
 
 ##### Start WebSocket Server:
 Navigate to the server directory:
